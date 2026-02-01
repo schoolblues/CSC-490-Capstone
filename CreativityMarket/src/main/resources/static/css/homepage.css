@@ -4,14 +4,108 @@
     box-sizing: border-box;
 }
 
+
+.navbar {
+    width: 100%;
+    background-color: #271738;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar-title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navbar-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.navbar-menu a:hover {
+    color: #ffffff65;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-bar {
+    padding: 8px 12px;
+    border: 1px solid #3a4a5c;
+    background-color: #392d46;
+    color: #ffffff;
+    border-radius: 3px;
+    width: 200px;
+    font-size: 14px;
+}
+
+.search-bar::placeholder {
+    color: #ffffff;
+}
+
+.search-button {
+    background-color: #ab68f3cb;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.search-button:hover {
+    background-color: #0a5fa0;
+}
+
 body {
     width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    background-color: #544f5eae;
+}
+
+.featured-label {
+    padding-left: 12.5vw;
+    padding-top: 40px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.bannerContainer {
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    background-color: #f0f0f0;
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 10px 0;
 }
 
 .banner {
@@ -20,11 +114,12 @@ body {
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, 
-        rgba(0, 0, 0, 0.9) 0%,
-        rgba(0, 0, 0, 0.95) 25%,
-        rgb(0, 0, 0) 50%,
-        rgba(0, 0, 0, 0.95) 75%,
-        rgba(0, 0, 0, 0.9) 100%);
+        rgba(39, 23, 56, 0.9) 0%,
+        rgba(39, 23, 56, 0.9) 25%,
+        rgb(39, 23, 56, 0.9) 50%,
+        rgba(39, 23, 56, 0.9) 75%,
+        rgba(39, 23, 56, 0.9) 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .banner::before {
@@ -41,12 +136,13 @@ body {
     top: -10%;
     width: 20%;
     height: 120%;
-    background-color: #fff;
+    background-color: #ffffff78;
     transform: skewX(-15deg);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
 }
 
 .stripe-image {
@@ -88,6 +184,7 @@ body {
     justify-content: center;
     padding: 0;
     flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .nav-button-image {
