@@ -10,6 +10,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 5px;
     background-color: #f0f0f0;
 }
 
@@ -74,4 +75,24 @@ body {
 
 .diagonal-stripe:nth-child(5) {
     left: 104%;
+}
+
+.nav-button {
+    width: 31.5px;
+    height: 62.5px;
+    border: 2px solid #333;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.nav-button-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
