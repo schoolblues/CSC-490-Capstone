@@ -40,8 +40,20 @@ body {
     top: -10%;
     width: 20%;
     height: 120%;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: #fff;
     transform: skewX(-15deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.stripe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transform: skewX(15deg);
 }
 
 .diagonal-stripe:nth-child(1) {
