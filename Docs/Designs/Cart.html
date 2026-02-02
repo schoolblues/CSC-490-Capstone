@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="../Styles/style.css">
+</head>
+<style>
+* {
+box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* Header */
+.cart-header {
+    background: #ffffff;
+    padding: 16px 40px;
+    border-bottom: 1px solid #e6e6e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+}
+
+.steps {
+    font-size: 14px;
+    color: #777;
+}
+
+.steps .active {
+    color: #000;
+    font-weight: 600;
+}
+
+/* Layout */
+.cart-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+/* Cart items */
+.cart-items,
+.cart-summary {
+    background: #fff;
+    padding: 24px;
+    border-radius: 4px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item-title {
+    margin: 0;
+    font-weight: 600;
+}
+
+.item-license {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.item-actions {
+    text-align: right;
+}
+
+.price {
+    display: block;
+    font-weight: 600;
+}
+
+.remove {
+    margin-top: 6px;
+    background: none;
+    border: none;
+    color: #c0392b;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* Summary */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+}
+
+.summary-row.total {
+    font-size: 18px;
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: #2ecc71;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.checkout-btn:hover {
+    background: #27ae60;
+}
+
+.secure-note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .cart-container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+<body>
+
+    <!-- Minimal header -->
+    <header class="cart-header">
+        <div class="logo">CreativityMarket</div>
+        <div class="steps">
+            <span class="active">Cart</span>
+            <span>›</span>
+            <span>Payment</span>
+        </div>
+    </header>
+
+    <!-- Main cart layout -->
+    <main class="cart-container">
+
+        <!-- Cart items -->
+        <section class="cart-items">
+            <h2>Shopping cart</h2>
+
+            <div class="cart-item">
+                <div class="item-info">
+                    <p class="item-title">3D Model Name</p>
+                    <p class="item-license">Standard License</p>
+                </div>
+
+                <div class="item-actions">
+                    <span class="price">$25.00</span>
+                    <button class="remove">Remove</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary / payment -->
+        <aside class="cart-summary">
+            <h3>Order summary</h3>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>$25.00</span>
+            </div>
+
+            <div class="summary-row total">
+                <span>Total</span>
+                <strong>$25.00</strong>
+            </div>
+
+            <button class="checkout-btn">
+                Proceed to payment
+            </button>
+
+            <p class="secure-note">
+                🔒 Secure payment
+            </p>
+        </aside>
+
+    </main>
+
+</body>
+</html>
