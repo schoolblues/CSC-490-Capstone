@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Creativity Market • Explore</title>
+ <link rel="stylesheet" href="../css/user.css">
+
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">CreativityMarket</div>
+  <nav class="nav">
+    <a href="profile.html">Profile</a>
+    <a href="explore.html">Explore</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="section-title">
+    <div>
+      <h2>Explore</h2>
+      <p>Search and filter (UI only for now).</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="searchbar" style="margin:0;">
+      <input placeholder="Search assets...">
+      <a class="btn primary" href="#">Search</a>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:12px;">
+      <div>
+        <label>Category</label>
+        <select>
+          <option>All</option>
+          <option>Props</option>
+          <option>Characters</option>
+          <option>Architecture</option>
+          <option>Vehicles</option>
+        </select>
+      </div>
+
+      <div>
+        <label>File Type</label>
+        <select>
+          <option>Any</option>
+          <option>FBX</option>
+          <option>OBJ</option>
+          <option>GLB</option>
+        </select>
+      </div>
+
+      <div>
+        <label>License</label>
+        <select>
+          <option>All</option>
+          <option>Personal</option>
+          <option>Commercial</option>
+          <option>Extended</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <div>
+      <h2>Results</h2>
+      <p>Showing mock results (prototype).</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="asset.html">
+      <div class="thumb">Preview</div>
+      <div class="card-body">
+        <h3>Modern Chair</h3>
+        <div class="meta"><span>FBX</span><span class="price">$12</span></div>
+      </div>
+    </a>
+
+    <a class="card" href="asset.html">
+      <div class="thumb">Preview</div>
+      <div class="card-body">
+        <h3>Game Crate Pack</h3>
+        <div class="meta"><span>OBJ</span><span class="price">$8</span></div>
+      </div>
+    </a>
+
+    <a class="card" href="asset.html">
+      <div class="thumb">Preview</div>
+      <div class="card-body">
+        <h3>Stylized Tree Set</h3>
+        <div class="meta"><span>GLB</span><span class="price">$10</span></div>
+      </div>
+    </a>
+
+    <a class="card" href="asset.html">
+      <div class="thumb">Preview</div>
+      <div class="card-body">
+        <h3>Sports Car</h3>
+        <div class="meta"><span>FBX</span><span class="price">$18</span></div>
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer>User-side prototype • CSC-490 Capstone</footer>
+</body>
+</html>
