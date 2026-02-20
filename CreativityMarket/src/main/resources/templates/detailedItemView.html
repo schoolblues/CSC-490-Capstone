@@ -6,6 +6,7 @@
     <title>Item View</title>
     <link rel="stylesheet" href="../static/css/detailedItemView.css">
     <link rel="stylesheet" href="../static/css/homepage.css">
+    <link rel="stylesheet" href="../static/css/sketchfabViewer.css">
 </head>
 <body>
     <nav class="navbar">
@@ -22,21 +23,31 @@
             </button>
         </div>
     </nav>
+
     <div class="item-view-container">
         <div class="gallery-section">
             <div class="main-image-container">
-                <img src="../static/images/apple.png" alt="Main Preview" class="main-image" id="mainImage">
+                <iframe
+                    id="sketchfab-viewer"
+                    data-uid="dGUVoNVSMYpGGkpuCo5jFMnGqTI"
+                    allow="autoplay; fullscreen; xr-spatial-tracking"
+                    allowfullscreen
+                    mozallowfullscreen="true"
+                    webkitallowfullscreen="true"
+                    title="3D Model Viewer">
+                </iframe>
             </div>
+
             <div class="thumbnail-row">
                 <button class="thumb-nav-btn thumb-prev">
                     <img src="../static/images/left.webp" alt="Previous" class="thumb-nav-icon">
                 </button>
-                <div class="thumbnail-container">
-                    <img src="../static/images/apple.png" alt="Thumbnail 1" class="thumbnail active" data-index="0">
-                    <img src="../static/images/banana.png" alt="Thumbnail 2" class="thumbnail" data-index="1">
+                <div class="thumbnail-container" id="thumbnailContainer">
+                    <img src="../static/images/apple.png"   alt="Thumbnail 1" class="thumbnail active" data-index="0">
+                    <img src="../static/images/banana.png"  alt="Thumbnail 2" class="thumbnail" data-index="1">
                     <img src="../static/images/orange.webp" alt="Thumbnail 3" class="thumbnail" data-index="2">
-                    <img src="../static/images/pear.png" alt="Thumbnail 4" class="thumbnail" data-index="3">
-                    <img src="../static/images/apple.png" alt="Thumbnail 5" class="thumbnail" data-index="4">
+                    <img src="../static/images/pear.png"    alt="Thumbnail 4" class="thumbnail" data-index="3">
+                    <img src="../static/images/apple.png"   alt="Thumbnail 5" class="thumbnail" data-index="4">
                 </div>
                 <button class="thumb-nav-btn thumb-next">
                     <img src="../static/images/right.webp" alt="Next" class="thumb-nav-icon">
@@ -73,7 +84,9 @@
             <button class="btn-buy">Buy now</button>
             <div class="cart-wishlist-row">
                 <button class="btn-cart">Add to cart</button>
-                <button class="btn-wishlist"><img src="../static/images/heart.png" alt="wishlist" class="wishlist-icon"></button>
+                <button class="btn-wishlist">
+                    <img src="../static/images/heart.png" alt="wishlist" class="wishlist-icon">
+                </button>
             </div>
 
             <div class="formats-section">
@@ -97,9 +110,7 @@
                     <span class="detail-label">Published</span>
                     <span class="detail-value">August 18, 2018</span>
                     <span class="detail-label">Last update</span>
-                    <div class="detail-value">
-                    <span>March 17, 2024</span>
-                    </div>
+                    <div class="detail-value"><span>March 17, 2024</span></div>
                     <span class="detail-label">License terms</span>
                     <span class="detail-link">Standard License</span>
                     <span class="detail-label">Age rating</span>
@@ -128,5 +139,8 @@
             <p class="footer-copyright">&copy; 2026 Creativity Market. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+    <script src="../static/js/sketchfabViewer.js"></script>
 </body>
 </html>
