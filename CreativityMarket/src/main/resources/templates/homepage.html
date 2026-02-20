@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="../static/css/homepage.css">
+    <link rel="stylesheet" href="../static/css/sketchfab.css">
 </head>
 <body>
     <nav class="navbar">
@@ -21,10 +22,11 @@
             </button>
         </div>
     </nav>
+
     <h2 class="featured-label">Featured Items</h2>
     <div class="bannerContainer">
         <button class="nav-button nav-left">
-            <img src="../static/images/left.webp"   alt="Previous" class="nav-button-image">
+            <img src="../static/images/left.webp" alt="Previous" class="nav-button-image">
         </button>
         <div class="banner">
             <div class="diagonal-stripe">
@@ -39,11 +41,10 @@
             <div class="diagonal-stripe">
                 <img src="../static/images/pear.png" alt="Stripe 4" class="stripe-image">
             </div>
-            <div class="diagonal-stripe">
-            </div>
+            <div class="diagonal-stripe"></div>
         </div>
         <button class="nav-button nav-right">
-            <img src="../static/images/right.webp"  alt="Next" class="nav-button-image">
+            <img src="../static/images/right.webp" alt="Next" class="nav-button-image">
         </button>
     </div>
 
@@ -52,10 +53,10 @@
             <div class="tabs">
                 <button class="tab active">New Models</button>
                 <button class="tab">Trending Models</button>
-                <button class="tab">New Free Models</button>
+                <button class="tab">Trending Free Models</button>
             </div>
             <div class="item-list">
-                <div class="item-row" data-item="1">
+                <div class="item-row" data-uid="dGUVoNVSMYpGGkpuCo5jFMnGqTI">
                     <img src="../static/images/apple.png" alt="Item" class="item-thumbnail">
                     <div class="item-info">
                         <h3 class="item-title">Sample Item One</h3>
@@ -67,7 +68,7 @@
                     </div>
                     <div class="item-price">$9.99</div>
                 </div>
-                <div class="item-row" data-item="2">
+                <div class="item-row" data-uid="dGUVoNVSMYpGGkpuCo5jFMnGqTI">
                     <img src="../static/images/banana.png" alt="Item" class="item-thumbnail">
                     <div class="item-info">
                         <h3 class="item-title">Sample Item Two</h3>
@@ -78,7 +79,7 @@
                     </div>
                     <div class="item-price">$14.99</div>
                 </div>
-                <div class="item-row" data-item="3">
+                <div class="item-row" data-uid="dGUVoNVSMYpGGkpuCo5jFMnGqTI">
                     <img src="../static/images/orange.webp" alt="Item" class="item-thumbnail">
                     <div class="item-info">
                         <h3 class="item-title">Sample Item Three</h3>
@@ -90,7 +91,7 @@
                     </div>
                     <div class="item-price">$24.99</div>
                 </div>
-                <div class="item-row" data-item="4">
+                <div class="item-row" data-uid="dGUVoNVSMYpGGkpuCo5jFMnGqTI">
                     <img src="../static/images/pear.png" alt="Item" class="item-thumbnail">
                     <div class="item-info">
                         <h3 class="item-title">Sample Item Four</h3>
@@ -103,14 +104,18 @@
                 </div>
             </div>
         </div>
-        <div class="preview-panel">
-            <p class="preview-placeholder">Hover over an item to preview</p>
-            <img src="../static/images/apple.png" alt="Preview" class="item-preview-image" data-preview="1">
-            <img src="../static/images/banana.png" alt="Preview" class="item-preview-image" data-preview="2">
-            <img src="../static/images/orange.webp" alt="Preview" class="item-preview-image" data-preview="3">
-            <img src="../static/images/pear.png" alt="Preview" class="item-preview-image" data-preview="4">
+        <div class="preview-panel" id="preview-panel">
+            <iframe
+                id="preview-viewer"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                title="3D Preview">
+            </iframe>
         </div>
     </div>
+
     <div class="category-block-container">
         <div class="category-block">
             <div class="category-header">
@@ -154,7 +159,7 @@
                 <img src="../static/images/pear.png" alt="Preview 3" class="category-img">
             </div>
         </div>
-                <div class="category-block">
+        <div class="category-block">
             <div class="category-header">
                 <h2 class="category-title">SAMPLE CATEGORY</h2>
                 <p class="category-subtitle"><span class="highlight">Digital Art Assets</span></p>
@@ -168,7 +173,7 @@
                 <img src="../static/images/pear.png" alt="Preview 3" class="category-img">
             </div>
         </div>
-                <div class="category-block">
+        <div class="category-block">
             <div class="category-header">
                 <h2 class="category-title">SAMPLE CATEGORY</h2>
                 <p class="category-subtitle"><span class="highlight">Digital Art Assets</span></p>
@@ -182,7 +187,7 @@
                 <img src="../static/images/pear.png" alt="Preview 3" class="category-img">
             </div>
         </div>
-                <div class="category-block">
+        <div class="category-block">
             <div class="category-header">
                 <h2 class="category-title">SAMPLE CATEGORY</h2>
                 <p class="category-subtitle"><span class="highlight">Digital Art Assets</span></p>
@@ -197,60 +202,24 @@
             </div>
         </div>
     </div>
+
     <div class="format-section">
         <div class="format-header">
             <h2 class="format-title">Browse by File Type</h2>
         </div>
         <div class="format-grid">
-            <div class="format-row">
-                <span class="format-name">Blender</span>
-                <span class="format-ext">.blend</span>
-            </div>
-            <div class="format-row">
-                <span class="format-name">OBJ</span>
-                <span class="format-ext">.obj, .mtl</span>
-            </div>
-            <div class="format-row">
-                <span class="format-name">STL</span>
-
-                <span class="format-ext">.stl</span>
-            </div>
-            <div class="format-row">
-                <span class="format-name">FBX</span>
-                <span class="format-ext">.fbx</span>
-            </div>
-            <div class="format-row">
-                <span class="format-name">Unity 3D</span>
-                <span class="format-ext">.unitypackage, .prefab</span>
-            </div>
-            <div class="format-row">
-                <span class="format-name">Unreal Engine</span>
-                <span class="format-ext">.uasset</span>
-            </div>
-            <div class="format-row">
-                <span class="format-name"> 3DS Max</span>
-                <span class="format-ext">.max</span>
-            </div>
-            <div class="format-row">
-                <span class="format-name">Maya</span>
-                <span class="format-ext">.ma, .mb</span>
-            </div>
-            <div class="format-row">
-                <span class="format-name">Cinema 4D</span>
-                <span class="format-ext">.c4d</span>
-            </div>
-            <div class="format-row">
-                <span class="format-name">glTF</span>
-                <span class="format-ext">.gltf, .glb</span>
-            </div>
-                        <div class="format-row">
-                <span class="format-name">Collada</span>
-                <span class="format-ext">.dae</span>
-            </div>
-                        <div class="format-row">
-                <span class="format-name">Beth</span>
-                <span class="format-ext">.nif</span>
-            </div>
+            <div class="format-row"><span class="format-name">Blender</span><span class="format-ext">.blend</span></div>
+            <div class="format-row"><span class="format-name">OBJ</span><span class="format-ext">.obj, .mtl</span></div>
+            <div class="format-row"><span class="format-name">STL</span><span class="format-ext">.stl</span></div>
+            <div class="format-row"><span class="format-name">FBX</span><span class="format-ext">.fbx</span></div>
+            <div class="format-row"><span class="format-name">Unity 3D</span><span class="format-ext">.unitypackage, .prefab</span></div>
+            <div class="format-row"><span class="format-name">Unreal Engine</span><span class="format-ext">.uasset</span></div>
+            <div class="format-row"><span class="format-name">3DS Max</span><span class="format-ext">.max</span></div>
+            <div class="format-row"><span class="format-name">Maya</span><span class="format-ext">.ma, .mb</span></div>
+            <div class="format-row"><span class="format-name">Cinema 4D</span><span class="format-ext">.c4d</span></div>
+            <div class="format-row"><span class="format-name">glTF</span><span class="format-ext">.gltf, .glb</span></div>
+            <div class="format-row"><span class="format-name">Collada</span><span class="format-ext">.dae</span></div>
+            <div class="format-row"><span class="format-name">Beth</span><span class="format-ext">.nif</span></div>
         </div>
     </div>
 
@@ -267,5 +236,8 @@
             <p class="footer-copyright">&copy; 2026 Creativity Market. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+    <script src="../static/js/sketchfabViewer.js"></script>
 </body>
 </html>

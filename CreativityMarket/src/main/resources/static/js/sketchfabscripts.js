@@ -1,9 +1,7 @@
 (function () {
     'use strict';
 
-    const iframe = document.getElementById('sketchfab-viewer');
-
-    function initViewer(uid) {
+    function initViewer(iframe, uid) {
         const client = new Sketchfab(iframe);
 
         client.init(uid, {
@@ -24,7 +22,25 @@
         });
     }
 
-    const uid = document.getElementById('sketchfab-viewer').dataset.uid;
-    if (uid) initViewer(uid);
+    const detailIframe = document.getElementById('sketchfab-viewer');
+    if (detailIframe) {
+        initViewer(detailIframe, detailIframe.dataset.uid);
+    }
+
+    const previewPanel = document.getElementById('preview-panel');
+    if (previewPanel) {
+        const previewIframe = previewPanel.querySelector('iframe');
+        let activeUid = null;
+
+        document.querySelectorAll('.item-row[data-uid]').forEach(function (row) {
+            row.addEventListener('mouseenter', function () {
+                const uid = row.dataset.uid;
+                if (uid === activeUid) return;
+                activeUid = uid;
+                previewIframe.src = '';
+                initViewer(previewIframe, uid);
+            });
+        });
+    }
 
 })();
