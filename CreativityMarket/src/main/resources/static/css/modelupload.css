@@ -1,0 +1,371 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #5b4e74;
+    color: #e0e0e0;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #271738;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar-title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navbar-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.navbar-menu a:hover {
+    color: #ffffff65;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-bar {
+    padding: 8px 12px;
+    border: 1px solid #3a4a5c;
+    background-color: #392d46;
+    color: #ffffff;
+    border-radius: 3px;
+    width: 200px;
+    font-size: 14px;
+}
+
+.search-bar::placeholder {
+    color: #ffffff;
+}
+
+.search-button {
+    background-color: #ab68f3bb;
+    border: none;
+    color: #fff;
+    padding: 10.5px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button:hover {
+    background-color: #a48dcf;
+}
+
+.search-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.page-header {
+    width: 65vw;
+    margin: 40px auto 10px;
+}
+
+.page-header h2 {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #b0b8c1;
+    font-size: 14px;
+}
+
+.upload-form {
+    width: 65vw;
+    margin: 20px auto 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-section {
+    background-color: #271738;
+    border-radius: 4px;
+    padding: 28px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.section-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3d2a50;
+}
+
+.field {
+    margin-bottom: 18px;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+.field label {
+    display: block;
+    color: #d0d0e0;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.field input[type="text"],
+.field input[type="url"],
+.field input[type="number"],
+.field textarea,
+.field select {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #392d46;
+    border: 1px solid #4e3d62;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    outline: none;
+    border-color: #ab68f3;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #8a8a9a;
+}
+
+.field-hint {
+    color: #8a8a9a;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.optional {
+    color: #8a8a9a;
+    font-weight: 400;
+}
+
+.field-row {
+    display: flex;
+    gap: 20px;
+}
+
+.field-row .field {
+    flex: 1;
+}
+
+.field-row.three-col .field {
+    flex: 1;
+}
+
+.checkbox-row {
+    display: flex;
+    gap: 30px;
+    margin-top: 8px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #d0d0e0;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #392d46;
+    border: 1px solid #4e3d62;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+    background-color: #ab68f3;
+    border-color: #ab68f3;
+}
+
+.checkbox-label input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.price-input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #392d46;
+    border: 1px solid #4e3d62;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.price-input-wrapper:focus-within {
+    border-color: #ab68f3;
+}
+
+.price-prefix {
+    padding: 10px 12px;
+    color: #8a8a9a;
+    font-size: 14px;
+    background-color: #30213f;
+    border-right: 1px solid #4e3d62;
+    user-select: none;
+}
+
+.price-input-wrapper input {
+    border: none !important;
+    background: transparent !important;
+    flex: 1;
+    padding: 10px 12px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.price-input-wrapper input:focus {
+    outline: none;
+}
+
+.free-toggle {
+    margin-top: 10px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background-color: #ab68f3;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #9554de;
+}
+
+.btn-secondary {
+    background-color: #3d2a50;
+    color: #d0d0e0;
+}
+
+.btn-secondary:hover {
+    background-color: #4e3d62;
+}
+
+.footer {
+    width: 100%;
+    background-color: #271738;
+    padding: 40px 30px 30px;
+    text-align: center;
+    color: #b0b8c1;
+    font-size: 14px;
+    margin-top: auto;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.footer-content {
+    width: 75vw;
+    margin: 0 auto;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    color: #b0b8c1;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-link:hover {
+    color: #fff;
+}
+
+.footer-copyright {
+    color: #6a6a7a;
+    font-size: 13px;
+}
