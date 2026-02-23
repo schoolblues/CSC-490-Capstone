@@ -39,7 +39,7 @@
 
     <div class="profile-actions">
       <a class="btn btn-primary" href="/assets/new"><i class="fa-solid fa-plus"></i> Upload Asset</a>
-      <a class="btn btn-ghost" href="/users/settings"><i class="fa-solid fa-gear"></i> Settings</a>
+      <a class="btn btn-ghost" href="/users/profile/edit"><i class="fa-solid fa-gear"></i> Edit Profile</a>
     </div>
   </section>
 
@@ -81,7 +81,7 @@
           <div class="stat-label">Sales</div>
         </div>
         <div class="stat">
-          <div class="stat-num">$${earnings!0}</div>
+          <div class="stat-num">$<#if earnings??>${earnings?string["0.00"]}<#else>0.00</#if></div>
           <div class="stat-label">Earnings</div>
         </div>
       </div>
@@ -114,13 +114,24 @@
           <#list assets as a>
             <tr>
               <td class="title">${a.title!"Untitled"}</td>
-              <td>${a.type!"—"}</td>
-              <td>$${a.price!0}</td>
+
+              <#-- FIX: Asset has fileType, not type -->
+              <td>${a.fileType!"—"}</td>
+
+              <#-- Format to 2 decimals -->
+              <td>$<#if a.price??>${a.price?string["0.00"]}<#else>0.00</#if></td>
+
+              <#-- FIX: no a.active in your Asset model. Use License type as "Status" -->
               <td>
-                <span class="status ${a.active?string("live","draft")}">
-                  ${a.active?string("Live","Draft")}
+                <span class="status live">
+                  <#if a.license?? && a.license.type??>
+                    ${a.license.type}
+                  <#else>
+                    —
+                  </#if>
                 </span>
               </td>
+
               <td class="actions">
                 <a class="icon-btn" href="/assets/${a.id}">
                   <i class="fa-regular fa-eye"></i>
@@ -156,4 +167,3 @@
 
 </body>
 </html>
-

@@ -2,10 +2,13 @@ package com.backend.CreativityMarket.User;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import jakarta.servlet.http.HttpSession;
-
 import java.util.List;
 
 @Controller
@@ -14,18 +17,31 @@ public class UserController {
 
     @GetMapping("/home")
     public String userHome(HttpSession session, Model model) {
-        return "user/user-home";
-    }
 
-    @GetMapping("/asset/{id}")
-    public String asset(@PathVariable Long id, Model model) {
-        Asset found = sampleAssets().stream()
-                .filter(a -> a.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+      
+        User user = (User) session.getAttribute("user");
 
-        model.addAttribute("asset", found);
-        return "user/asset";
+       
+        if (user == null) {
+            user = new User();
+            user.setName("User");
+            user.setEmail("No email on file");
+            user.setCreatedAt("2026-02-22");
+            user.setRole("CREATOR");
+            session.setAttribute("user", user);
+        }
+
+        List<Asset> assets = sampleAssets();
+
+        model.addAttribute("user", user);
+        model.addAttribute("assets", assets);
+        model.addAttribute("assetsCount", assets.size());
+
+        
+        model.addAttribute("salesCount", 0);
+        model.addAttribute("earnings", 0.00);
+
+        return "user/user-home"; 
     }
 
     private List<Asset> sampleAssets() {
@@ -41,4 +57,36 @@ public class UserController {
                 new Asset(3L, "Sci-Fi Door", 15.00, "OBJ", commercial)
         );
     }
+
+    @GetMapping("/profile/edit")
+public String editProfile(HttpSession session, Model model,   
+                          @RequestParam(value = "saved", required = false) Boolean saved) {
+
+    User user = (User) session.getAttribute("user");
+    if (user == null) return "redirect:/signin";
+
+    model.addAttribute("user", user);
+    model.addAttribute("saved", saved != null && saved);
+
+    return "user/edit-profile"; 
+}
+
+@PostMapping("/profile/edit")
+public String saveProfile(HttpSession session,
+                          @RequestParam String name,
+                          @RequestParam String email,
+                          @RequestParam(required = false) String createdAt) {
+
+    User user = (User) session.getAttribute("user");
+    if (user == null) return "redirect:/signin";
+
+    user.setName(name);
+    user.setEmail(email);
+    user.setCreatedAt(createdAt);
+
+    
+    session.setAttribute("user", user);
+
+    return "redirect:/users/profile/edit?saved=true";
+}
 }
