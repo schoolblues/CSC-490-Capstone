@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inbox</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .inbox-container {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .inbox-sidebar {
+      width: 220px;
+    }
+    
+    .full-width {
+      width: 100%;
+    }
+    
+    .folder-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    
+    .folder-list li {
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    
+    .folder-list li.active,
+    .folder-list li:hover {
+      background-color: rgba(128, 0, 128, 0.1);
+    }
+    
+    .message-list {
+      flex: 1;
+    }
+    
+    .message-item {
+      border-bottom: 1px solid #ddd;
+      padding: 15px;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .message-item:hover {
+      background-color: #f9f9f9;
+    }
+    
+    .message-item.unread {
+      font-weight: bold;
+      background-color: rgba(128, 0, 128, 0.05);
+    }
+    
+    .message-sender {
+      font-size: 14px;
+    }
+    
+    .message-subject {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+    
+    .message-preview {
+      font-size: 13px;
+      color: #555;
+    }
+    
+    .message-time {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      font-size: 12px;
+      color: #777;
+    }
+    </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="logo">CreativityMarket</div>
+    <div class="nav">
+      <a href="#">Home</a>
+      <a href="#">Bounties</a>
+      <a href="#">Inbox</a>
+      <a href="#" class="btn">Logout</a>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="hero">
+    <h1>Your Inbox</h1>
+    <p>View and manage your project messages.</p>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Messages</h2>
+      <p>5 unread messages</p>
+    </div>
+
+    <div class="inbox-container">
+
+      <!-- Sidebar -->
+      <div class="inbox-sidebar">
+        <button class="btn primary full-width">Compose</button>
+
+        <ul class="folder-list">
+          <li class="active">Inbox</li>
+          <li>Sent</li>
+          <li>Archived</li>
+        </ul>
+      </div>
+
+      <!-- Message List -->
+      <div class="message-list">
+
+        <div class="message-item unread">
+          <div class="message-sender">Project Manager</div>
+          <div class="message-subject">Landing Page Feedback</div>
+          <div class="message-preview">
+            Thanks for submitting your draft. I have a few revisions...
+          </div>
+          <div class="message-time">2h ago</div>
+        </div>
+
+        <div class="message-item unread">
+          <div class="message-sender">Startup Co.</div>
+          <div class="message-subject">Logo Design Approval</div>
+          <div class="message-preview">
+            We love the direction you're taking with the concept...
+          </div>
+          <div class="message-time">5h ago</div>
+        </div>
+
+        <div class="message-item">
+          <div class="message-sender">Mobile Client</div>
+          <div class="message-subject">API Documentation</div>
+          <div class="message-preview">
+            Could you clarify how authentication is handled?
+          </div>
+          <div class="message-time">Yesterday</div>
+        </div>
+
+        <div class="message-item">
+          <div class="message-sender">Editor</div>
+          <div class="message-subject">Article Edits</div>
+          <div class="message-preview">
+            I've attached the revised draft with tracked changes...
+          </div>
+          <div class="message-time">2 days ago</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 CreativityMarket. All rights reserved.
+  </footer>
+
+</body>
+</html>
