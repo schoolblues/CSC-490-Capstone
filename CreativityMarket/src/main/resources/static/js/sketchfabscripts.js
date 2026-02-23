@@ -24,7 +24,50 @@
 
     const detailIframe = document.getElementById('sketchfab-viewer');
     if (detailIframe) {
-        initViewer(detailIframe, detailIframe.dataset.uid);
+        const uid = detailIframe.dataset.uid;
+        initViewer(detailIframe, uid);
+
+        if (uid) {
+            const container = document.getElementById('thumbnailContainer');
+            const titleEl = document.getElementById('product-title');
+            const creatorNameEl = document.getElementById('creator-name');
+            const creatorAvatarEl = document.getElementById('creator-avatar');
+
+            fetch('https://api.sketchfab.com/v3/models/' + uid)
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    if (data.name && titleEl) {
+                        titleEl.textContent = data.name;
+                    }
+
+                    if (data.user && creatorNameEl) {
+                        creatorNameEl.textContent = data.user.displayName || data.user.username;
+                    }
+
+                    if (data.user && data.user.avatar && creatorAvatarEl) {
+                        const avatarImages = data.user.avatar.images;
+                        if (avatarImages && avatarImages.length > 0) {
+                            creatorAvatarEl.src = avatarImages[avatarImages.length - 1].url;
+                        }
+                    }
+
+                    const images = data.thumbnails && data.thumbnails.images;
+                    if (!images || images.length === 0 || !container) return;
+
+                    const sizes = [1920, 1024, 720, 256, 64];
+                    sizes.forEach(function (targetWidth, i) {
+                        const match = images.find(function (img) { return img.width === targetWidth; });
+                        if (!match) return;
+
+                        const thumb = document.createElement('img');
+                        thumb.src = match.url;
+                        thumb.alt = 'Thumbnail ' + (i + 1);
+                        thumb.className = 'thumbnail' + (i === 0 ? ' active' : '');
+                        thumb.dataset.index = i;
+                        container.appendChild(thumb);
+                    });
+                });
+        }
     }
 
     const previewPanel = document.getElementById('preview-panel');

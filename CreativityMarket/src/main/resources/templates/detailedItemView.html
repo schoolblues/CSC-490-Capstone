@@ -6,7 +6,7 @@
     <title>Item View</title>
     <link rel="stylesheet" href="../static/css/detailedItemView.css">
     <link rel="stylesheet" href="../static/css/homepage.css">
-    <link rel="stylesheet" href="../static/css/sketchfabViewer.css">
+    <link rel="stylesheet" href="../static/css/sketchfab.css">
 </head>
 <body>
     <nav class="navbar">
@@ -29,8 +29,13 @@
             <div class="main-image-container">
                 <iframe
                     id="sketchfab-viewer"
-                    data-uid="dGUVoNVSMYpGGkpuCo5jFMnGqTI"
+                    src=""
+                    data-uid="a5eb5c78e5a14955802e7eb64b76e1a1"
                     allow="autoplay; fullscreen; xr-spatial-tracking"
+                    xr-spatial-tracking
+                    execution-while-out-of-viewport
+                    execution-while-not-rendered
+                    web-share
                     allowfullscreen
                     mozallowfullscreen="true"
                     webkitallowfullscreen="true"
@@ -43,11 +48,6 @@
                     <img src="../static/images/left.webp" alt="Previous" class="thumb-nav-icon">
                 </button>
                 <div class="thumbnail-container" id="thumbnailContainer">
-                    <img src="../static/images/apple.png"   alt="Thumbnail 1" class="thumbnail active" data-index="0">
-                    <img src="../static/images/banana.png"  alt="Thumbnail 2" class="thumbnail" data-index="1">
-                    <img src="../static/images/orange.webp" alt="Thumbnail 3" class="thumbnail" data-index="2">
-                    <img src="../static/images/pear.png"    alt="Thumbnail 4" class="thumbnail" data-index="3">
-                    <img src="../static/images/apple.png"   alt="Thumbnail 5" class="thumbnail" data-index="4">
                 </div>
                 <button class="thumb-nav-btn thumb-next">
                     <img src="../static/images/right.webp" alt="Next" class="thumb-nav-icon">
@@ -57,11 +57,11 @@
 
         <div class="product-info-panel">
             <div class="creator-section">
-                <img src="../static/images/apple.png" alt="Creator" class="creator-avatar">
-                <span class="creator-name">SampleCreator</span>
+                <img id="creator-avatar" src="../static/images/apple.png" alt="Creator" class="creator-avatar">
+                <span id="creator-name" class="creator-name">SampleCreator</span>
             </div>
 
-            <h1 class="product-title">Sample 3D Model Asset</h1>
+            <h1 id="product-title" class="product-title">Sample 3D Model Asset</h1>
             <div class="product-rating">
                 <span class="rating-score"></span>
                 <div class="rating-stars">
@@ -141,6 +141,6 @@
     </footer>
 
     <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
-    <script src="../static/js/sketchfabViewer.js"></script>
+    <script src="../static/js/sketchfabscripts.js"></script>
 </body>
 </html>
