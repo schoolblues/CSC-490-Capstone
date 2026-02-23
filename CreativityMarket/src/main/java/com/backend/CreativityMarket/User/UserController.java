@@ -36,9 +36,9 @@ public class UserController {
                 "Allowed for commercial games/renders. Do not resell the raw model or use it for AI training.");
 
         return List.of(
-                new Asset(1L, "Modern Chair", 12.00, "FBX", personal),
-                new Asset(2L, "Stylized Tree Set", 10.00, "GLB", commercial),
-                new Asset(3L, "Sci-Fi Door", 15.00, "OBJ", commercial)
+                new Asset(1L, "Modern Chair", 12.00, "/images/apple.png", personal),
+                new Asset(2L, "Stylized Tree Set", 10.00, "/images/banana.png", commercial),
+                new Asset(3L, "Sci-Fi Door", 15.00, "/images/orange.webp", commercial)
         );
     }
 }
