@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CreativityMarket • Sales Overview</title>
+  <link rel="stylesheet" href="../css/user.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="brand" href="home.html">CreativityMarket<span>.</span></a>
+
+  <nav class="nav">
+    <a href="profile.html">Profile</a>
+    <a class="active" href="sales-overview.html">Sales</a>
+    <a href="explore.html">Explore</a>
+    <a href="login.html">Logout</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section class="profile-hero" style="grid-template-columns: 1fr auto;">
+    <div class="profile-info">
+      <h1>Sales Overview</h1>
+      <p class="muted">Track revenue, sales, and best-performing assets (UI prototype).</p>
+
+      <div class="pill-row">
+        <span class="pill"><i class="fa-solid fa-calendar"></i> Last 30 days</span>
+        <span class="pill"><i class="fa-solid fa-chart-line"></i> Trend view</span>
+        <span class="pill"><i class="fa-solid fa-shield"></i> Verified payouts (future)</span>
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      <a class="btn btn-primary" href="#"><i class="fa-solid fa-file-export"></i> Export CSV</a>
+      <a class="btn btn-ghost" href="#"><i class="fa-solid fa-filter"></i> Filters</a>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px;">
+    <div class="card">
+      <div class="card-header">
+        <h2>Total Earnings</h2>
+        <span class="tag">30 days</span>
+      </div>
+      <div class="card-body stats">
+        <div class="stat">
+          <div class="stat-num">$248.00</div>
+          <div class="stat-label">Net Revenue</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">21</div>
+          <div class="stat-label">Sales</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">$11.80</div>
+          <div class="stat-label">Avg / Sale</div>
+        </div>
+      </div>
+      <div class="card-body" style="padding-top:0;">
+        <p class="muted">Net revenue = revenue after platform fee (future logic).</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2>Traffic</h2>
+        <span class="tag">Summary</span>
+      </div>
+      <div class="card-body stats">
+        <div class="stat">
+          <div class="stat-num">1,204</div>
+          <div class="stat-label">Views</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">84</div>
+          <div class="stat-label">Saves</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1.7%</div>
+          <div class="stat-label">Conversion</div>
+        </div>
+      </div>
+      <div class="card-body" style="padding-top:0;">
+        <p class="muted">Conversion = sales ÷ views (prototype numbers).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card table-card">
+    <div class="card-header">
+      <h2>Recent Sales</h2>
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="#"><i class="fa-solid fa-rotate"></i> Refresh</a>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Asset</th>
+            <th>Buyer</th>
+            <th>License</th>
+            <th>Price</th>
+            <th>Fee</th>
+            <th>Net</th>
+            <th style="text-align:right;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Feb 20</td>
+            <td class="title">Modern Chair</td>
+            <td>buyer_102</td>
+            <td>Personal</td>
+            <td>$12.00</td>
+            <td>$1.20</td>
+            <td>$10.80</td>
+            <td style="text-align:right;">
+              <span class="status live">Paid</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Feb 18</td>
+            <td class="title">Sci-Fi Door</td>
+            <td>buyer_088</td>
+            <td>Commercial</td>
+            <td>$15.00</td>
+            <td>$1.50</td>
+            <td>$13.50</td>
+            <td style="text-align:right;">
+              <span class="status draft">Processing</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Feb 16</td>
+            <td class="title">Stylized Tree Set</td>
+            <td>buyer_077</td>
+            <td>Commercial</td>
+            <td>$10.00</td>
+            <td>$1.00</td>
+            <td>$9.00</td>
+            <td style="text-align:right;">
+              <span class="status live">Paid</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Feb 14</td>
+            <td class="title">Room Decor Set</td>
+            <td>buyer_055</td>
+            <td>Personal</td>
+            <td>$9.00</td>
+            <td>$0.90</td>
+            <td>$8.10</td>
+            <td style="text-align:right;">
+              <span class="status live">Paid</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:16px;">
+    <div class="card">
+      <div class="card-header">
+        <h2>Top Assets</h2>
+        <span class="tag">30 days</span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <span class="label">Modern Chair</span>
+          <span class="value">$86.40</span>
+        </div>
+        <div class="row">
+          <span class="label">Sci-Fi Door</span>
+          <span class="value">$67.50</span>
+        </div>
+        <div class="row">
+          <span class="label">Stylized Tree Set</span>
+          <span class="value">$54.00</span>
+        </div>
+        <div class="row">
+          <span class="label">Desk Lamp</span>
+          <span class="value">$40.10</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2>Payouts</h2>
+        <span class="tag">History</span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <span class="label">Feb 15 Payout</span>
+          <span class="value">$120.00</span>
+        </div>
+        <div class="row">
+          <span class="label">Jan 31 Payout</span>
+          <span class="value">$88.00</span>
+        </div>
+        <div class="row">
+          <span class="label">Jan 12 Payout</span>
+          <span class="value">$55.00</span>
+        </div>
+        <p class="muted" style="margin-top:12px;">Payout schedule + payout method can be added later.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>User-side prototype • CSC-490 Capstone</p>
+</footer>
+
+</body>
+</html>
