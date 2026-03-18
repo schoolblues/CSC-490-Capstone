@@ -23,5 +23,6 @@ public class CartItem {
     @Column(name = "asset_id", nullable = false)
     private Long assetId;
 
-    private Integer quantity;
+    @Column(nullable = false)
+    private Integer quantity = 1;
 }

@@ -17,17 +17,25 @@ import java.util.List;
 @Transactional
 public class AdminService {
     
-    private final UserRepository userRepository;
+    private final AdminRepository adminRepository;
     private final AuditLogRepository auditLogRepository;
+    private final UserRepository userRepository;
 
     public List<User> getAllAdmins() {
-        return userRepository.findByRole("admin");
+        return adminRepository.findAllByRole("admin");
     }
 
+    public User getCurrentAdmin(Long sessionAdminId) {
+    return adminRepository.findByIdAndRole(sessionAdminId, "admin")
+            .orElseThrow(() -> new EntityNotFoundException("Admin not found"));
+}
+
     private final List<String> adminPrivileges = List.of(
-        "PROMOTE_USER",
+        "PROMOTE_USER_TO_MODERATOR",
         "DELETE_USER",
         "VIEW_ALL_USERS",
+        "vIEW_ALL_ARTISTS",
+        "VIEW_ALL_MODERATORS",
         "APPROVE_CONTENT",
         "MANAGE_USER_ACCOUNT",
         "MONITOR_TRANSACTION",
@@ -45,15 +53,16 @@ public class AdminService {
 
     //User management actions
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userRepository.findAllByRole("user");
     }
 
-    //TODO: implement when "artist" role is defined
-    /*
     public List<User> getAllArtists() {
-        return userRepository.findByRole("artist");
+        return userRepository.findAllByRole("artist");
     }
-    */
+    
+    public List<User> getAllModerators() {
+        return userRepository.findAllByRole("mod");
+    }
 
     public void deleteUser(Long userId, Long adminId) {
         if (!userRepository.existsById(userId)) {
@@ -63,19 +72,17 @@ public class AdminService {
         log("DELETE_USER", adminId, "User", userId);
     }
 
-    //TODO: reconfigure when userService is defined
-    public void promoteToAdmin(Long userId, Long adminId) {
+    public void promoteToModerator(Long userId, Long adminId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User with Id " + userId + " not found"));
-        user.setRole("admin");
+        user.setRole("mod");
         userRepository.save(user);
-        log("PROMOTE_USER", adminId, "User", userId);
+        log("PROMOTE_USER_TO_MODERATOR", adminId, "User", userId);
     }
 
-    //TODO: reconfigure when userService is defined
     public boolean userExists(String email) {
         return userRepository.existsByEmail(email);
-    } 
+    }
 
     //Admin functional actions
     public void approveContent(Long contentId, Long adminId) {
