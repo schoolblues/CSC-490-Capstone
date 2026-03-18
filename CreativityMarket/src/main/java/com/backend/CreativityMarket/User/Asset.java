@@ -7,7 +7,6 @@ public class Asset {
     private String title;
     private String description;
     private double price;
-    private String fileType;
     private String thumbnailUrl;
     private List<String> thumbnailUrls;
     private String sketchfabUid;
@@ -15,7 +14,6 @@ public class Asset {
     private String creatorAvatarUrl;
     private List<String> tags;
     private List<String> formats;
-    private License license;
     private List<License> licenses;
     private double rating;
     private String publishedDate;
@@ -30,7 +28,6 @@ public class Asset {
         this.title = title;
         this.price = price;
         this.thumbnailUrl = thumbnailUrl;
-        this.license = license;
         this.licenses = List.of(license);
     }
 
@@ -45,9 +42,6 @@ public class Asset {
 
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
-
-    public String getFileType() { return fileType; }
-    public void setFileType(String fileType) { this.fileType = fileType; }
 
     public String getThumbnailUrl() { return thumbnailUrl; }
     public void setThumbnailUrl(String thumbnailUrl) { this.thumbnailUrl = thumbnailUrl; }
@@ -71,18 +65,7 @@ public class Asset {
     public void setFormats(List<String> formats) { this.formats = formats; }
 
     public List<License> getLicenses() { return licenses; }
-    public void setLicenses(List<License> licenses) {
-        this.licenses = licenses;
-        if (licenses != null && !licenses.isEmpty()) {
-            this.license = licenses.get(0);
-        }
-    }
-
-    public License getLicense() { return license; }
-    public void setLicense(License license) {
-        this.license = license;
-        this.licenses = license == null ? List.of() : List.of(license);
-    }
+    public void setLicenses(List<License> licenses) { this.licenses = licenses; }
 
     public double getRating() { return rating; }
     public void setRating(double rating) { this.rating = rating; }

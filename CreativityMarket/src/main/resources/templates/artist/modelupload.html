@@ -29,17 +29,7 @@
         <p>Fill out the details below to list your model on the marketplace.</p>
     </div>
 
-    <form class="upload-form" id="uploadForm" method="post" action="/upload" enctype="multipart/form-data">
-
-        <#if successMessage??>
-            <div class="form-alert success">${successMessage}</div>
-        </#if>
-
-        <#if sketchfabUploadEnabled?? && !sketchfabUploadEnabled>
-            <div class="form-alert info">
-                Platform Sketchfab upload is not configured yet. Creators can still publish listings, and previews can be enabled by adding a server Sketchfab API token.
-            </div>
-        </#if>
+    <form class="upload-form" id="uploadForm" enctype="multipart/form-data">
 
         <section class="form-section">
             <h3 class="section-title">Model File</h3>
@@ -109,24 +99,6 @@
                 <label for="tags">Tags</label>
                 <input type="text" id="tags" name="tags"
                        placeholder="e.g. medieval, sword, low-poly, game-ready (comma-separated)">
-            </div>
-
-            <div class="field">
-                <label for="embedUrl">Sketchfab URL / UID <span class="optional">(optional)</span></label>
-                  <input type="text" id="embedUrl" name="embedUrl"
-                       placeholder="Paste a Sketchfab model URL only if you already have one">
-                <p class="field-hint" id="upload-sketchfab-hint">Leave blank and we will upload with the platform account when configured.</p>
-            </div>
-
-            <div class="sketchfab-preview-shell">
-                <iframe
-                    id="upload-sketchfab-viewer"
-                    title="Sketchfab model preview"
-                    allow="autoplay; fullscreen; xr-spatial-tracking"
-                    allowfullscreen
-                    mozallowfullscreen="true"
-                    webkitallowfullscreen="true">
-                </iframe>
             </div>
         </section>
 
@@ -291,9 +263,6 @@
             <p class="footer-copyright">&copy; 2026 Creativity Market. All rights reserved.</p>
         </div>
     </footer>
-
-    <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
-    <script src="/js/sketchfabscripts.js"></script>
 
 </body>
 </html>

@@ -12,9 +12,7 @@ public class AssetController {
 
     @GetMapping("/{id}")
     public String asset(@PathVariable Long id, Model model) {
-        List<Asset> assets = sampleAssets();
-
-        Asset found = assets.stream()
+        Asset found = sampleAssets().stream()
                 .filter(a -> a.getId().equals(id))
                 .findFirst()
                 .orElse(null);
@@ -24,7 +22,6 @@ public class AssetController {
         }
 
         model.addAttribute("asset", found);
-        model.addAttribute("relatedAssets", assets.stream().filter(a -> !a.getId().equals(id)).toList());
         return "user/asset"; 
     }
 
@@ -36,26 +33,11 @@ public class AssetController {
                 "Allowed for commercial games/renders. Do not resell the raw model or use it for AI training.");
 
         return List.of(
-            buildSampleAsset(1L, "Modern Chair", 12.00, "FBX", "/images/apple.png", "a5eb5c78e5a14955802e7eb64b76e1a1", personal),
-                buildSampleAsset(2L, "Stylized Tree Set", 10.00, "GLB", "/images/banana.png", "a5eb5c78e5a14955802e7eb64b76e1a1", commercial),
-            buildSampleAsset(3L, "Sci-Fi Door", 15.00, "OBJ", "/images/orange.webp", "a5eb5c78e5a14955802e7eb64b76e1a1", commercial)
+                new Asset(1L, "Modern Chair", 12.00, "FBX", personal),
+                new Asset(2L, "Stylized Tree Set", 10.00, "GLB", commercial),
+                new Asset(3L, "Sci-Fi Door", 15.00, "OBJ", commercial)
         );
     }
-
-    private Asset buildSampleAsset(Long id,
-                                   String title,
-                                   double price,
-                                   String fileType,
-                                   String thumbnailUrl,
-                                   String sketchfabUid,
-                                   License license) {
-        Asset asset = new Asset(id, title, price, thumbnailUrl, license);
-        asset.setFileType(fileType);
-        asset.setSketchfabUid(sketchfabUid);
-        asset.setCreatorName("Creativity Market Studio");
-        return asset;
-    }
-
     @GetMapping("/new")
 public String newAsset() {
     return "user/new";

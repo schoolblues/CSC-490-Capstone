@@ -321,21 +321,6 @@ body {
     margin-bottom: 5px;
 }
 
-.item-link {
-    color: #fff;
-    text-decoration: none;
-}
-
-.item-link:hover {
-    text-decoration: underline;
-}
-
-.item-creator {
-    color: #b0b8c1;
-    font-size: 12px;
-    margin-bottom: 6px;
-}
-
 .item-tags {
     display: flex;
     gap: 8px;
@@ -353,10 +338,6 @@ body {
     font-weight: 500;
     text-align: right;
     min-width: 80px;
-}
-
-.empty-row {
-    cursor: default;
 }
 
 .category-block-container {

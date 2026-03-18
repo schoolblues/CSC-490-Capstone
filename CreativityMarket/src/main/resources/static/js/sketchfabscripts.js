@@ -1,31 +1,7 @@
 (function () {
     'use strict';
 
-    function hasSketchfabClient() {
-        return typeof window.Sketchfab === 'function';
-    }
-
-    function parseSketchfabUid(value) {
-        if (!value) return null;
-
-        const trimmed = value.trim();
-        const directUidMatch = trimmed.match(/^[a-zA-Z0-9]{32}$/);
-        if (directUidMatch) {
-            return directUidMatch[0];
-        }
-
-        const modelUrlMatch = trimmed.match(/\/models\/[a-z0-9\-]+-([a-zA-Z0-9]{32})(?:[/?#]|$)/i);
-        if (modelUrlMatch) {
-            return modelUrlMatch[1];
-        }
-
-        const fallbackMatch = trimmed.match(/([a-zA-Z0-9]{32})/);
-        return fallbackMatch ? fallbackMatch[1] : null;
-    }
-
     function initViewer(iframe, uid) {
-        if (!hasSketchfabClient() || !iframe || !uid) return;
-
         const client = new Sketchfab(iframe);
 
         client.init(uid, {
@@ -42,17 +18,12 @@
 
             success: function (api) {
                 api.start();
-            },
-            error: function () {
-                // Keep pages resilient if a UID is invalid or private.
             }
         });
     }
 
-    function setupDetailViewer() {
-        const detailIframe = document.getElementById('sketchfab-viewer');
-        if (!detailIframe) return;
-
+    const detailIframe = document.getElementById('sketchfab-viewer');
+    if (detailIframe) {
         const uid = detailIframe.dataset.uid;
         initViewer(detailIframe, uid);
 
@@ -99,75 +70,20 @@
         }
     }
 
-    function setupHoverPreviewPanel() {
-        const previewPanel = document.getElementById('preview-panel');
-        if (!previewPanel) return;
-
+    const previewPanel = document.getElementById('preview-panel');
+    if (previewPanel) {
         const previewIframe = previewPanel.querySelector('iframe');
-        if (!previewIframe) return;
-
         let activeUid = null;
 
         document.querySelectorAll('.item-row[data-uid]').forEach(function (row) {
             row.addEventListener('mouseenter', function () {
                 const uid = row.dataset.uid;
-                if (!uid) return;
                 if (uid === activeUid) return;
                 activeUid = uid;
                 previewIframe.src = '';
                 initViewer(previewIframe, uid);
             });
         });
-
-        const firstUidRow = document.querySelector('.item-row[data-uid]');
-        if (firstUidRow && firstUidRow.dataset.uid) {
-            activeUid = firstUidRow.dataset.uid;
-            initViewer(previewIframe, activeUid);
-        }
     }
-
-    function setupCardPreviews() {
-        document.querySelectorAll('iframe.sketchfab-card-viewer[data-uid]').forEach(function (iframe) {
-            const uid = iframe.dataset.uid;
-            initViewer(iframe, uid);
-        });
-    }
-
-    function setupUploadPreview() {
-        const embedInput = document.getElementById('embedUrl');
-        const uploadIframe = document.getElementById('upload-sketchfab-viewer');
-        const helperText = document.getElementById('upload-sketchfab-hint');
-
-        if (!embedInput || !uploadIframe) return;
-
-        let activeUid = null;
-
-        function renderPreviewFromInput() {
-            const uid = parseSketchfabUid(embedInput.value);
-            if (!uid) {
-                if (helperText) {
-                    helperText.textContent = 'Paste a Sketchfab model URL or 32-character UID to preview it here.';
-                }
-                return;
-            }
-
-            if (uid === activeUid) return;
-            activeUid = uid;
-            uploadIframe.src = '';
-            initViewer(uploadIframe, uid);
-
-            if (helperText) {
-                helperText.textContent = 'Preview loaded for model UID: ' + uid;
-            }
-        }
-
-        embedInput.addEventListener('input', renderPreviewFromInput);
-        renderPreviewFromInput();
-    }
-
-    setupDetailViewer();
-    setupHoverPreviewPanel();
-    setupCardPreviews();
-    setupUploadPreview();
 
 })();
