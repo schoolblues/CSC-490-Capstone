@@ -90,17 +90,9 @@
             </div>
 
             <div class="formats-section">
-                <label class="formats-label">Filetypes</label>
+                <label class="formats-label">Filetype</label>
                 <div class="format-icons">
-                    <#if asset?? && asset.formats??>
-                        <#list asset.formats as fmt>
-                            <span class="format-badge">${fmt}</span>
-                        </#list>
-                    <#else>
-                        <span class="format-badge">.blend</span>
-                        <span class="format-badge">.fbx</span>
-                        <span class="format-badge">.obj</span>
-                    </#if>
+                    <span class="format-badge">${(asset.fileType)!'—'}</span>
                 </div>
             </div>
 

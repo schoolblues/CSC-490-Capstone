@@ -67,20 +67,20 @@
             <div class="item-list">
                 <#if newAssets?? && (newAssets?size > 0)>
                     <#list newAssets as item>
-                        <div class="item-row" data-uid="${(item.sketchfabUid)!''}">
+                        <a href="/asset/${(item.id)!''}" class="item-row" data-uid="${(item.sketchfabUid)!''}" style="text-decoration:none;color:inherit;">
                             <img src="${(item.thumbnailUrl)!'/images/apple.png'}" alt="Item" class="item-thumbnail">
                             <div class="item-info">
                                 <h3 class="item-title">${(item.title)!'Untitled'}</h3>
                                 <div class="item-tags">
-                                    <#if item.tags??>
-                                        <#list item.tags as t>
-                                            <span class="tag">${t}</span>
+                                    <#if item.tags?? && item.tags?has_content>
+                                        <#list item.tags?split(",") as t>
+                                            <span class="tag">${t?trim}</span>
                                         </#list>
                                     </#if>
                                 </div>
                             </div>
                             <div class="item-price">${(item.formattedPrice)!'$0.00'}</div>
-                        </div>
+                        </a>
                     </#list>
                 <#else>
                     <div class="item-row" data-uid="dGUVoNVSMYpGGkpuCo5jFMnGqTI">

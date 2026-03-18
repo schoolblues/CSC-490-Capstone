@@ -45,17 +45,28 @@ public class UserController {
     }
 
     private List<Asset> sampleAssets() {
-        License personal = new License("Personal",
-                "Allowed for personal projects. Do not resell or redistribute the raw file.");
+        Asset a1 = new Asset();
+        a1.setId(1L);
+        a1.setTitle("Modern Chair");
+        a1.setPrice(12.00);
+        a1.setThumbnailUrl("/images/apple.png");
+        a1.setLicense("Personal");
 
-        License commercial = new License("Commercial",
-                "Allowed for commercial games/renders. Do not resell the raw model or use it for AI training.");
+        Asset a2 = new Asset();
+        a2.setId(2L);
+        a2.setTitle("Stylized Tree Set");
+        a2.setPrice(10.00);
+        a2.setThumbnailUrl("/images/banana.png");
+        a2.setLicense("Commercial");
 
-        return List.of(
-                new Asset(1L, "Modern Chair", 12.00, "/images/apple.png", personal),
-                new Asset(2L, "Stylized Tree Set", 10.00, "/images/banana.png", commercial),
-                new Asset(3L, "Sci-Fi Door", 15.00, "/images/orange.webp", commercial)
-        );
+        Asset a3 = new Asset();
+        a3.setId(3L);
+        a3.setTitle("Sci-Fi Door");
+        a3.setPrice(15.00);
+        a3.setThumbnailUrl("/images/orange.webp");
+        a3.setLicense("Commercial");
+
+        return List.of(a1, a2, a3);
     }
 
     @GetMapping("/profile/edit")
