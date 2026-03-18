@@ -44,7 +44,17 @@ public class AssetController {
     return "user/explore";
     }
 
+    @GetMapping("/{id}")
+    public String asset(@PathVariable Long id, Model model) {
+        Asset found = assetRepository.findById(id).orElse(null);
 
+        if (found == null) {
+            return "redirect:/";
+        }
+
+        model.addAttribute("asset", found);
+        return "user/asset";
+    }
 
     @PostMapping("/{id}/cart")
     public String addToCart(@PathVariable Long id, HttpSession session) {
