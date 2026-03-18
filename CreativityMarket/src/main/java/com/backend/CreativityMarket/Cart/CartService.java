@@ -43,7 +43,7 @@ public class CartService {
                             .orElseThrow(() -> new RuntimeException("User not found: " + userId));
 
                     Cart cart = new Cart();
-                    cart.setUser(user);  // make sure Cart.userId is Long, not User object
+                    cart.setUserId(userId);
                     return cartRepository.save(cart);
                 });
     }
@@ -58,7 +58,7 @@ public class CartService {
     
         // Check if the item already exists in the cart
         return cart.getItems().stream()
-                .filter(item -> item.getAsset().getId().equals(assetId))
+                .filter(item -> item.getAssetId().equals(assetId))
                 .findFirst()
                 .map(item -> {
                     item.setQuantity(item.getQuantity() + quantity);
@@ -67,7 +67,7 @@ public class CartService {
                 .orElseGet(() -> {
                     CartItem newItem = new CartItem();
                     newItem.setCart(cart);
-                    newItem.setAsset(asset); // now defined
+                    newItem.setAssetId(assetId);
                     newItem.setQuantity(quantity);
                     cart.getItems().add(newItem);
                     return cartItemRepository.save(newItem);

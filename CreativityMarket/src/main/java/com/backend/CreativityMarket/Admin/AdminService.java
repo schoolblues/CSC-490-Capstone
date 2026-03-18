@@ -53,15 +53,15 @@ public class AdminService {
 
     //User management actions
     public List<User> getAllUsers() {
-        return userRepository.findAllByRole("user");
+        return userRepository.findByRole("user");
     }
 
     public List<User> getAllArtists() {
-        return userRepository.findAllByRole("artist");
+        return userRepository.findByRole("artist");
     }
     
     public List<User> getAllModerators() {
-        return userRepository.findAllByRole("mod");
+        return userRepository.findByRole("mod");
     }
 
     public void deleteUser(Long userId, Long adminId) {

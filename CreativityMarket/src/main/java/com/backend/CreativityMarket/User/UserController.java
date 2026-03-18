@@ -46,6 +46,13 @@ public class UserController {
             cart = new ArrayList<>();
             session.setAttribute("cart", cart);
         }
+        model.addAttribute("user", user);
+        model.addAttribute("purchases", purchases);
+        model.addAttribute("wishlist", wishlist);
+        model.addAttribute("cart", cart);
+
+        return "user/user-home";
+    }
 
     private List<Asset> sampleAssets() {
         Asset a1 = new Asset();
