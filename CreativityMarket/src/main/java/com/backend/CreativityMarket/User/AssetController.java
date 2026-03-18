@@ -53,7 +53,7 @@ public class AssetController {
         }
 
         model.addAttribute("asset", found);
-        return "user/asset";
+        return "user/detailedItemView";
     }
 
     @PostMapping("/{id}/cart")
