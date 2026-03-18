@@ -1,35 +1,48 @@
 package com.backend.CreativityMarket.User;
 
-import java.util.List;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "assets")
 public class Asset {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
+
     private double price;
+
+    private String fileType;
+    private String category;
+    private String tags;
+    private String license;
+
     private String thumbnailUrl;
-    private List<String> thumbnailUrls;
     private String sketchfabUid;
     private String creatorName;
     private String creatorAvatarUrl;
-    private List<String> tags;
-    private List<String> formats;
-    private List<License> licenses;
+
+    private Integer polyCount;
+    private Integer vertices;
+    private Integer polygons;
+    private String geometry;
+    private String uvMapping;
+    private boolean rigged;
+    private boolean animated;
+
+    private String texturesIncluded;
+    private String textureResolution;
+    private String materials;
+
     private double rating;
-    private String publishedDate;
-    private String lastUpdateDate;
-    private String ageRating;
     private boolean allowsAiUsage;
 
     public Asset() {}
-
-    public Asset(Long id, String title, double price, String thumbnailUrl, License license) {
-        this.id = id;
-        this.title = title;
-        this.price = price;
-        this.thumbnailUrl = thumbnailUrl;
-        this.licenses = List.of(license);
-    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -43,11 +56,20 @@ public class Asset {
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
 
+    public String getFileType() { return fileType; }
+    public void setFileType(String fileType) { this.fileType = fileType; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public String getTags() { return tags; }
+    public void setTags(String tags) { this.tags = tags; }
+
+    public String getLicense() { return license; }
+    public void setLicense(String license) { this.license = license; }
+
     public String getThumbnailUrl() { return thumbnailUrl; }
     public void setThumbnailUrl(String thumbnailUrl) { this.thumbnailUrl = thumbnailUrl; }
-
-    public List<String> getThumbnailUrls() { return thumbnailUrls; }
-    public void setThumbnailUrls(List<String> thumbnailUrls) { this.thumbnailUrls = thumbnailUrls; }
 
     public String getSketchfabUid() { return sketchfabUid; }
     public void setSketchfabUid(String sketchfabUid) { this.sketchfabUid = sketchfabUid; }
@@ -58,26 +80,38 @@ public class Asset {
     public String getCreatorAvatarUrl() { return creatorAvatarUrl; }
     public void setCreatorAvatarUrl(String creatorAvatarUrl) { this.creatorAvatarUrl = creatorAvatarUrl; }
 
-    public List<String> getTags() { return tags; }
-    public void setTags(List<String> tags) { this.tags = tags; }
+    public Integer getPolyCount() { return polyCount; }
+    public void setPolyCount(Integer polyCount) { this.polyCount = polyCount; }
 
-    public List<String> getFormats() { return formats; }
-    public void setFormats(List<String> formats) { this.formats = formats; }
+    public Integer getVertices() { return vertices; }
+    public void setVertices(Integer vertices) { this.vertices = vertices; }
 
-    public List<License> getLicenses() { return licenses; }
-    public void setLicenses(List<License> licenses) { this.licenses = licenses; }
+    public Integer getPolygons() { return polygons; }
+    public void setPolygons(Integer polygons) { this.polygons = polygons; }
+
+    public String getGeometry() { return geometry; }
+    public void setGeometry(String geometry) { this.geometry = geometry; }
+
+    public String getUvMapping() { return uvMapping; }
+    public void setUvMapping(String uvMapping) { this.uvMapping = uvMapping; }
+
+    public boolean isRigged() { return rigged; }
+    public void setRigged(boolean rigged) { this.rigged = rigged; }
+
+    public boolean isAnimated() { return animated; }
+    public void setAnimated(boolean animated) { this.animated = animated; }
+
+    public String getTexturesIncluded() { return texturesIncluded; }
+    public void setTexturesIncluded(String texturesIncluded) { this.texturesIncluded = texturesIncluded; }
+
+    public String getTextureResolution() { return textureResolution; }
+    public void setTextureResolution(String textureResolution) { this.textureResolution = textureResolution; }
+
+    public String getMaterials() { return materials; }
+    public void setMaterials(String materials) { this.materials = materials; }
 
     public double getRating() { return rating; }
     public void setRating(double rating) { this.rating = rating; }
-
-    public String getPublishedDate() { return publishedDate; }
-    public void setPublishedDate(String publishedDate) { this.publishedDate = publishedDate; }
-
-    public String getLastUpdateDate() { return lastUpdateDate; }
-    public void setLastUpdateDate(String lastUpdateDate) { this.lastUpdateDate = lastUpdateDate; }
-
-    public String getAgeRating() { return ageRating; }
-    public void setAgeRating(String ageRating) { this.ageRating = ageRating; }
 
     public boolean isAllowsAiUsage() { return allowsAiUsage; }
     public void setAllowsAiUsage(boolean allowsAiUsage) { this.allowsAiUsage = allowsAiUsage; }
