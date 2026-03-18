@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import com.backend.CreativityMarket.User.Asset;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -21,9 +20,8 @@ public class CartItem {
     @JsonIgnoreProperties("items")
     private Cart cart;
 
-    @ManyToOne
-    @JoinColumn(name = "asset_id", nullable = false)
-    private Asset asset;
+    @Column(name = "asset_id", nullable = false)
+    private Long assetId;
 
     @Column(nullable = false)
     private Integer quantity = 1;

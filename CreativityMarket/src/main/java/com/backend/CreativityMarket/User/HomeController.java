@@ -11,9 +11,16 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    private final AssetRepository assetRepository;
+
+    public HomeController(AssetRepository assetRepository) {
+        this.assetRepository = assetRepository;
+    }
+
     @GetMapping("/")
     public String homepage(Model model) {
-        List<Asset> assets = sampleAssets();
+        List<Asset> dbAssets = assetRepository.findAll();
+        List<Asset> assets = dbAssets.isEmpty() ? sampleAssets() : dbAssets;
         model.addAttribute("featuredAssets", assets);
         model.addAttribute("newAssets", assets);
         model.addAttribute("categories", sampleCategories());
@@ -23,10 +30,14 @@ public class HomeController {
 
     @GetMapping("/asset/{id}")
     public String detailedItemView(@PathVariable Long id, Model model) {
-        Asset asset = sampleAssets().stream()
-                .filter(a -> a.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        Asset asset = assetRepository.findById(id).orElse(null);
+
+        if (asset == null) {
+            asset = sampleAssets().stream()
+                    .filter(a -> a.getId() != null && a.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+        }
 
         if (asset == null) {
             return "redirect:/";
@@ -37,11 +48,6 @@ public class HomeController {
     }
 
     private List<Asset> sampleAssets() {
-        License personal = new License("Personal",
-                "Allowed for personal projects. Do not resell or redistribute the raw file.");
-        License commercial = new License("Commercial",
-                "Allowed for commercial games/renders. Do not resell the raw model or use it for AI training.");
-
         List<Asset> assets = new ArrayList<>();
 
         Asset a1 = new Asset();
@@ -50,18 +56,14 @@ public class HomeController {
         a1.setDescription("A sleek, modern chair model suitable for architectural visualizations and interior design scenes.");
         a1.setPrice(9.99);
         a1.setThumbnailUrl("/images/apple.png");
-        a1.setThumbnailUrls(List.of("/images/apple.png", "/images/banana.png", "/images/orange.webp", "/images/pear.png"));
         a1.setSketchfabUid("dGUVoNVSMYpGGkpuCo5jFMnGqTI");
         a1.setCreatorName("SampleCreator");
         a1.setCreatorAvatarUrl("/images/apple.png");
-        a1.setTags(List.of("Furniture", "Interior", "Modern"));
-        a1.setFormats(List.of(".blend", ".fbx", ".obj"));
-        a1.setLicenses(List.of(personal, commercial));
+        a1.setTags("Furniture, Interior, Modern");
+        a1.setFileType("BLEND");
+        a1.setLicense("Commercial");
         a1.setRating(4.5);
-        a1.setPublishedDate("August 18, 2024");
-        a1.setLastUpdateDate("January 10, 2025");
-        a1.setAgeRating("Not Mature");
-        a1.setAllowsAiUsage(false);
+        a1.setCategory("furniture");
         assets.add(a1);
 
         Asset a2 = new Asset();
@@ -70,18 +72,14 @@ public class HomeController {
         a2.setDescription("A pack of hand-painted stylized trees perfect for games and illustrations.");
         a2.setPrice(14.99);
         a2.setThumbnailUrl("/images/banana.png");
-        a2.setThumbnailUrls(List.of("/images/banana.png", "/images/apple.png", "/images/orange.webp", "/images/pear.png"));
         a2.setSketchfabUid("dGUVoNVSMYpGGkpuCo5jFMnGqTI");
         a2.setCreatorName("NatureArtist");
         a2.setCreatorAvatarUrl("/images/banana.png");
-        a2.setTags(List.of("Nature", "Stylized", "Game-Ready"));
-        a2.setFormats(List.of(".glb", ".fbx"));
-        a2.setLicenses(List.of(commercial));
+        a2.setTags("Nature, Stylized, Game-Ready");
+        a2.setFileType("GLB");
+        a2.setLicense("Commercial");
         a2.setRating(4.8);
-        a2.setPublishedDate("March 5, 2025");
-        a2.setLastUpdateDate("March 17, 2025");
-        a2.setAgeRating("Not Mature");
-        a2.setAllowsAiUsage(false);
+        a2.setCategory("nature");
         assets.add(a2);
 
         Asset a3 = new Asset();
@@ -90,18 +88,14 @@ public class HomeController {
         a3.setDescription("A high-poly sci-fi door with PBR textures, ideal for cinematic or game environments.");
         a3.setPrice(24.99);
         a3.setThumbnailUrl("/images/orange.webp");
-        a3.setThumbnailUrls(List.of("/images/orange.webp", "/images/apple.png", "/images/banana.png", "/images/pear.png"));
         a3.setSketchfabUid("dGUVoNVSMYpGGkpuCo5jFMnGqTI");
         a3.setCreatorName("SciFiModeler");
         a3.setCreatorAvatarUrl("/images/orange.webp");
-        a3.setTags(List.of("Sci-Fi", "PBR", "High-Poly"));
-        a3.setFormats(List.of(".blend", ".fbx", ".obj", ".glb"));
-        a3.setLicenses(List.of(personal, commercial));
+        a3.setTags("Sci-Fi, PBR, High-Poly");
+        a3.setFileType("BLEND");
+        a3.setLicense("Personal");
         a3.setRating(4.2);
-        a3.setPublishedDate("November 12, 2024");
-        a3.setLastUpdateDate("February 1, 2025");
-        a3.setAgeRating("Not Mature");
-        a3.setAllowsAiUsage(true);
+        a3.setCategory("scifi");
         assets.add(a3);
 
         Asset a4 = new Asset();
@@ -110,18 +104,14 @@ public class HomeController {
         a4.setDescription("A collection of five fantasy swords with unique designs and textures.");
         a4.setPrice(19.99);
         a4.setThumbnailUrl("/images/pear.png");
-        a4.setThumbnailUrls(List.of("/images/pear.png", "/images/apple.png", "/images/banana.png", "/images/orange.webp"));
         a4.setSketchfabUid("dGUVoNVSMYpGGkpuCo5jFMnGqTI");
         a4.setCreatorName("WeaponSmith3D");
         a4.setCreatorAvatarUrl("/images/pear.png");
-        a4.setTags(List.of("Fantasy", "Weapons", "Bundle"));
-        a4.setFormats(List.of(".fbx", ".obj"));
-        a4.setLicenses(List.of(personal));
+        a4.setTags("Fantasy, Weapons, Bundle");
+        a4.setFileType("FBX");
+        a4.setLicense("Personal");
         a4.setRating(4.9);
-        a4.setPublishedDate("June 22, 2024");
-        a4.setLastUpdateDate("December 15, 2024");
-        a4.setAgeRating("Not Mature");
-        a4.setAllowsAiUsage(false);
+        a4.setCategory("weapons");
         assets.add(a4);
 
         return assets;

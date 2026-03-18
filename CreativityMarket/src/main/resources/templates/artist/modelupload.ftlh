@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Model — Creativity Market</title>
-    <link rel="stylesheet" href="../../static/css/modelupload.css">
+    <link rel="stylesheet" href="/css/modelupload.css">
+    <link rel="stylesheet" href="/css/sketchfab.css">
 </head>
 <body>
 
@@ -12,14 +13,14 @@
         <div class="navbar-left">
             <h1 class="navbar-title">Creativity Market</h1>
             <ul class="navbar-menu">
-                <li><a href="#">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="#">Profile</a></li>
             </ul>
         </div>
         <div class="navbar-right">
             <input type="text" class="search-bar" placeholder="Search the store">
             <button class="search-button">
-                <img src="../../static/images/glass.png" alt="Search" class="search-icon">
+                <img src="/images/glass.png" alt="Search" class="search-icon">
             </button>
         </div>
     </nav>
@@ -29,7 +30,18 @@
         <p>Fill out the details below to list your model on the marketplace.</p>
     </div>
 
-    <form class="upload-form" id="uploadForm" enctype="multipart/form-data">
+    <#if successMessage??>
+    <div class="form-section" style="background-color:#2d4a2d;border:1px solid #4a7a4a;">
+        <p style="color:#8fdf8f;font-size:14px;">${successMessage}</p>
+    </div>
+    </#if>
+    <#if errorMessage??>
+    <div class="form-section" style="background-color:#4a2d2d;border:1px solid #7a4a4a;">
+        <p style="color:#df8f8f;font-size:14px;">${errorMessage}</p>
+    </div>
+    </#if>
+
+    <form class="upload-form" id="uploadForm" method="post" action="/upload" enctype="multipart/form-data">
 
         <section class="form-section">
             <h3 class="section-title">Model File</h3>
@@ -110,6 +122,8 @@
                 <input type="file" id="thumbnailUpload" name="thumbnails" accept="image/*" multiple>
                 <p class="field-hint">Upload up to 5 images. The first image will be used as the thumbnail.</p>
             </div>
+
+            <p class="field-hint" style="margin-top:10px;">A 3D preview will be generated automatically from your uploaded model file via Sketchfab.</p>
         </section>
 
         <section class="form-section">
@@ -196,8 +210,7 @@
 
             <div class="field">
                 <label for="materials">Materials</label>
-                <input type="text" id="materials" name="materials"
-                       placeholder="">
+                <input type="text" id="materials" name="materials" placeholder="">
                 <p class="field-hint">List the material types used in this model.</p>
             </div>
 
@@ -241,8 +254,7 @@
 
             <div class="field">
                 <label for="licenseNotes">Additional License Notes <span class="optional">(optional)</span></label>
-                <textarea id="licenseNotes" name="licenseNotes" rows="3"
-                          placeholder=""></textarea>
+                <textarea id="licenseNotes" name="licenseNotes" rows="3" placeholder=""></textarea>
             </div>
         </section>
 
@@ -264,5 +276,7 @@
         </div>
     </footer>
 
+    <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+    <script src="/js/sketchfabscripts.js"></script>
 </body>
 </html>

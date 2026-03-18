@@ -17,6 +17,7 @@ public class ModelUploadForm {
     private List<MultipartFile> thumbnails;
 
     private String embedUrl;
+    private String sketchfabUid;
 
     private Integer polyCount;
     private Integer vertices;
@@ -61,6 +62,9 @@ public class ModelUploadForm {
 
     public String getEmbedUrl() { return embedUrl; }
     public void setEmbedUrl(String embedUrl) { this.embedUrl = embedUrl; }
+
+    public String getSketchfabUid() { return sketchfabUid; }
+    public void setSketchfabUid(String sketchfabUid) { this.sketchfabUid = sketchfabUid; }
 
     public Integer getPolyCount() { return polyCount; }
     public void setPolyCount(Integer polyCount) { this.polyCount = polyCount; }
