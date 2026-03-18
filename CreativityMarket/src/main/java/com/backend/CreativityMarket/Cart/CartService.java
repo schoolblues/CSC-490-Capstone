@@ -15,7 +15,7 @@ public class CartService {
     private final CartItemRepository cartItemRepository;
 
     public Cart getCartByUserId(Long userId) {
-        return cartRepository.findByUser_Id(userId)
+        return cartRepository.findByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("Cart not found for user id: " + userId));
     }
 
