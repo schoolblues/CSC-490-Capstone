@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/assets")
 public class AssetController {
@@ -17,24 +19,22 @@ public class AssetController {
 
     @GetMapping("/explore")
     public String explore(@RequestParam(value = "keyword", required = false) String keyword,
-                      Model model,
-                      HttpSession session) {
+                          Model model,
+                          HttpSession session) {
 
-    List<Asset> assets = sampleAssets();
+        List<Asset> assets = assetRepository.findAll();
 
-    if (keyword != null && !keyword.trim().isEmpty()) {
-        String search = keyword.toLowerCase().trim();
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            String search = keyword.toLowerCase().trim();
+            assets = assets.stream()
+                    .filter(a -> a.getTitle().toLowerCase().contains(search))
+                    .toList();
+        }
 
-    public AssetController(AssetRepository assetRepository) {
-        this.assetRepository = assetRepository;
-    }
+        model.addAttribute("assets", assets);
+        model.addAttribute("keyword", keyword);
 
-    model.addAttribute("assets", assets);
-    model.addAttribute("keyword", keyword);
-    model.addAttribute("cartCount", getCart(session).size());
-    model.addAttribute("wishlistCount", getWishlist(session).size());
-
-    return "user/explore";
+        return "user/explore";
     }
 
     @GetMapping("/{id}")

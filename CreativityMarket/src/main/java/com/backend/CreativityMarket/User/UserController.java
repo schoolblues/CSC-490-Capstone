@@ -54,14 +54,6 @@ public class UserController {
         return "user/user-home";
     }
 
-        model.addAttribute("user", user);
-        model.addAttribute("purchases", purchases);
-        model.addAttribute("wishlist", wishlist);
-        model.addAttribute("cart", cart);
-
-        return "user/user-home";
-    }
-
     @GetMapping("/profile/edit")
     public String editProfile(HttpSession session, Model model,
                               @RequestParam(value = "saved", required = false) Boolean saved) {
