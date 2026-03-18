@@ -24,4 +24,9 @@ public class BountyService {
     public List<Bounty> getBountiesForUser(Long userId) {
         return bountyRepository.findByAssignedTo(userId);
     }
+
+    public Bounty getBountyById(Long id) {
+    return bountyRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Bounty not found with id: " + id));
+}
 }

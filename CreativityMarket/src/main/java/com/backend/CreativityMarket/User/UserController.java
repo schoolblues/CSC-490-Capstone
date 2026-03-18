@@ -56,7 +56,11 @@ public class UserController {
         model.addAttribute("downloadsCount", purchases.size());
         model.addAttribute("cartCount", cart.size());
 
-        return "user/user-home";
+        return List.of(
+                new Asset(1L, "Modern Chair", 12.00, "/images/apple.png", personal),
+                new Asset(2L, "Stylized Tree Set", 10.00, "/images/banana.png", commercial),
+                new Asset(3L, "Sci-Fi Door", 15.00, "/images/orange.webp", commercial)
+        );
     }
 
     @GetMapping("/profile/edit")

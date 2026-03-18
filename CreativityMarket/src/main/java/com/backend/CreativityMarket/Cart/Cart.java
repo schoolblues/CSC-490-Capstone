@@ -1,10 +1,8 @@
 package com.backend.CreativityMarket.Cart;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.backend.CreativityMarket.User.User;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.HashSet;
@@ -22,7 +20,7 @@ public class Cart {
     //TODO: add protection if cart_id is added to users table
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Long userId;
+    private User user;
     
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CartItem> items = new HashSet<>();

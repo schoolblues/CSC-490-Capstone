@@ -25,5 +25,6 @@ public class CartItem {
     @JoinColumn(name = "asset_id", nullable = false)
     private Asset asset;
 
-    private Integer quantity;
+    @Column(nullable = false)
+    private Integer quantity = 1;
 }
