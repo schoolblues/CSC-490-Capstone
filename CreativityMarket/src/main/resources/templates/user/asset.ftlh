@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CreativityMarket • Asset</title>
-  <link rel="stylesheet" href="/css/user.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/user.css">
+  <link rel="stylesheet" href="/css/sketchfab.css">
 </head>
 <body>
 
@@ -21,11 +21,24 @@
 
 <main class="container">
   <div class="two-col">
-    <div class="preview">
-      <div>
-        <h2>3D Preview</h2>
-        <p class="small">3D model preview will appear here.</p>
-      </div>
+    <div class="preview sketchfab-preview">
+      <#if asset.sketchfabUid?? && asset.sketchfabUid?has_content>
+        <iframe
+          id="sketchfab-viewer"
+          data-uid="${asset.sketchfabUid}"
+          src=""
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          title="3D Model Viewer">
+        </iframe>
+      <#else>
+        <div>
+          <h2>No 3D Preview Available</h2>
+          <p class="small">This asset does not have a Sketchfab model linked.</p>
+        </div>
+      </#if>
     </div>
 
     <div class="panel">
@@ -37,7 +50,7 @@
 
       <p class="small" style="margin-top:8px;">
         Price:
-        <b style="color:#FFB71B;">
+        <b style="color:var(--accent);">
           $<#if asset.price??>${asset.price?string["0.00"]}<#else>0.00</#if>
         </b>
       </p>
@@ -102,12 +115,12 @@
 
       <hr style="border:none; height:1px; background:rgba(255,255,255,.12); margin:16px 0;">
 
-      <h3 style="margin-bottom:8px;">Creator</h3>
+      <h3>Artist</h3>
       <p class="small">
-        <#if asset.user?? && asset.user.name??>
-          ${asset.user.name}
+        <#if asset.creatorName??>
+          ${asset.creatorName}
         <#else>
-          Unknown Creator
+          Unknown Artist
         </#if>
       </p>
     </div>
@@ -184,9 +197,9 @@
   </div>
 </main>
 
-<footer class="footer">
-  <p>© ${.now?string("yyyy")} CreativityMarket</p>
-</footer>
+<footer>User-side prototype • CSC-490 Capstone</footer>
 
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script src="/js/sketchfabscripts.js"></script>
 </body>
 </html>

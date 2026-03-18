@@ -18,9 +18,8 @@ public class Cart {
     private Long id;
 
     //TODO: add protection if cart_id is added to users table
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
     
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CartItem> items = new HashSet<>();
