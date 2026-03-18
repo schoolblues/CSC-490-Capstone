@@ -120,10 +120,10 @@
                     </div>
                     <div class="category-images">
                         <div class="category-main">
-                            <img src="${(cat.mainImage)!'/images/apple.png'}" alt="Main" class="category-img">
+                            <img src="${(cat.mainImageUrl)!'/images/apple.png'}" alt="Main" class="category-img">
                         </div>
-                        <#if cat.previewImages??>
-                            <#list cat.previewImages as pi>
+                        <#if cat.previewImageUrls??>
+                            <#list cat.previewImageUrls as pi>
                                 <img src="${pi}" alt="Preview ${pi?index + 1}" class="category-img">
                             </#list>
                         </#if>

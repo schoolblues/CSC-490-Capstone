@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Model — Creativity Market</title>
+    <link rel="stylesheet" href="/css/modelupload.css">
+    <link rel="stylesheet" href="/css/sketchfab.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1 class="navbar-title">Creativity Market</h1>
+            <ul class="navbar-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            <input type="text" class="search-bar" placeholder="Search the store">
+            <button class="search-button">
+                <img src="/images/glass.png" alt="Search" class="search-icon">
+            </button>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h2>Upload a 3D Model</h2>
+        <p>Fill out the details below to list your model on the marketplace.</p>
+    </div>
+
+    <form class="upload-form" id="uploadForm" method="post" enctype="multipart/form-data">
+
+        <section class="form-section">
+            <h3 class="section-title">Model File</h3>
+
+            <div class="field">
+                <label for="modelFile">Model File</label>
+                <input type="file" id="modelFile" name="modelFile"
+                       accept=".fbx,.obj,.glb,.gltf,.stl,.blend,.max,.c4d,.dae,.3ds" required>
+                <p class="field-hint">Supported formats: FBX, OBJ, GLB, GLTF, STL, BLEND, MAX, C4D, DAE, 3DS</p>
+            </div>
+
+            <div class="field-row">
+                <div class="field">
+                    <label for="fileType">File Type</label>
+                    <select id="fileType" name="fileType" required>
+                        <option value="" disabled selected>Select format</option>
+                        <option value="FBX">FBX</option>
+                        <option value="OBJ">OBJ</option>
+                        <option value="GLB">GLB</option>
+                        <option value="GLTF">GLTF</option>
+                        <option value="STL">STL</option>
+                        <option value="BLEND">BLEND</option>
+                        <option value="MAX">3DS MAX</option>
+                        <option value="C4D">Cinema 4D</option>
+                        <option value="DAE">DAE (Collada)</option>
+                        <option value="3DS">3DS</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h3 class="section-title">Basic Information</h3>
+
+            <div class="field">
+                <label for="modelTitle">Title</label>
+                <input type="text" id="modelTitle" name="title" placeholder="e.g. Stylized Medieval Sword" required>
+            </div>
+
+            <div class="field">
+                <label for="modelDescription">Description</label>
+                <textarea id="modelDescription" name="description" rows="4"
+                          placeholder="Describe your model, its intended use, and any special notes…"></textarea>
+            </div>
+
+            <div class="field">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="characters">Characters</option>
+                    <option value="vehicles">Vehicles</option>
+                    <option value="weapons">Weapons</option>
+                    <option value="architecture">Architecture</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="nature">Nature &amp; Plants</option>
+                    <option value="food">Food &amp; Drink</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="animals">Animals</option>
+                    <option value="scifi">Sci-Fi</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="props">Props</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="tags">Tags</label>
+                <input type="text" id="tags" name="tags"
+                       placeholder="e.g. medieval, sword, low-poly, game-ready (comma-separated)">
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h3 class="section-title">Preview Images &amp; 3D Viewer</h3>
+
+            <div class="field">
+                <label for="thumbnailUpload">Thumbnail &amp; Screenshots</label>
+                <input type="file" id="thumbnailUpload" name="thumbnails" accept="image/*" multiple>
+                <p class="field-hint">Upload up to 5 images. The first image will be used as the thumbnail.</p>
+            </div>
+
+            <div class="field">
+                <label for="sketchfabUid">Sketchfab Model UID</label>
+                <input type="text" id="sketchfab-uid-input" name="sketchfabUid"
+                       placeholder="e.g. dGUVoNVSMYpGGkpuCo5jFMnGqTI">
+                <p class="field-hint">Paste the UID from your Sketchfab model URL to enable a 3D preview on the store page.</p>
+            </div>
+
+            <div class="field upload-preview-container" id="upload-preview-container" style="display:none;">
+                <label>3D Preview</label>
+                <div class="upload-preview-wrapper">
+                    <iframe
+                        id="upload-preview-viewer"
+                        allow="autoplay; fullscreen; xr-spatial-tracking"
+                        allowfullscreen
+                        mozallowfullscreen="true"
+                        webkitallowfullscreen="true"
+                        title="3D Upload Preview">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h3 class="section-title">Technical Specifications</h3>
+
+            <div class="field-row three-col">
+                <div class="field">
+                    <label for="polyCount">Poly Count</label>
+                    <input type="number" id="polyCount" name="polyCount" min="0" placeholder="e.g. 12500">
+                </div>
+                <div class="field">
+                    <label for="vertices">Vertices</label>
+                    <input type="number" id="vertices" name="vertices" min="0" placeholder="e.g. 6400">
+                </div>
+                <div class="field">
+                    <label for="polygons">Polygons</label>
+                    <input type="number" id="polygons" name="polygons" min="0" placeholder="e.g. 12500">
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field">
+                    <label for="geometry">Geometry Type</label>
+                    <select id="geometry" name="geometry">
+                        <option value="" disabled selected>Select geometry</option>
+                        <option value="quads">Quads</option>
+                        <option value="tris">Triangles</option>
+                        <option value="ngons">N-gons</option>
+                        <option value="mixed">Mixed</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="uvMapping">UV Mapping</label>
+                    <select id="uvMapping" name="uvMapping">
+                        <option value="" disabled selected>Select UV status</option>
+                        <option value="mapped">Fully UV Mapped</option>
+                        <option value="partial">Partially Mapped</option>
+                        <option value="overlapping">Overlapping UVs</option>
+                        <option value="none">No UVs</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="checkbox-row">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="isRigged" name="rigged" value="true">
+                    <span class="checkmark"></span>
+                    Rigged
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="isAnimated" name="animated" value="true">
+                    <span class="checkmark"></span>
+                    Animated
+                </label>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h3 class="section-title">Textures &amp; Materials</h3>
+
+            <div class="field-row">
+                <div class="field">
+                    <label for="texturesIncluded">Textures Included</label>
+                    <select id="texturesIncluded" name="texturesIncluded">
+                        <option value="" disabled selected>Select</option>
+                        <option value="yes">Yes — PBR textures included</option>
+                        <option value="basic">Yes — Basic / diffuse only</option>
+                        <option value="no">No textures</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="textureResolution">Texture Resolution</label>
+                    <select id="textureResolution" name="textureResolution">
+                        <option value="" disabled selected>Select resolution</option>
+                        <option value="512">512 × 512</option>
+                        <option value="1024">1024 × 1024 (1K)</option>
+                        <option value="2048">2048 × 2048 (2K)</option>
+                        <option value="4096">4096 × 4096 (4K)</option>
+                        <option value="8192">8192 × 8192 (8K)</option>
+                        <option value="mixed">Mixed</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="materials">Materials</label>
+                <input type="text" id="materials" name="materials" placeholder="">
+                <p class="field-hint">List the material types used in this model.</p>
+            </div>
+
+            <div class="field">
+                <label for="textureFiles">Upload Texture Files <span class="optional">(optional)</span></label>
+                <input type="file" id="textureFiles" name="textureFiles" accept="image/*,.zip" multiple>
+                <p class="field-hint">Upload texture maps or a ZIP archive containing them.</p>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h3 class="section-title">Pricing &amp; License</h3>
+
+            <div class="field-row">
+                <div class="field">
+                    <label for="price">Price (USD)</label>
+                    <div class="price-input-wrapper">
+                        <span class="price-prefix">$</span>
+                        <input type="number" id="price" name="price" min="0" step="0.01" placeholder="0.00" required>
+                    </div>
+                    <label class="checkbox-label free-toggle">
+                        <input type="checkbox" id="isFree" name="free" value="true">
+                        <span class="checkmark"></span>
+                        Offer for free
+                    </label>
+                </div>
+                <div class="field">
+                    <label for="license">License</label>
+                    <select id="license" name="license" required>
+                        <option value="" disabled selected>Select a license</option>
+                        <option value="personal">Personal Use Only</option>
+                        <option value="commercial">Commercial Use</option>
+                        <option value="editorial">Editorial Use</option>
+                        <option value="royalty-free">Royalty-Free</option>
+                        <option value="cc-by">Creative Commons — Attribution (CC BY)</option>
+                        <option value="cc-by-nc">Creative Commons — NonCommercial (CC BY-NC)</option>
+                        <option value="cc0">CC0 — Public Domain</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="licenseNotes">Additional License Notes <span class="optional">(optional)</span></label>
+                <textarea id="licenseNotes" name="licenseNotes" rows="3" placeholder=""></textarea>
+            </div>
+        </section>
+
+        <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="saveDraftBtn">Save Draft</button>
+            <button type="submit" class="btn btn-primary" id="publishBtn">Publish Model</button>
+        </div>
+    </form>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Support</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Creativity Market. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+    <script src="/js/sketchfabscripts.js"></script>
+</body>
+</html>
