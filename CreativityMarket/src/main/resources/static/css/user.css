@@ -1,11 +1,11 @@
 :root{
-  --bg:#0F2044;
-  --card:rgba(255,255,255,0.06);
-  --border:rgba(255,255,255,0.16);
+  --bg:#5b4e74;
+  --card:#271738;
+  --border:#3d2a50;
   --text:#ffffff;
-  --muted:#BEC0C2;
-  --accent:#FFB71B;
-  --shadow: 0 14px 35px rgba(0,0,0,0.25);
+  --muted:#8a8a9a;
+  --accent:#ab68f3;
+  --shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
@@ -15,7 +15,7 @@ body{background:var(--bg);color:var(--text);}
   position:sticky;top:0;z-index:10;
   display:flex;align-items:center;justify-content:space-between;
   padding:16px 24px;
-  background:rgba(15,32,68,0.88);
+  background:#271738;
   backdrop-filter: blur(10px);
   border-bottom:1px solid var(--border);
 }
