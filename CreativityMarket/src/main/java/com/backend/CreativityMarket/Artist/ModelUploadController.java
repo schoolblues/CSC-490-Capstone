@@ -12,6 +12,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/upload")
 public class ModelUploadController {
 
+    private final SketchfabService sketchfabService;
+
+    public ModelUploadController(SketchfabService sketchfabService) {
+        this.sketchfabService = sketchfabService;
+    }
+
     @GetMapping
     public String showUploadForm(Model model) {
         model.addAttribute("uploadForm", new ModelUploadForm());
@@ -22,19 +28,30 @@ public class ModelUploadController {
     public String handleUpload(@ModelAttribute("uploadForm") ModelUploadForm form,
                                RedirectAttributes redirectAttributes) {
 
-        System.out.println("Upload received: " + form.getTitle());
-        System.out.println("  File type: " + form.getFileType());
-        System.out.println("  Category:  " + form.getCategory());
-        System.out.println("  Price:     $" + form.getPrice());
-        System.out.println("  License:   " + form.getLicense());
-
-        if (form.getModelFile() != null && !form.getModelFile().isEmpty()) {
-            System.out.println("  Model file: " + form.getModelFile().getOriginalFilename()
-                    + " (" + form.getModelFile().getSize() + " bytes)");
+        if (form.getModelFile() == null || form.getModelFile().isEmpty()) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Please select a model file to upload.");
+            return "redirect:/upload";
         }
 
-        redirectAttributes.addFlashAttribute("successMessage",
-                "Your model \"" + form.getTitle() + "\" has been submitted!");
+        try {
+            String uid = sketchfabService.uploadModel(
+                    form.getModelFile(),
+                    form.getTitle(),
+                    form.getDescription(),
+                    form.getTags()
+            );
+
+            System.out.println("Sketchfab upload successful. UID: " + uid);
+
+            redirectAttributes.addFlashAttribute("successMessage",
+                    "Your model \"" + form.getTitle() + "\" has been uploaded! Sketchfab UID: " + uid);
+            redirectAttributes.addFlashAttribute("sketchfabUid", uid);
+
+        } catch (Exception e) {
+            System.err.println("Sketchfab upload failed: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage",
+                    "Upload failed: " + e.getMessage());
+        }
 
         return "redirect:/upload";
     }

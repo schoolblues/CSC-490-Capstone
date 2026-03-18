@@ -30,7 +30,18 @@
         <p>Fill out the details below to list your model on the marketplace.</p>
     </div>
 
-    <form class="upload-form" id="uploadForm" method="post" enctype="multipart/form-data">
+    <#if successMessage??>
+    <div class="form-section" style="background-color:#2d4a2d;border:1px solid #4a7a4a;">
+        <p style="color:#8fdf8f;font-size:14px;">${successMessage}</p>
+    </div>
+    </#if>
+    <#if errorMessage??>
+    <div class="form-section" style="background-color:#4a2d2d;border:1px solid #7a4a4a;">
+        <p style="color:#df8f8f;font-size:14px;">${errorMessage}</p>
+    </div>
+    </#if>
+
+    <form class="upload-form" id="uploadForm" method="post" action="/upload" enctype="multipart/form-data">
 
         <section class="form-section">
             <h3 class="section-title">Model File</h3>
@@ -104,7 +115,7 @@
         </section>
 
         <section class="form-section">
-            <h3 class="section-title">Preview Images &amp; 3D Viewer</h3>
+            <h3 class="section-title">Preview Images</h3>
 
             <div class="field">
                 <label for="thumbnailUpload">Thumbnail &amp; Screenshots</label>
@@ -112,26 +123,7 @@
                 <p class="field-hint">Upload up to 5 images. The first image will be used as the thumbnail.</p>
             </div>
 
-            <div class="field">
-                <label for="sketchfabUid">Sketchfab Model UID</label>
-                <input type="text" id="sketchfab-uid-input" name="sketchfabUid"
-                       placeholder="e.g. dGUVoNVSMYpGGkpuCo5jFMnGqTI">
-                <p class="field-hint">Paste the UID from your Sketchfab model URL to enable a 3D preview on the store page.</p>
-            </div>
-
-            <div class="field upload-preview-container" id="upload-preview-container" style="display:none;">
-                <label>3D Preview</label>
-                <div class="upload-preview-wrapper">
-                    <iframe
-                        id="upload-preview-viewer"
-                        allow="autoplay; fullscreen; xr-spatial-tracking"
-                        allowfullscreen
-                        mozallowfullscreen="true"
-                        webkitallowfullscreen="true"
-                        title="3D Upload Preview">
-                    </iframe>
-                </div>
-            </div>
+            <p class="field-hint" style="margin-top:10px;">A 3D preview will be generated automatically from your uploaded model file via Sketchfab.</p>
         </section>
 
         <section class="form-section">
