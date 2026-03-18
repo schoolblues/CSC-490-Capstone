@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Model — Creativity Market</title>
     <link rel="stylesheet" href="../../static/css/modelupload.css">
+    <link rel="stylesheet" href="../../static/css/sketchfab.css">
 </head>
 <body>
 
@@ -103,12 +104,33 @@
         </section>
 
         <section class="form-section">
-            <h3 class="section-title">Preview Images</h3>
+            <h3 class="section-title">Preview Images &amp; 3D Viewer</h3>
 
             <div class="field">
                 <label for="thumbnailUpload">Thumbnail &amp; Screenshots</label>
                 <input type="file" id="thumbnailUpload" name="thumbnails" accept="image/*" multiple>
                 <p class="field-hint">Upload up to 5 images. The first image will be used as the thumbnail.</p>
+            </div>
+
+            <div class="field">
+                <label for="sketchfabUid">Sketchfab Model UID</label>
+                <input type="text" id="sketchfab-uid-input" name="sketchfabUid"
+                       placeholder="e.g. dGUVoNVSMYpGGkpuCo5jFMnGqTI">
+                <p class="field-hint">Paste the UID from your Sketchfab model URL to enable a 3D preview on the store page.</p>
+            </div>
+
+            <div class="field upload-preview-container" id="upload-preview-container" style="display:none;">
+                <label>3D Preview</label>
+                <div class="upload-preview-wrapper">
+                    <iframe
+                        id="upload-preview-viewer"
+                        allow="autoplay; fullscreen; xr-spatial-tracking"
+                        allowfullscreen
+                        mozallowfullscreen="true"
+                        webkitallowfullscreen="true"
+                        title="3D Upload Preview">
+                    </iframe>
+                </div>
             </div>
         </section>
 
@@ -264,5 +286,7 @@
         </div>
     </footer>
 
+    <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+    <script src="../../static/js/sketchfabscripts.js"></script>
 </body>
 </html>

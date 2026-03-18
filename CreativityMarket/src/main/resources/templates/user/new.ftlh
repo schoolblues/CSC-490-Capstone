@@ -36,6 +36,8 @@
           <input placeholder="Title" style="padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--text);" />
           <input placeholder="Price (e.g., 12.00)" style="padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--text);" />
           <input placeholder="File Type (FBX/OBJ/GLB)" style="padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--text);" />
+          <input placeholder="Sketchfab UID (e.g. dGUVoNVSMYpGGkpuCo5jFMnGqTI)" name="sketchfabUid" style="padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--text);" />
+          <p style="color:var(--muted); font-size:0.85rem; margin-top:-6px;">Paste your Sketchfab model UID to enable a 3D preview on the store page.</p>
           <button class="btn btn-primary" type="button"><i class="fa-solid fa-cloud-arrow-up"></i> Upload</button>
         </div>
       </form>

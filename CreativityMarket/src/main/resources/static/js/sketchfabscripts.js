@@ -2,7 +2,7 @@
     'use strict';
 
     function initViewer(iframe, uid) {
-        const client = new Sketchfab(iframe);
+        var client = new Sketchfab(iframe);
 
         client.init(uid, {
             autostart:         1,
@@ -22,16 +22,17 @@
         });
     }
 
-    const detailIframe = document.getElementById('sketchfab-viewer');
+    // ── Detail page viewer (detailedItemView.html + asset.ftlh) ──
+    var detailIframe = document.getElementById('sketchfab-viewer');
     if (detailIframe) {
-        const uid = detailIframe.dataset.uid;
-        initViewer(detailIframe, uid);
-
+        var uid = detailIframe.dataset.uid;
         if (uid) {
-            const container = document.getElementById('thumbnailContainer');
-            const titleEl = document.getElementById('product-title');
-            const creatorNameEl = document.getElementById('creator-name');
-            const creatorAvatarEl = document.getElementById('creator-avatar');
+            initViewer(detailIframe, uid);
+
+            var container = document.getElementById('thumbnailContainer');
+            var titleEl = document.getElementById('product-title');
+            var creatorNameEl = document.getElementById('creator-name');
+            var creatorAvatarEl = document.getElementById('creator-avatar');
 
             fetch('https://api.sketchfab.com/v3/models/' + uid)
                 .then(function (res) { return res.json(); })
@@ -45,21 +46,21 @@
                     }
 
                     if (data.user && data.user.avatar && creatorAvatarEl) {
-                        const avatarImages = data.user.avatar.images;
+                        var avatarImages = data.user.avatar.images;
                         if (avatarImages && avatarImages.length > 0) {
                             creatorAvatarEl.src = avatarImages[avatarImages.length - 1].url;
                         }
                     }
 
-                    const images = data.thumbnails && data.thumbnails.images;
+                    var images = data.thumbnails && data.thumbnails.images;
                     if (!images || images.length === 0 || !container) return;
 
-                    const sizes = [1920, 1024, 720, 256, 64];
+                    var sizes = [1920, 1024, 720, 256, 64];
                     sizes.forEach(function (targetWidth, i) {
-                        const match = images.find(function (img) { return img.width === targetWidth; });
+                        var match = images.find(function (img) { return img.width === targetWidth; });
                         if (!match) return;
 
-                        const thumb = document.createElement('img');
+                        var thumb = document.createElement('img');
                         thumb.src = match.url;
                         thumb.alt = 'Thumbnail ' + (i + 1);
                         thumb.className = 'thumbnail' + (i === 0 ? ' active' : '');
@@ -70,20 +71,40 @@
         }
     }
 
-    const previewPanel = document.getElementById('preview-panel');
+    // ── Homepage hover-preview panel ──
+    var previewPanel = document.getElementById('preview-panel');
     if (previewPanel) {
-        const previewIframe = previewPanel.querySelector('iframe');
-        let activeUid = null;
+        var previewIframe = previewPanel.querySelector('iframe');
+        var activeUid = null;
 
         document.querySelectorAll('.item-row[data-uid]').forEach(function (row) {
             row.addEventListener('mouseenter', function () {
-                const uid = row.dataset.uid;
+                var uid = row.dataset.uid;
                 if (uid === activeUid) return;
                 activeUid = uid;
                 previewIframe.src = '';
                 initViewer(previewIframe, uid);
             });
         });
+    }
+
+    // ── Upload page live preview ──
+    var uidInput = document.getElementById('sketchfab-uid-input');
+    if (uidInput) {
+        var previewContainer = document.getElementById('upload-preview-container');
+        var previewViewer = document.getElementById('upload-preview-viewer');
+
+        function loadUploadPreview() {
+            var val = uidInput.value.trim();
+            if (!val || !previewContainer || !previewViewer) return;
+
+            previewContainer.style.display = 'block';
+            previewViewer.src = '';
+            initViewer(previewViewer, val);
+        }
+
+        uidInput.addEventListener('change', loadUploadPreview);
+        uidInput.addEventListener('blur', loadUploadPreview);
     }
 
 })();
