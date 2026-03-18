@@ -22,7 +22,6 @@
         });
     }
 
-    // ── Detail page viewer (detailedItemView.html + asset.ftlh) ──
     var detailIframe = document.getElementById('sketchfab-viewer');
     if (detailIframe) {
         var uid = detailIframe.dataset.uid;
@@ -71,7 +70,6 @@
         }
     }
 
-    // ── Homepage hover-preview panel ──
     var previewPanel = document.getElementById('preview-panel');
     if (previewPanel) {
         var previewIframe = previewPanel.querySelector('iframe');
@@ -88,7 +86,6 @@
         });
     }
 
-    // ── Upload page live preview ──
     var uidInput = document.getElementById('sketchfab-uid-input');
     if (uidInput) {
         var previewContainer = document.getElementById('upload-preview-container');

@@ -47,7 +47,7 @@
       <p class="small">
         File type: ${asset.fileType!"—"} •
         Price:
-        <b style="color:#FFB71B;">
+        <b style="color:var(--accent);">
           $<#if asset.price??>${asset.price?string["0.00"]}<#else>0.00</#if>
         </b>
       </p>
