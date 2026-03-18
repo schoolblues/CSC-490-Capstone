@@ -1,13 +1,9 @@
 package com.backend.CreativityMarket.Category;
 
-import com.backend.CreativityMarket.User.Asset;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Data
