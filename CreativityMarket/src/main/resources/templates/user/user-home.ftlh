@@ -16,6 +16,7 @@
   <nav class="nav">
     <a href="/assets/explore">Explore</a>
     <a class="active" href="/users/home">Profile</a>
+     <a href="/assets/cart">Cart</a>
     <a href="/users/logout">Logout</a>
   </nav>
 </header>
@@ -33,13 +34,14 @@
 
       <div class="pill-row">
         <span class="pill"><i class="fa-solid fa-shield"></i> Verified account</span>
-        <span class="pill"><i class="fa-solid fa-cloud-arrow-up"></i> Creator-ready</span>
+        <span class="pill"><i class="fa-solid fa-bag-shopping"></i> Buyer account</span>
       </div>
     </div>
 
     <div class="profile-actions">
-      <a class="btn btn-primary" href="/assets/new"><i class="fa-solid fa-plus"></i> Upload Asset</a>
-      <a class="btn btn-ghost" href="/users/profile/edit"><i class="fa-solid fa-gear"></i> Edit Profile</a>
+      <a class="btn btn-ghost" href="/users/profile/edit">
+        <i class="fa-solid fa-gear"></i> Edit Profile
+      </a>
     </div>
   </section>
 
@@ -73,16 +75,16 @@
       </div>
       <div class="card-body stats">
         <div class="stat">
-          <div class="stat-num">${assetsCount!0}</div>
-          <div class="stat-label">Assets</div>
+          <div class="stat-num">${purchasesCount!0}</div>
+          <div class="stat-label">Purchases</div>
         </div>
         <div class="stat">
-          <div class="stat-num">${salesCount!0}</div>
-          <div class="stat-label">Sales</div>
+          <div class="stat-num">${wishlistCount!0}</div>
+          <div class="stat-label">Wishlist</div>
         </div>
         <div class="stat">
-          <div class="stat-num">$<#if earnings??>${earnings?string["0.00"]}<#else>0.00</#if></div>
-          <div class="stat-label">Earnings</div>
+          <div class="stat-num">${downloadsCount!0}</div>
+          <div class="stat-label">Downloads</div>
         </div>
       </div>
     </div>
@@ -91,54 +93,77 @@
 
   <section class="card table-card">
     <div class="card-header">
-      <h2>My Assets</h2>
+      <h2>My Purchases</h2>
       <div class="header-actions">
-        <a class="btn btn-ghost" href="/assets/mine"><i class="fa-solid fa-folder-open"></i> View all</a>
+        <a class="btn btn-ghost" href="/assets/explore">
+          <i class="fa-solid fa-compass"></i> Explore More
+        </a>
       </div>
     </div>
 
     <div class="table-wrap">
       <table>
         <thead>
-        <tr>
-          <th>Title</th>
-          <th>Type</th>
-          <th>Price</th>
-          <th>Status</th>
-          <th style="text-align:right;">Actions</th>
-        </tr>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Purchase Date</th>
+            <th>License</th>
+            <th style="text-align:right;">Actions</th>
+          </tr>
         </thead>
 
         <tbody>
-        <#if assets?? && (assets?size > 0)>
-          <#list assets as a>
+        <#if purchases?? && (purchases?size > 0)>
+          <#list purchases as p>
             <tr>
-              <td class="title">${a.title!"Untitled"}</td>
+              <td class="title">
+                <#if p.asset??>
+                  ${p.asset.title!"Untitled"}
+                <#else>
+                  Untitled
+                </#if>
+              </td>
 
-              <#-- FIX: Asset has fileType, not type -->
-              <td>${a.fileType!"—"}</td>
+              <td>
+                <#if p.asset??>
+                  ${p.asset.fileType!"—"}
+                <#else>
+                  —
+                </#if>
+              </td>
 
-              <#-- Format to 2 decimals -->
-              <td>$<#if a.price??>${a.price?string["0.00"]}<#else>0.00</#if></td>
+              <td>
+                <#if p.purchaseDate??>
+                  ${p.purchaseDate}
+                <#elseif p.createdAt??>
+                  ${p.createdAt}
+                <#else>
+                  —
+                </#if>
+              </td>
 
-              <#-- FIX: no a.active in your Asset model. Use License type as "Status" -->
               <td>
                 <span class="status live">
-                  <#if a.license?? && a.license.type??>
-                    ${a.license.type}
+                  <#if p.asset?? && p.asset.license?? && p.asset.license.type??>
+                    ${p.asset.license.type}
                   <#else>
-                    —
+                    Standard
                   </#if>
                 </span>
               </td>
 
               <td class="actions">
-                <a class="icon-btn" href="/assets/${a.id}">
-                  <i class="fa-regular fa-eye"></i>
-                </a>
-                <a class="icon-btn" href="/assets/${a.id}/edit">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </a>
+                <#if p.asset?? && p.asset.id??>
+                  <a class="icon-btn" href="/assets/${p.asset.id}" title="View Asset">
+                    <i class="fa-regular fa-eye"></i>
+                  </a>
+                  <a class="icon-btn" href="/assets/${p.asset.id}/download" title="Download Asset">
+                    <i class="fa-solid fa-download"></i>
+                  </a>
+                <#else>
+                  <span class="muted">No actions</span>
+                </#if>
               </td>
             </tr>
           </#list>
@@ -146,10 +171,80 @@
           <tr>
             <td colspan="5" class="empty">
               <div class="empty-state">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-                <h3>No assets yet</h3>
-                <p>Upload your first asset to start selling.</p>
-                <a class="btn btn-primary" href="/assets/new">Upload Asset</a>
+                <i class="fa-solid fa-bag-shopping"></i>
+                <h3>No purchases yet</h3>
+                <p>Browse the marketplace and purchase your first asset.</p>
+                <a class="btn btn-primary" href="/assets/explore">Explore Assets</a>
+              </div>
+            </td>
+          </tr>
+        </#if>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card table-card">
+    <div class="card-header">
+      <h2>Wishlist</h2>
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="/assets/explore">
+          <i class="fa-regular fa-heart"></i> Browse Assets
+        </a>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>License</th>
+            <th style="text-align:right;">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <#if wishlist?? && (wishlist?size > 0)>
+          <#list wishlist as a>
+            <tr>
+              <td class="title">${a.title!"Untitled"}</td>
+              <td>${a.fileType!"—"}</td>
+              <td>$<#if a.price??>${a.price?string["0.00"]}<#else>0.00</#if></td>
+              <td>
+                <span class="status live">
+                  <#if a.license?? && a.license.type??>
+                    ${a.license.type}
+                  <#else>
+                    Standard
+                  </#if>
+                </span>
+              </td>
+              <td class="actions">
+                <#if a.id??>
+                  <a class="icon-btn" href="/assets/${a.id}" title="View Asset">
+                    <i class="fa-regular fa-eye"></i>
+                  <form action="/assets/${a.id}/wishlist/remove" method="post" style="display:inline;">
+                    <button class="icon-btn" type="submit" title="Remove from Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    </button>
+                    </form>
+                <#else>
+                  <span class="muted">No actions</span>
+                </#if>
+              </td>
+            </tr>
+          </#list>
+        <#else>
+          <tr>
+            <td colspan="5" class="empty">
+              <div class="empty-state">
+                <i class="fa-regular fa-heart"></i>
+                <h3>Your wishlist is empty</h3>
+                <p>Save assets you like so you can come back to them later.</p>
+                <a class="btn btn-primary" href="/assets/explore">Start Exploring</a>
               </div>
             </td>
           </tr>
