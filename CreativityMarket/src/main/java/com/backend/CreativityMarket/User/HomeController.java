@@ -44,7 +44,7 @@ public class HomeController {
         }
 
         model.addAttribute("asset", asset);
-        return "detailedItemView";
+        return "user/detailedItemView";
     }
 
     private List<Asset> sampleAssets() {

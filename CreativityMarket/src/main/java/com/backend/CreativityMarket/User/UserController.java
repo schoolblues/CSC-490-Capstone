@@ -54,29 +54,12 @@ public class UserController {
         return "user/user-home";
     }
 
-    private List<Asset> sampleAssets() {
-        Asset a1 = new Asset();
-        a1.setId(1L);
-        a1.setTitle("Modern Chair");
-        a1.setPrice(12.00);
-        a1.setThumbnailUrl("/images/apple.png");
-        a1.setLicense("Personal");
+        model.addAttribute("user", user);
+        model.addAttribute("purchases", purchases);
+        model.addAttribute("wishlist", wishlist);
+        model.addAttribute("cart", cart);
 
-        Asset a2 = new Asset();
-        a2.setId(2L);
-        a2.setTitle("Stylized Tree Set");
-        a2.setPrice(10.00);
-        a2.setThumbnailUrl("/images/banana.png");
-        a2.setLicense("Commercial");
-
-        Asset a3 = new Asset();
-        a3.setId(3L);
-        a3.setTitle("Sci-Fi Door");
-        a3.setPrice(15.00);
-        a3.setThumbnailUrl("/images/orange.webp");
-        a3.setLicense("Commercial");
-
-        return List.of(a1, a2, a3);
+        return "user/user-home";
     }
 
     @GetMapping("/profile/edit")

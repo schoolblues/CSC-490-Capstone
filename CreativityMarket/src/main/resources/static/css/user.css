@@ -1,28 +1,23 @@
 :root{
   --bg:#5b4e74;
   --card:#271738;
-  --card-dark:#1f1229;
   --border:#3d2a50;
   --text:#ffffff;
-  --muted:#b0b8c1;
+  --muted:#8a8a9a;
   --accent:#ab68f3;
-  --accent-hover:#9554de;
-  --input-bg:#392d46;
-  --input-border:#4e3d62;
   --shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
 body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;}
 
-.navbar{
-  width:100%;
-  background-color:var(--card);
-  padding:30px 40px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.3);
+.topbar{
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 24px;
+  background:#271738;
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
 }
 
 .logo a{
