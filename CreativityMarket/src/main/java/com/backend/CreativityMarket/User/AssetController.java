@@ -72,8 +72,4 @@ public class AssetController {
 
         return assets;
     }
-    @GetMapping("/new")
-public String newAsset() {
-    return "user/new";
-}
 }
