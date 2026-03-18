@@ -12,8 +12,14 @@ import java.util.List;
 @RequestMapping("/assets")
 public class AssetController {
 
-  @GetMapping("/explore")
-public String explore(@RequestParam(value = "keyword", required = false) String keyword,
+    private final AssetRepository assetRepository;
+
+    public AssetController(AssetRepository assetRepository) {
+        this.assetRepository = assetRepository;
+    }
+
+    @GetMapping("/explore")
+    public String explore(@RequestParam(value = "keyword", required = false) String keyword,
                       Model model,
                       HttpSession session) {
 
@@ -36,25 +42,9 @@ public String explore(@RequestParam(value = "keyword", required = false) String 
     model.addAttribute("wishlistCount", getWishlist(session).size());
 
     return "user/explore";
-}
-
-    @GetMapping("/{id}")
-    public String asset(@PathVariable Long id, Model model, HttpSession session) {
-        Asset found = findAssetById(id);
-
-        if (found == null) return "redirect:/assets/explore";
-
-        List<Asset> relatedAssets = sampleAssets().stream()
-                .filter(a -> !a.getId().equals(id))
-                .toList();
-
-        model.addAttribute("asset", found);
-        model.addAttribute("relatedAssets", relatedAssets);
-        model.addAttribute("inCart", getCart(session).stream().anyMatch(a -> a.getId().equals(id)));
-        model.addAttribute("inWishlist", getWishlist(session).stream().anyMatch(a -> a.getId().equals(id)));
-
-        return "user/asset";
     }
+
+
 
     @PostMapping("/{id}/cart")
     public String addToCart(@PathVariable Long id, HttpSession session) {
