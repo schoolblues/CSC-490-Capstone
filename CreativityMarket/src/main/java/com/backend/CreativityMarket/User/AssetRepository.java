@@ -2,7 +2,11 @@ package com.backend.CreativityMarket.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-//TODO: placeholder
+
+import java.util.List;
+
 @Repository
 public interface AssetRepository extends JpaRepository<Asset, Long> {
+    List<Asset> findByCategory(String category);
+    List<Asset> findByCreatorName(String creatorName);
 }
