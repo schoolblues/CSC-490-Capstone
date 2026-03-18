@@ -21,14 +21,31 @@
 <main class="container">
   <div class="two-col">
     <div class="preview">
-      <div>
-        <h2>3D Preview (placeholder)</h2>
-        <p class="small">Next step: connect a real viewer (Three.js / model-viewer).</p>
-      </div>
+      <#if asset.sketchfabUid?? && asset.sketchfabUid?has_content>
+        <iframe
+          id="sketchfab-viewer"
+          src=""
+          data-uid="${asset.sketchfabUid}"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          title="3D Model Viewer">
+        </iframe>
+      <#else>
+        <div class="preview-empty">
+          <h2>3D Preview Unavailable</h2>
+          <p class="small">No Sketchfab model UID is set for this asset yet.</p>
+        </div>
+      </#if>
     </div>
 
     <div class="panel">
-      <h2 style="margin-bottom:6px;">${asset.title!"Untitled"}</h2>
+      <h2 id="product-title" style="margin-bottom:6px;">${asset.title!"Untitled"}</h2>
 
       <p class="small">
         File type: ${asset.fileType!"—"} •
@@ -65,7 +82,7 @@
       <hr style="border:none; height:1px; background:rgba(255,255,255,.12); margin:16px 0;">
 
       <h3>Artist</h3>
-      <p class="small">Studio North • Verified (future)</p>
+      <p class="small"><span id="creator-name">${asset.creatorName!"Studio North"}</span> • Verified (future)</p>
     </div>
   </div>
 
@@ -81,7 +98,19 @@
     <#if relatedAssets?? && (relatedAssets?size > 0)>
       <#list relatedAssets as r>
         <a class="card" href="/assets/${r.id}">
-          <div class="thumb">Preview</div>
+          <#if r.sketchfabUid?? && r.sketchfabUid?has_content>
+            <iframe
+              class="thumb sketchfab-card-viewer"
+              data-uid="${r.sketchfabUid}"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              allowfullscreen
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              title="${r.title!"Related asset"} preview">
+            </iframe>
+          <#else>
+            <div class="thumb">Preview</div>
+          </#if>
           <div class="card-body">
             <h3>${r.title!"Untitled"}</h3>
             <div class="meta">
@@ -128,5 +157,7 @@
 </main>
 
 <footer>User-side prototype • CSC-490 Capstone</footer>
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script src="/js/sketchfabscripts.js"></script>
 </body>
 </html>

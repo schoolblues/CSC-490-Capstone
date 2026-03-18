@@ -97,65 +97,75 @@
       </div>
     </div>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-        <tr>
-          <th>Title</th>
-          <th>Type</th>
-          <th>Price</th>
-          <th>Status</th>
-          <th style="text-align:right;">Actions</th>
-        </tr>
-        </thead>
+    <div class="assets-overview">
+      <div class="table-wrap">
+        <table>
+          <thead>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th style="text-align:right;">Actions</th>
+          </tr>
+          </thead>
 
-        <tbody>
-        <#if assets?? && (assets?size > 0)>
-          <#list assets as a>
+          <tbody>
+          <#if assets?? && (assets?size > 0)>
+            <#list assets as a>
+              <tr class="item-row" data-uid="${a.sketchfabUid!''}">
+                <td class="title">${a.title!"Untitled"}</td>
+
+                <td>${a.fileType!"—"}</td>
+
+                <td>$<#if a.price??>${a.price?string["0.00"]}<#else>0.00</#if></td>
+
+                <td>
+                  <span class="status live">
+                    <#if a.license?? && a.license.type??>
+                      ${a.license.type}
+                    <#else>
+                      —
+                    </#if>
+                  </span>
+                </td>
+
+                <td class="actions">
+                  <a class="icon-btn" href="/assets/${a.id}">
+                    <i class="fa-regular fa-eye"></i>
+                  </a>
+                  <a class="icon-btn" href="/assets/${a.id}/edit">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </a>
+                </td>
+              </tr>
+            </#list>
+          <#else>
             <tr>
-              <td class="title">${a.title!"Untitled"}</td>
-
-              <#-- FIX: Asset has fileType, not type -->
-              <td>${a.fileType!"—"}</td>
-
-              <#-- Format to 2 decimals -->
-              <td>$<#if a.price??>${a.price?string["0.00"]}<#else>0.00</#if></td>
-
-              <#-- FIX: no a.active in your Asset model. Use License type as "Status" -->
-              <td>
-                <span class="status live">
-                  <#if a.license?? && a.license.type??>
-                    ${a.license.type}
-                  <#else>
-                    —
-                  </#if>
-                </span>
-              </td>
-
-              <td class="actions">
-                <a class="icon-btn" href="/assets/${a.id}">
-                  <i class="fa-regular fa-eye"></i>
-                </a>
-                <a class="icon-btn" href="/assets/${a.id}/edit">
-                  <i class="fa-regular fa-pen-to-square"></i>
-                </a>
+              <td colspan="5" class="empty">
+                <div class="empty-state">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <h3>No assets yet</h3>
+                  <p>Upload your first asset to start selling.</p>
+                  <a class="btn btn-primary" href="/assets/new">Upload Asset</a>
+                </div>
               </td>
             </tr>
-          </#list>
-        <#else>
-          <tr>
-            <td colspan="5" class="empty">
-              <div class="empty-state">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-                <h3>No assets yet</h3>
-                <p>Upload your first asset to start selling.</p>
-                <a class="btn btn-primary" href="/assets/new">Upload Asset</a>
-              </div>
-            </td>
-          </tr>
-        </#if>
-        </tbody>
-      </table>
+          </#if>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="asset-preview-panel preview-panel" id="preview-panel">
+        <iframe
+          id="my-assets-preview-viewer"
+          title="Hovered asset preview"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true">
+        </iframe>
+      </div>
     </div>
   </section>
 
@@ -164,6 +174,9 @@
 <footer class="footer">
   <p>© ${.now?string("yyyy")} CreativityMarket</p>
 </footer>
+
+<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+<script src="/js/sketchfabscripts.js"></script>
 
 </body>
 </html>

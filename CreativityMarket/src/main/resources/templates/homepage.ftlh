@@ -6,8 +6,6 @@
     <title>Homepage</title>
     <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="/css/sketchfab.css">
-    <link rel="stylesheet" href="../static/css/homepage.css">
-    <link rel="stylesheet" href="../static/css/sketchfab.css">
 </head>
 <body>
     <nav class="navbar">
@@ -28,7 +26,7 @@
     <h2 class="featured-label">Featured Items</h2>
     <div class="bannerContainer">
         <button class="nav-button nav-left">
-                <img src="/images/left.webp" alt="Previous" class="nav-button-image">
+            <img src="/images/left.webp" alt="Previous" class="nav-button-image">
         </button>
         <div class="banner">
             <div class="diagonal-stripe">
@@ -128,18 +126,11 @@
             <h2 class="format-title">Browse by File Type</h2>
         </div>
         <div class="format-grid">
-            <div class="format-row"><span class="format-name">Blender</span><span class="format-ext">.blend</span></div>
-            <div class="format-row"><span class="format-name">OBJ</span><span class="format-ext">.obj, .mtl</span></div>
-            <div class="format-row"><span class="format-name">STL</span><span class="format-ext">.stl</span></div>
-            <div class="format-row"><span class="format-name">FBX</span><span class="format-ext">.fbx</span></div>
-            <div class="format-row"><span class="format-name">Unity 3D</span><span class="format-ext">.unitypackage, .prefab</span></div>
-            <div class="format-row"><span class="format-name">Unreal Engine</span><span class="format-ext">.uasset</span></div>
-            <div class="format-row"><span class="format-name">3DS Max</span><span class="format-ext">.max</span></div>
-            <div class="format-row"><span class="format-name">Maya</span><span class="format-ext">.ma, .mb</span></div>
-            <div class="format-row"><span class="format-name">Cinema 4D</span><span class="format-ext">.c4d</span></div>
-            <div class="format-row"><span class="format-name">glTF</span><span class="format-ext">.gltf, .glb</span></div>
-            <div class="format-row"><span class="format-name">Collada</span><span class="format-ext">.dae</span></div>
-            <div class="format-row"><span class="format-name">Beth</span><span class="format-ext">.nif</span></div>
+            <#if fileTypes??>
+                <#list fileTypes as fileType>
+                    <div class="format-row"><span class="format-name">${fileType[0]}</span><span class="format-ext">${fileType[1]}</span></div>
+                </#list>
+            </#if>
         </div>
     </div>
 
