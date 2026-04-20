@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.CreativityMarket.User.Asset;
 import com.backend.CreativityMarket.User.AssetRepository;
-import com.backend.CreativityMarket.User.User;
 import com.backend.CreativityMarket.User.UserRepository;
 
 import java.util.List;
@@ -39,7 +38,7 @@ public class CartService {
     public Cart createCartIfNotExists(Long userId) {
         return cartRepository.findByUserId(userId)
                 .orElseGet(() -> {
-                    User user = userRepository.findById(userId)
+                    userRepository.findById(userId)
                             .orElseThrow(() -> new RuntimeException("User not found: " + userId));
 
                     Cart cart = new Cart();
@@ -53,7 +52,7 @@ public class CartService {
         Cart cart = createCartIfNotExists(userId);
     
         // Fetch the Asset from the repository
-        Asset asset = assetRepository.findById(assetId)
+        assetRepository.findById(assetId)
                 .orElseThrow(() -> new RuntimeException("Asset not found: " + assetId));
     
         // Check if the item already exists in the cart
