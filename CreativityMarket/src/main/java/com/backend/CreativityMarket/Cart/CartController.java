@@ -1,5 +1,7 @@
 package com.backend.CreativityMarket.Cart;
 
+import com.backend.CreativityMarket.User.Asset;
+import com.backend.CreativityMarket.User.AssetRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -14,6 +17,7 @@ import java.util.List;
 public class CartController {
 
     private final CartService cartService;
+    private final AssetRepository assetRepository;
 
     private Long getUserId(HttpSession session) {
         Long userId = (Long) session.getAttribute("userId");
@@ -24,28 +28,24 @@ public class CartController {
         return userId;
     }
 
-    // Show the current user's cart
     @GetMapping
     public String showCart(Model model, HttpSession session) {
         Long userId = getUserId(session);
 
-        Cart cart = cartService.createCartIfNotExists(userId);
+        cartService.createCartIfNotExists(userId);
         List<CartItem> items = cartService.getCartItemsByUserId(userId);
 
-        // CartItem only has assetId (Long), not an Asset object
-        // so we calculate subtotal based on quantity alone for now
-        double subtotal = items.stream()
-                .mapToDouble(item -> item.getQuantity())
-                .sum();
+        List<Asset> cart = items.stream()
+                .map(item -> assetRepository.findById(item.getAssetId()).orElse(null))
+                .filter(asset -> asset != null)
+                .collect(Collectors.toList());
 
         model.addAttribute("cart", cart);
-        model.addAttribute("items", items);
-        model.addAttribute("subtotal", subtotal);
+        model.addAttribute("cartCount", cart.size());
 
         return "user/cart";
     }
 
-    // Add an item to the cart
     @PostMapping("/add")
     public String addToCart(HttpSession session,
                             @RequestParam Long assetId,
@@ -55,14 +55,12 @@ public class CartController {
         return "redirect:/cart";
     }
 
-    // Remove an item from the cart
     @PostMapping("/remove/{cartItemId}")
     public String removeFromCart(@PathVariable Long cartItemId) {
         cartService.removeItem(cartItemId);
         return "redirect:/cart";
     }
 
-    // Update quantity of a cart item
     @PostMapping("/update/{cartItemId}")
     public String updateQuantity(@PathVariable Long cartItemId,
                                  @RequestParam int quantity) {

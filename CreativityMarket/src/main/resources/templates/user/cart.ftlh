@@ -13,7 +13,7 @@
   <a class="brand" href="/">CreativityMarket<span>.</span></a>
   <nav class="nav">
     <a href="/assets/explore">Explore</a>
-    <a href="/assets/cart" class="active">Cart</a>
+    <a href="/cart" class="active">Cart</a>
     <a href="/users/home">Profile</a>
     <a href="/users/logout">Logout</a>
   </nav>
@@ -45,7 +45,7 @@
             <td class="title">${a.title}</td>
             <td>${a.fileType}</td>
             <td>$${a.price?string["0.00"]}</td>
-            <td>${a.license.type}</td>
+            <td>${(a.license)!"Standard"}</td>
 
             <td class="actions">
               <form action="/assets/${a.id}/cart/remove" method="post">
@@ -73,7 +73,7 @@
 
  <#if cart?? && (cart?size > 0)>
   <div style="padding:16px; display:flex; justify-content:flex-end; gap:10px;">
-    <form action="/assets/checkout" method="post">
+    <form action="/checkout" method="post">
       <button class="btn btn-primary" type="submit">
         <i class="fa-solid fa-credit-card"></i> Proceed to Checkout
       </button>

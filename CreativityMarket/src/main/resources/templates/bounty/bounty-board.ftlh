@@ -16,7 +16,7 @@
       <a href="/my-applications">My Applications</a>
       <#-- Show login/logout dynamically -->
       <#if user??>
-        <a href="/logout" class="btn">Logout</a>
+        <a href="/users/logout" class="btn">Logout</a>
       <#else>
         <a href="/login" class="btn">Login</a>
       </#if>
@@ -56,7 +56,7 @@
             </div>
             <div class="price">$${bounty.reward?string["#.##"]}</div>
             <br>
-            <a href="/bounty/${bounty.id}" class="btn primary">View / Apply</a>
+            <a href="/bounties/${bounty.id}" class="btn primary">View / Apply</a>
           </div>
         </div>
       </#list>

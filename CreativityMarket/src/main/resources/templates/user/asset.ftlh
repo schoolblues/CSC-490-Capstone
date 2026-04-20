@@ -14,7 +14,7 @@
   <nav class="nav">
     <a href="/assets/explore">Explore</a>
     <a href="/users/home">Profile</a>
-     <a href="/assets/cart">Cart</a>
+     <a href="/cart">Cart</a>
     <a href="/users/logout">Logout</a>
   </nav>
 </header>
@@ -98,18 +98,10 @@
 
       <h3 style="margin-bottom:8px;">License</h3>
       <p class="small">
-        <b>
-          <#if asset.license?? && asset.license.type??>
-            ${asset.license.type}
-          <#else>
-            Standard
-          </#if>
-        </b>
-        —
-        <#if asset.license?? && asset.license.summary??>
-          ${asset.license.summary}
+        <#if asset.license?? && asset.license?has_content>
+          ${asset.license}
         <#else>
-          No license summary available.
+          Standard License
         </#if>
       </p>
 
