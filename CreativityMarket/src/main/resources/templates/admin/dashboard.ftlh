@@ -144,7 +144,7 @@ hr {
     <a href="/printing">3D Printing</a>
     <a href="/custom">Custom 3D</a>
     <a href="/designers">Designers</a>
-    <a href="/logout">Logout</a>
+    <a href="/users/logout">Logout</a>
   </nav>
 </header>
 
