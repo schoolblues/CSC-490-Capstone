@@ -83,8 +83,8 @@
             <h3>${a.title!"Untitled"}</h3>
 
             <p class="small" style="margin-bottom:12px;">
-              <#if a.license?? && a.license.summary??>
-                ${a.license.summary}
+              <#if a.license?? && a.license?has_content>
+                ${a.license}
               <#else>
                 High-quality 3D asset ready for your next project.
               </#if>
@@ -99,8 +99,8 @@
 
             <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
               <span class="tag">
-                <#if a.license?? && a.license.type??>
-                  ${a.license.type}
+                <#if a.license?? && a.license?has_content>
+                  ${a.license}
                 <#else>
                   Standard
                 </#if>
