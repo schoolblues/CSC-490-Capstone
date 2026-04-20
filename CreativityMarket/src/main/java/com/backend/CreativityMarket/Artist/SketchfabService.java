@@ -2,6 +2,7 @@ package com.backend.CreativityMarket.Artist;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -45,7 +46,8 @@ public class SketchfabService {
         body.add("modelFile", fileResource);
 
         HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(body, headers);
-        ResponseEntity<Map> response = restTemplate.postForEntity(UPLOAD_URL, request, Map.class);
+        ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                UPLOAD_URL, HttpMethod.POST, request, new ParameterizedTypeReference<>() {});
 
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
             Object uid = response.getBody().get("uid");

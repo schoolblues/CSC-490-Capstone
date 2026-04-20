@@ -3,25 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Bounty Board</title>
+  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-  <!-- Navigation -->
-  <div class="navbar">
-    <div class="logo">CreativityMarket</div>
-    <div class="nav">
-      <a href="/">Home</a>
-      <a href="/bounties">Bounties</a>
-      <a href="/my-applications">My Applications</a>
-      <#-- Show login/logout dynamically -->
-      <#if user??>
-        <a href="/users/logout" class="btn">Logout</a>
-      <#else>
-        <a href="/login" class="btn">Login</a>
-      </#if>
+  <nav class="navbar">
+    <div class="navbar-left">
+        <h1 class="navbar-title">Creativity Market</h1>
+        <ul class="navbar-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/users/home">Profile</a></li>
+            <li><a href="/assets/explore">Categories</a></li>
+            <li><a href="/assets/cart">Cart</a></li>
+            <li><a href="/signin">Signin</a></li>
+            <li><a class="active" href="/bounties">Bounties</a></li>
+            <li><a href="/upload">Upload</a></li>
+        </ul>
     </div>
-  </div>
+    <div class="navbar-right">
+        <input type="text" class="search-bar" placeholder="Search the store">
+        <button class="search-button">
+            <img src="/images/glass.png" alt="Search" class="search-icon">
+        </button>
+    </div>
+  </nav>
 
   <!-- Hero Section -->
   <div class="hero">

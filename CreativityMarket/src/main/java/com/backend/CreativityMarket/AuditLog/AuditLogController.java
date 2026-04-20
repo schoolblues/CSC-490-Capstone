@@ -1,7 +1,7 @@
 package com.backend.CreativityMarket.AuditLog;
 
 import com.backend.CreativityMarket.Admin.AdminService;
-import com.backend.CreativityMarket.User.User;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,7 @@ public class AuditLogController {
     // View all logs
     @GetMapping
     public String listAllLogs(Model model, @SessionAttribute("adminId") Long adminId) {
-        User currentAdmin = adminService.getCurrentAdmin(adminId); // verify admin
+        adminService.getCurrentAdmin(adminId); // verify admin
         List<AuditLog> logs = auditLogService.getAllLogs();
         model.addAttribute("logs", logs);
         return "admin/auditlogs";
@@ -35,7 +35,7 @@ public class AuditLogController {
     public String listLogsByAdmin(@PathVariable Long adminIdFilter,
                                   Model model,
                                   @SessionAttribute("adminId") Long sessionAdminId) {
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
+        adminService.getCurrentAdmin(sessionAdminId); // verify admin
         List<AuditLog> logs = auditLogService.getLogsByAdmin(adminIdFilter);
         model.addAttribute("logs", logs);
         return "admin/auditlogs";
@@ -46,7 +46,7 @@ public class AuditLogController {
     public String listLogsByAction(@PathVariable String action,
                                    Model model,
                                    @SessionAttribute("adminId") Long sessionAdminId) {
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
+        adminService.getCurrentAdmin(sessionAdminId); // verify admin
         List<AuditLog> logs = auditLogService.getLogsByAction(action);
         model.addAttribute("logs", logs);
         return "admin/auditlogs";
@@ -57,7 +57,7 @@ public class AuditLogController {
     public String listLogsByEntity(@PathVariable String entity,
                                    Model model,
                                    @SessionAttribute("adminId") Long sessionAdminId) {
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
+        adminService.getCurrentAdmin(sessionAdminId); // verify admin
         List<AuditLog> logs = auditLogService.getLogsByEntity(entity);
         model.addAttribute("logs", logs);
         return "admin/auditlogs";
@@ -69,7 +69,7 @@ public class AuditLogController {
                                  @RequestParam(required = false) String to,
                                  Model model,
                                  @SessionAttribute("adminId") Long sessionAdminId) {
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
+        adminService.getCurrentAdmin(sessionAdminId); // verify admin
 
         LocalDateTime fromDate = from != null ? LocalDateTime.parse(from, formatter) : null;
         LocalDateTime toDate = to != null ? LocalDateTime.parse(to, formatter) : null;
@@ -89,7 +89,7 @@ public class AuditLogController {
                                Model model,
                                @SessionAttribute("adminId") Long sessionAdminId) {
 
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
+        adminService.getCurrentAdmin(sessionAdminId); // verify admin
 
         LocalDateTime fromDate = from != null ? LocalDateTime.parse(from, formatter) : null;
         LocalDateTime toDate = to != null ? LocalDateTime.parse(to, formatter) : null;

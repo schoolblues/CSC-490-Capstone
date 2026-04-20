@@ -1,7 +1,5 @@
 package com.backend.CreativityMarket.Cart;
 
-import com.backend.CreativityMarket.User.User;
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

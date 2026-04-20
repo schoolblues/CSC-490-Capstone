@@ -1,7 +1,7 @@
 package com.backend.CreativityMarket.Bounty;
 
-import com.backend.CreativityMarket.User.User;
 import com.backend.CreativityMarket.User.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,17 +19,16 @@ public class BountyController {
 
     // Display all open bounties on the bounty board
     @GetMapping
-    public String bountyBoard(Model model, @SessionAttribute("userId") Long userId) {
-        // Fetch open bounties
+    public String bountyBoard(Model model, HttpSession session) {
         List<Bounty> openBounties = bountyService.getOpenBounties();
 
-        // Optional: get user info for display in navbar or greetings
-        User currentUser = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found: " + userId));
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId != null) {
+            userRepository.findById(userId).ifPresent(u -> model.addAttribute("user", u));
+        }
 
-        model.addAttribute("user", currentUser);
-        model.addAttribute("bounties", openBounties);  // matches bounty-board.ftl
-        return "bounty/bounty-board"; // maps to /templates/bounty/bounty-board.ftl
+        model.addAttribute("bounties", openBounties);
+        return "bounty/bounty-board";
     }
 
     // Display details for a specific bounty

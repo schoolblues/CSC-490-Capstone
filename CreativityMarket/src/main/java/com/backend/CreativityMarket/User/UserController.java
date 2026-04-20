@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+    @SuppressWarnings("unchecked")
     @GetMapping("/home")
     public String userHome(HttpSession session, Model model) {
 
