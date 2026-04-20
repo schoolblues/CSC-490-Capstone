@@ -14,8 +14,13 @@
     <div class="navbar-left">
         <h1 class="navbar-title">Creativity Market</h1>
         <ul class="navbar-menu">
-            <li><a href="/signin">Login</a></li>
-            <li><a class="active" href="/signup">Create Profile</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/users/home">Profile</a></li>
+            <li><a href="/assets/explore">Categories</a></li>
+            <li><a href="/assets/cart">Cart</a></li>
+            <li><a href="/signin">Signin</a></li>
+            <li><a href="/bounties">Bounties</a></li>
+            <li><a href="/upload">Upload</a></li>
         </ul>
     </div>
     <div class="navbar-right">

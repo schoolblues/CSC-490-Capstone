@@ -14,13 +14,12 @@
         <h1 class="navbar-title">Creativity Market</h1>
         <ul class="navbar-menu">
             <li><a href="/">Home</a></li>
+            <li><a href="/users/home">Profile</a></li>
+            <li><a href="/assets/explore">Categories</a></li>
+            <li><a href="/assets/cart">Cart</a></li>
+            <li><a href="/signin">Signin</a></li>
             <li><a href="/bounties">Bounties</a></li>
-            <li><a href="/my-applications">My Applications</a></li>
-            <#if user??>
-                <li><a href="/users/logout">Logout</a></li>
-            <#else>
-                <li><a href="/login">Login</a></li>
-            </#if>
+            <li><a href="/upload">Upload</a></li>
         </ul>
     </div>
     <div class="navbar-right">
