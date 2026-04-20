@@ -4,23 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${bounty.title} — Bounty Details</title>
+  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-  <div class="navbar">
-    <div class="logo">CreativityMarket</div>
-    <div class="nav">
-      <a href="/">Home</a>
-      <a href="/bounties">Bounties</a>
-      <a href="/my-applications">My Applications</a>
-      <#if user??>
-        <a href="/users/logout" class="btn">Logout</a>
-      <#else>
-        <a href="/login" class="btn">Login</a>
-      </#if>
+  <nav class="navbar">
+    <div class="navbar-left">
+        <h1 class="navbar-title">Creativity Market</h1>
+        <ul class="navbar-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/bounties">Bounties</a></li>
+            <li><a href="/my-applications">My Applications</a></li>
+            <#if user??>
+                <li><a href="/users/logout">Logout</a></li>
+            <#else>
+                <li><a href="/login">Login</a></li>
+            </#if>
+        </ul>
     </div>
-  </div>
+    <div class="navbar-right">
+        <input type="text" class="search-bar" placeholder="Search the store">
+        <button class="search-button">
+            <img src="/images/glass.png" alt="Search" class="search-icon">
+        </button>
+    </div>
+  </nav>
 
   <div class="container" style="max-width:800px; margin:40px auto; padding:0 20px;">
 

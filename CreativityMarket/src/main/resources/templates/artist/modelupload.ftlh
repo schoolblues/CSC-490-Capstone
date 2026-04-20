@@ -13,7 +13,6 @@
         <div class="navbar-left">
             <h1 class="navbar-title">Creativity Market</h1>
             <ul class="navbar-menu">
-                <li><a href="/">Home</a></li>
                 <li><a href="#">Profile</a></li>
             </ul>
         </div>

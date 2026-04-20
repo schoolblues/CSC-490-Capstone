@@ -4,18 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CreativityMarket • Create Profile</title>
+  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/css/user.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
 
-<header class="topbar">
-  <a class="brand" href="/">CreativityMarket<span>.</span></a>
-  <nav class="nav">
-    <a href="/signin">Login</a>
-    <a class="active" href="/signup">Create Profile</a>
-  </nav>
-</header>
+<nav class="navbar">
+    <div class="navbar-left">
+        <h1 class="navbar-title">Creativity Market</h1>
+        <ul class="navbar-menu">
+            <li><a href="/signin">Login</a></li>
+            <li><a class="active" href="/signup">Create Profile</a></li>
+        </ul>
+    </div>
+    <div class="navbar-right">
+        <input type="text" class="search-bar" placeholder="Search the store">
+        <button class="search-button">
+            <img src="/images/glass.png" alt="Search" class="search-icon">
+        </button>
+    </div>
+</nav>
 
 <main class="container" style="max-width:520px;">
   <div class="section-title">

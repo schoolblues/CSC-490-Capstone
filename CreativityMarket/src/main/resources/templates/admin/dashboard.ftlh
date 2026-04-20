@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Admin Dashboard</title>
 
+  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/styles.css" />
 
 <style>
@@ -136,17 +137,24 @@ hr {
 
 <body>
 
-<header class="topbar">
-  <div class="logo">CreativityMarket Admin</div>
-
-  <nav class="top-nav">
-    <a href="/models">3D Models</a>
-    <a href="/printing">3D Printing</a>
-    <a href="/custom">Custom 3D</a>
-    <a href="/designers">Designers</a>
-    <a href="/users/logout">Logout</a>
-  </nav>
-</header>
+<nav class="navbar">
+    <div class="navbar-left">
+        <h1 class="navbar-title">Creativity Market</h1>
+        <ul class="navbar-menu">
+            <li><a href="/models">3D Models</a></li>
+            <li><a href="/printing">3D Printing</a></li>
+            <li><a href="/custom">Custom 3D</a></li>
+            <li><a href="/designers">Designers</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="navbar-right">
+        <input type="text" class="search-bar" placeholder="Search the store">
+        <button class="search-button">
+            <img src="/images/glass.png" alt="Search" class="search-icon">
+        </button>
+    </div>
+</nav>
 
 <div class="layout">
 

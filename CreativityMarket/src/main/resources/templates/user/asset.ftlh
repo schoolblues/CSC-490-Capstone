@@ -4,20 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CreativityMarket • Asset</title>
+  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/css/user.css">
   <link rel="stylesheet" href="/css/sketchfab.css">
 </head>
 <body>
 
-<header class="topbar">
-  <a class="brand" href="/">CreativityMarket<span>.</span></a>
-  <nav class="nav">
-    <a href="/assets/explore">Explore</a>
-    <a href="/users/home">Profile</a>
-     <a href="/cart">Cart</a>
-    <a href="/users/logout">Logout</a>
-  </nav>
-</header>
+<nav class="navbar">
+    <div class="navbar-left">
+        <h1 class="navbar-title">Creativity Market</h1>
+        <ul class="navbar-menu">
+            <li><a href="/assets/explore">Explore</a></li>
+            <li><a href="/users/home">Profile</a></li>
+            <li><a href="/cart">Cart</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="navbar-right">
+        <input type="text" class="search-bar" placeholder="Search the store">
+        <button class="search-button">
+            <img src="/images/glass.png" alt="Search" class="search-icon">
+        </button>
+    </div>
+</nav>
 
 <main class="container">
   <div class="two-col">
