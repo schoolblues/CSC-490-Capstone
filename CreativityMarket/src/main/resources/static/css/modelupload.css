@@ -16,7 +16,7 @@ body {
 .navbar {
     width: 100%;
     background-color: #271738;
-    padding: 30px 40px;
+    padding: clamp(14px, 1.5vw, 30px) clamp(20px, 2.5vw, 40px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,7 +31,7 @@ body {
 
 .navbar-title {
     color: #fff;
-    font-size: 24px;
+    font-size: clamp(16px, 1.4vw, 24px);
     font-weight: bold;
     white-space: nowrap;
 }
@@ -100,12 +100,12 @@ body {
 
 .page-header {
     width: 65vw;
-    margin: 40px auto 10px;
+    margin: clamp(20px, 3vw, 40px) auto 10px;
 }
 
 .page-header h2 {
     color: #fff;
-    font-size: 26px;
+    font-size: clamp(18px, 1.6vw, 26px);
     font-weight: 700;
     margin-bottom: 6px;
 }
@@ -126,7 +126,7 @@ body {
 .form-section {
     background-color: #271738;
     border-radius: 4px;
-    padding: 28px 30px;
+    padding: clamp(14px, 1.8vw, 28px) clamp(16px, 2vw, 30px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
@@ -333,7 +333,7 @@ body {
 .footer {
     width: 100%;
     background-color: #271738;
-    padding: 40px 30px 30px;
+    padding: clamp(24px, 3vw, 40px) clamp(16px, 2vw, 30px) clamp(20px, 2.5vw, 30px);
     text-align: center;
     color: #b0b8c1;
     font-size: 14px;
