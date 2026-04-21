@@ -43,18 +43,10 @@
                 </#list>
                 <div class="diagonal-stripe"></div>
             <#else>
-                <div class="diagonal-stripe">
-                    <img src="/images/apple.png" alt="Stripe 1" class="stripe-image">
-                </div>
-                <div class="diagonal-stripe">
-                    <img src="/images/banana.png" alt="Stripe 2" class="stripe-image">
-                </div>
-                <div class="diagonal-stripe">
-                    <img src="/images/orange.webp" alt="Stripe 3" class="stripe-image">
-                </div>
-                <div class="diagonal-stripe">
-                    <img src="/images/pear.png" alt="Stripe 4" class="stripe-image">
-                </div>
+                <div class="diagonal-stripe"></div>
+                <div class="diagonal-stripe"></div>
+                <div class="diagonal-stripe"></div>
+                <div class="diagonal-stripe"></div>
                 <div class="diagonal-stripe"></div>
             </#if>
         </div>
