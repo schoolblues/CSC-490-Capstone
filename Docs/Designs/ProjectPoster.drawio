@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="5_hFHtEadHsirYEoh7W2">
-    <mxGraphModel dx="1814" dy="1852" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2041" dy="1868" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -32,7 +32,10 @@
           <mxGeometry height="130" width="210" x="-320" y="-260" as="geometry" />
         </mxCell>
         <mxCell id="OoJCAwJcbpNIT7DrOpCn-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-size:11pt;font-family:Arial,sans-serif;color:#ffffff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;&quot; id=&quot;docs-internal-guid-808d93e5-7fff-aa24-e58f-b0cb4b7ce72d&quot;&gt;Simple and intuitive navigation across all pages. Minimal steps to upload, purchase, or preview assets. Clear labeling of licenses and usage rights. Accessible design for both technical and non-technical users. All fonts will use Woff/Woff 2.0 to save loading time. All images will be in AVIF format to save loading time&lt;/span&gt;" vertex="1">
-          <mxGeometry height="140" width="160" x="140" y="-260" as="geometry" />
+          <mxGeometry height="140" width="300" x="140" y="-60" as="geometry" />
+        </mxCell>
+        <mxCell id="vT11Bb8wabiuh0s3Ken0-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-size:11pt;font-family:Arial,sans-serif;color:#ffffff;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;&quot; id=&quot;docs-internal-guid-1b8d489d-7fff-4387-a0d6-d3886e5062cb&quot;&gt;Users can browse, search, and filter 3D assets efficiently, Artists can upload, update, and manage their assets, Support for multiple file types, Secure purchasing, downloading, and license management, Artist profiles with portfolio, stats, and featured content, System for showcasing new and trending artists&lt;/span&gt;" vertex="1">
+          <mxGeometry height="110" width="170" x="130" y="-240" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
