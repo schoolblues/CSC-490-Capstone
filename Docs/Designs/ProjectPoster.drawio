@@ -22,6 +22,9 @@
         <mxCell id="iMN1NXjmWzxYEV0b27G8-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="ER Diagram" vertex="1">
           <mxGeometry height="30" width="160" x="-220" y="-80" as="geometry" />
         </mxCell>
+        <mxCell id="vmeSGMdFYVut88z35QNr-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Member:&lt;div&gt;Meylin Borjas&amp;nbsp;&lt;/div&gt;&lt;div&gt;Issac Hollaway&lt;/div&gt;&lt;div&gt;Elisha Ricketts&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="160" x="-60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
