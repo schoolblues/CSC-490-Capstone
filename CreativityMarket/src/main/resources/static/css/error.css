@@ -8,7 +8,7 @@
     padding: 2rem;
 }
 .error-code {
-    font-size: 6rem;
+    font-size: clamp(3rem, 7vw, 6rem);
     font-weight: bold;
     margin: 0;
     line-height: 1;

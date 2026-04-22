@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Model — Creativity Market</title>
+    <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="/css/modelupload.css">
     <link rel="stylesheet" href="/css/sketchfab.css">
 </head>
