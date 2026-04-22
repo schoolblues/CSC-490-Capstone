@@ -5,37 +5,37 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="iMN1NXjmWzxYEV0b27G8-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
-          <mxGeometry height="560" width="700" x="-350" y="-320" as="geometry" />
+          <mxGeometry height="560" width="950" x="-470" y="-320" as="geometry" />
         </mxCell>
         <mxCell id="iMN1NXjmWzxYEV0b27G8-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Usability" vertex="1">
-          <mxGeometry height="30" width="160" x="140" y="-100" as="geometry" />
+          <mxGeometry height="30" width="160" x="20" y="-100" as="geometry" />
         </mxCell>
         <mxCell id="iMN1NXjmWzxYEV0b27G8-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="The Why" vertex="1">
-          <mxGeometry height="30" width="160" x="-300" y="-300" as="geometry" />
+          <mxGeometry height="30" width="160" x="-420" y="-300" as="geometry" />
         </mxCell>
         <mxCell id="iMN1NXjmWzxYEV0b27G8-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Functional Requirements" vertex="1">
-          <mxGeometry height="30" width="160" x="140" y="-300" as="geometry" />
+          <mxGeometry height="30" width="160" x="130" y="-300" as="geometry" />
         </mxCell>
         <mxCell id="iMN1NXjmWzxYEV0b27G8-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Our Goal" vertex="1">
-          <mxGeometry height="30" width="160" x="-80" y="-300" as="geometry" />
+          <mxGeometry height="30" width="160" x="-200" y="-300" as="geometry" />
         </mxCell>
         <mxCell id="iMN1NXjmWzxYEV0b27G8-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="ER Diagram" vertex="1">
-          <mxGeometry height="30" width="160" x="-230" y="-110" as="geometry" />
+          <mxGeometry height="30" width="160" x="-350" y="-110" as="geometry" />
         </mxCell>
         <mxCell id="vmeSGMdFYVut88z35QNr-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Member:&lt;div&gt;Meylin Borjas&amp;nbsp;&lt;/div&gt;&lt;div&gt;Issac Hollaway&lt;/div&gt;&lt;div&gt;Elisha Ricketts&amp;nbsp;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="120" width="160" x="-90" y="90" as="geometry" />
+          <mxGeometry height="120" width="160" x="-210" y="90" as="geometry" />
         </mxCell>
         <mxCell id="vmeSGMdFYVut88z35QNr-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;p class=&quot;cvgsua&quot; style=&quot;margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: &amp;quot;Times New Roman&amp;quot;, serif; color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;span class=&quot;agcmg&quot;&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;The Goal is to create a new 3D Market Place with strong protections for artists work, and technical improvements for the user, and creator experience.&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: medium; text-align: start; caret-color: rgb(0, 0, 0); --Ys-XuQ: none; font-kerning: normal;&quot;&gt;&lt;/span&gt;" vertex="1">
-          <mxGeometry height="110" width="190" x="-80" y="-260" as="geometry" />
+          <mxGeometry height="110" width="190" x="-200" y="-260" as="geometry" />
         </mxCell>
         <mxCell id="vmeSGMdFYVut88z35QNr-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div class=&quot;&quot; data-turn-id-container=&quot;3808e1b7-4ef3-4ad6-b38a-cb4bf3766907&quot; data-is-intersecting=&quot;true&quot;&gt;&lt;section class=&quot;text-token-text-primary w-full focus:outline-none [--shadow-height:45px] has-data-writing-block:pointer-events-none has-data-writing-block:-mt-(--shadow-height) has-data-writing-block:pt-(--shadow-height) [&amp;amp;:has([data-writing-block])&amp;gt;*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(--scroll-root-safe-area-inset-bottom,0px)+var(--thread-response-height))] scroll-mt-(--header-height)&quot; dir=&quot;auto&quot; data-turn-id=&quot;3808e1b7-4ef3-4ad6-b38a-cb4bf3766907&quot; data-testid=&quot;conversation-turn-1&quot; data-scroll-anchor=&quot;false&quot; data-turn=&quot;user&quot;&gt;&lt;div class=&quot;text-base my-auto mx-auto pt-3 [--thread-content-margin:var(--thread-content-margin-xs,calc(var(--spacing)*4))] @w-sm/main:[--thread-content-margin:var(--thread-content-margin-sm,calc(var(--spacing)*6))] @w-lg/main:[--thread-content-margin:var(--thread-content-margin-lg,calc(var(--spacing)*16))] px-(--thread-content-margin)&quot;&gt;&lt;div class=&quot;[--thread-content-max-width:40rem] @w-lg/main:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col&quot;&gt;&lt;div class=&quot;flex max-w-full flex-col gap-4 grow&quot;&gt;&lt;div data-message-author-role=&quot;user&quot; data-message-id=&quot;3808e1b7-4ef3-4ad6-b38a-cb4bf3766907&quot; dir=&quot;auto&quot; class=&quot;min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal outline-none keyboard-focused:focus-ring [.text-message+&amp;amp;]:mt-1&quot;&gt;&lt;div class=&quot;flex w-full flex-col gap-1 empty:hidden items-end rtl:items-start&quot;&gt;&lt;div class=&quot;user-message-bubble-color corner-superellipse/0.98 relative min-w-0 rounded-[22px] px-4 py-2.5 leading-6 max-w-(--user-chat-width,70%)&quot;&gt;&lt;div class=&quot;[overflow-wrap:anywhere] whitespace-pre-wrap&quot;&gt;&lt;p style=&quot;margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: &amp;quot;Times New Roman&amp;quot;, serif; color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: &amp;quot;Times New Roman&amp;quot;, serif; color: rgb(0, 0, 0); text-align: start;&quot;&gt;All 3D marketplace are currently using artist work to train AI without their permission.&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: &amp;quot;Times New Roman&amp;quot;, serif; color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: &amp;quot;Times New Roman&amp;quot;, serif; color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="130" width="210" x="-320" y="-260" as="geometry" />
+          <mxGeometry height="130" width="210" x="-440" y="-260" as="geometry" />
         </mxCell>
         <mxCell id="OoJCAwJcbpNIT7DrOpCn-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap; color: light-dark(rgb(255, 255, 255), rgb(255, 255, 255));&quot; id=&quot;docs-internal-guid-808d93e5-7fff-aa24-e58f-b0cb4b7ce72d&quot;&gt;Simple and intuitive navigation across all pages. Minimal steps to upload, purchase, or preview assets. Clear labeling of licenses and usage rights. Accessible design for both technical and non-technical users. All fonts will use Woff/Woff 2.0 to save loading time. All images will be in AVIF format to save loading time&lt;/span&gt;" vertex="1">
-          <mxGeometry height="140" width="300" x="140" y="-60" as="geometry" />
+          <mxGeometry height="140" width="300" x="20" y="-60" as="geometry" />
         </mxCell>
         <mxCell id="vT11Bb8wabiuh0s3Ken0-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap; color: light-dark(rgb(255, 255, 255), rgb(255, 255, 255));&quot; id=&quot;docs-internal-guid-1b8d489d-7fff-4387-a0d6-d3886e5062cb&quot;&gt;Users can browse, search, and filter 3D assets efficiently, Artists can upload, update, and manage their assets, Support for multiple file types, Secure purchasing, downloading, and license management, Artist profiles with portfolio, stats, and featured content, System for showcasing new and trending artists&lt;/span&gt;" vertex="1">
-          <mxGeometry height="110" width="370" x="130" y="-240" as="geometry" />
+          <mxGeometry height="110" width="370" x="10" y="-260" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
