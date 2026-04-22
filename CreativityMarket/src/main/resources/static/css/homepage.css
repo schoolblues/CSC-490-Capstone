@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 .navbar {
@@ -24,6 +25,7 @@
     color: #fff;
     font-size: clamp(16px, 1.4vw, 24px);
     font-weight: bold;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     white-space: nowrap;
 }
 
