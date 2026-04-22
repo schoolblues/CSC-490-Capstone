@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="/css/sketchfab.css">
+    <link rel="stylesheet" href="/css/homepage.css">
 </head>
 <body>
     <nav class="navbar">

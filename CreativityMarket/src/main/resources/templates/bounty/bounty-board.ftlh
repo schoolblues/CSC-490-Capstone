@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Bounty Board</title>
-  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/css/homepage.css">
 </head>
 <body>
 

@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <title>Admin Dashboard</title>
 
-  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/css/homepage.css">
 
 <style>
 * {
