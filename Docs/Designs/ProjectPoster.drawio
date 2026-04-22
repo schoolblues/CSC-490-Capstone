@@ -1,13 +1,13 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="5_hFHtEadHsirYEoh7W2">
-    <mxGraphModel dx="1814" dy="1852" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1710" dy="1654" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="iMN1NXjmWzxYEV0b27G8-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+        <mxCell id="iMN1NXjmWzxYEV0b27G8-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
           <mxGeometry height="560" width="700" x="-350" y="-320" as="geometry" />
         </mxCell>
-        <mxCell id="iMN1NXjmWzxYEV0b27G8-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Tools" vertex="1">
+        <mxCell id="iMN1NXjmWzxYEV0b27G8-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Usability" vertex="1">
           <mxGeometry height="30" width="160" x="140" y="-100" as="geometry" />
         </mxCell>
         <mxCell id="iMN1NXjmWzxYEV0b27G8-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="The Why" vertex="1">
@@ -25,8 +25,14 @@
         <mxCell id="vmeSGMdFYVut88z35QNr-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Member:&lt;div&gt;Meylin Borjas&amp;nbsp;&lt;/div&gt;&lt;div&gt;Issac Hollaway&lt;/div&gt;&lt;div&gt;Elisha Ricketts&amp;nbsp;&lt;/div&gt;" vertex="1">
           <mxGeometry height="120" width="160" x="-90" y="90" as="geometry" />
         </mxCell>
+        <mxCell id="OoJCAwJcbpNIT7DrOpCn-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Text" vertex="1">
+          <mxGeometry height="120" width="160" x="140" y="-50" as="geometry" />
+        </mxCell>
         <mxCell id="vmeSGMdFYVut88z35QNr-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;p class=&quot;cvgsua&quot; style=&quot;margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: &amp;quot;Times New Roman&amp;quot;, serif; color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;span class=&quot;agcmg&quot;&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;The Goal is to create a new 3D Market Place with strong protections for artists work, and technical improvements for the user, and creator experience.&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;cvgsua&quot; style=&quot;margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: &amp;quot;Times New Roman&amp;quot;, serif; color: rgb(0, 0, 0); text-align: start; caret-color: rgb(0, 0, 0); --8sD0Kg: none; --cyV3ZQ: 45.3333px; --gJPlXQ: 1; --s8NbEA: p;&quot;&gt;&lt;span class=&quot;agcmg&quot;&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;&lt;span style=&quot;--Ys-XuQ: none; font-kerning: normal;&quot;&gt;Technical improvements: We would like to implement a better way for users to quickly view models found on the homepage by providing a model preview on hover, A better system for filtering sensitive content, the ability to feature new or trending artists, a more cohesive homepage with shortcuts that allow for quick easy navigation from any view on the site, and community aspects that allow for artist to artist, and artist to customer communication.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;cvgsua&quot; style=&quot;margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: &amp;quot;Times New Roman&amp;quot;, serif; color: rgb(0, 0, 0); text-align: start; caret-color: rgb(0, 0, 0); --8sD0Kg: none; --cyV3ZQ: 45.3333px; --gJPlXQ: 1; --s8NbEA: p;&quot;&gt;&lt;span class=&quot;agcmg&quot;&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;&lt;span style=&quot;--Ys-XuQ: none; font-kerning: normal;&quot;&gt;File Types: We will accept submissions of all the file types available on CGTrader(Blend files, Max Files, STL Files, Object Files, Scripts, Etc...) with the addition of Nif Files(Unique to Bethesda Titles), and DAE Files(Used in The Sims 4) which are not currently hosted on CGTrader.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;cvgsua&quot; style=&quot;margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: &amp;quot;Times New Roman&amp;quot;, serif; color: rgb(0, 0, 0); text-align: start; caret-color: rgb(0, 0, 0); --8sD0Kg: none; --cyV3ZQ: 45.3333px; --gJPlXQ: 1; --s8NbEA: p;&quot;&gt;&lt;span class=&quot;agcmg&quot;&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;&lt;span style=&quot;--Ys-XuQ: none; font-kerning: normal;&quot;&gt;Legal guarantees for artists that their work will not be sold or used in any form or fashion related to training Artificial intelligence without their explicit consent.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;&lt;/span&gt;&lt;/p&gt;" vertex="1">
           <mxGeometry height="990" width="150" x="10" y="-240" as="geometry" />
+        </mxCell>
+        <mxCell id="OoJCAwJcbpNIT7DrOpCn-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="140" width="160" x="140" y="-260" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
