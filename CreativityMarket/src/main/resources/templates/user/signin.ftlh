@@ -35,7 +35,7 @@
     </form>
 
     <p class="small" style="margin-top:12px;">
-      Don't have an account? <a href="/signup" style="color:var(--accent); font-weight:800;">Create Profile</a>
+      Don't have an account? <a href="/signup">Register</a>
     </p>
   </div>
 </main>

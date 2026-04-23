@@ -73,7 +73,7 @@
       <section class="grid">
         <#if assets?? && (assets?size > 0)>
           <#list assets as a>
-            <a class="card" href="/assets/${a.id}" style="text-decoration:none; color:inherit;">
+            <a class="card" href="/assets/${a.id}" style="text-decoration:none;">
               <div class="thumb">
                 <div>
                   <i class="fa-solid fa-cube" style="font-size:1.6rem; margin-bottom:8px; display:block;"></i>

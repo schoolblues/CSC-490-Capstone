@@ -41,7 +41,7 @@
     </form>
 
     <p class="small" style="margin-top:12px;">
-      Already have an account? <a href="/signin" style="color:var(--accent); font-weight:800;">Sign in</a>
+      Already have an account? <a href="/signin">Sign in</a>
     </p>
   </div>
 </main>
