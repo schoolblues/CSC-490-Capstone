@@ -1,41 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CreativityMarket • Create Profile</title>
-  <link rel="stylesheet" href="/css/homepage.css">
-  <link rel="stylesheet" href="/css/user.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-</head>
-<body>
+<#import "/fragments/layout.ftlh" as layout>
 
-<nav class="navbar">
-    <div class="navbar-left">
-        <h1 class="navbar-title">Creativity Market</h1>
-        <ul class="navbar-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/users/home">Profile</a></li>
-            <li><a href="/assets/explore">Categories</a></li>
-            <li><a href="/assets/cart">Cart</a></li>
-            <li><a href="/signin">Signin</a></li>
-            <li><a href="/bounties">Bounties</a></li>
-            <li><a href="/upload">Upload</a></li>
-        </ul>
-    </div>
-    <div class="navbar-right">
-        <input type="text" class="search-bar" placeholder="Search the store">
-        <button class="search-button">
-            <img src="/images/glass.png" alt="Search" class="search-icon">
-        </button>
-    </div>
-</nav>
+<@layout.main>
 
 <main class="container" style="max-width:520px;">
   <div class="section-title">
     <div>
       <h2>Create Profile</h2>
-    
     </div>
   </div>
 
@@ -76,6 +46,4 @@
   </div>
 </main>
 
-<footer class="footer">User-side prototype • CSC-490 Capstone</footer>
-</body>
-</html>
+</@layout.main>

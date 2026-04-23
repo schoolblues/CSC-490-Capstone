@@ -1,4 +1,4 @@
-<#macro main>
+<#macro main extraCss="" extraScripts="">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="/css/user.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    ${extraCss}
 </head>
 <body>
 
@@ -21,6 +22,7 @@
     <p>&copy; ${.now?string("yyyy")} CreativityMarket</p>
 </footer>
 
+${extraScripts}
 </body>
 </html>
 </#macro>
