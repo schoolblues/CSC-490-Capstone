@@ -1,0 +1,111 @@
+.explore-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.filter-sidebar {
+    width: 210px;
+    flex-shrink: 0;
+    background: var(--card);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    padding: 18px 16px;
+    position: sticky;
+    top: 20px;
+}
+
+.filter-sidebar h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.filter-group {
+    margin-bottom: 18px;
+}
+
+.filter-group-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.filter-option input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.filter-option span {
+    font-size: 0.88rem;
+    color: var(--text);
+}
+
+.filter-apply-btn {
+    width: 100%;
+    margin-top: 6px;
+    padding: 9px 0;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.filter-apply-btn:hover {
+    background: var(--accent-hover);
+}
+
+.filter-clear-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px 0;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.filter-clear-btn:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+.explore-content {
+    flex: 1;
+    min-width: 0;
+}
+
+@media (max-width: 900px) {
+    .explore-layout {
+        flex-direction: column;
+    }
+
+    .filter-sidebar {
+        width: 100%;
+        position: static;
+    }
+}
