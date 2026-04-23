@@ -4,20 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CreativityMarket • Explore</title>
+  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/css/user.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
 
-<header class="topbar">
-  <a class="brand" href="/">CreativityMarket<span>.</span></a>
-  <nav class="nav">
-    <a class="active" href="/assets/explore">Explore</a>
-    <a href="/assets/cart">Cart</a>
-    <a href="/users/home">Profile</a>
-    <a href="/users/logout">Logout</a>
-  </nav>
-</header>
+<nav class="navbar">
+    <div class="navbar-left">
+        <h1 class="navbar-title">Creativity Market</h1>
+        <ul class="navbar-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/users/home">Profile</a></li>
+            <li><a class="active" href="/assets/explore">Categories</a></li>
+            <li><a href="/assets/cart">Cart</a></li>
+            <li><a href="/signin">Signin</a></li>
+            <li><a href="/bounties">Bounties</a></li>
+            <li><a href="/upload">Upload</a></li>
+        </ul>
+    </div>
+    <div class="navbar-right">
+        <input type="text" class="search-bar" placeholder="Search the store">
+        <button class="search-button">
+            <img src="/images/glass.png" alt="Search" class="search-icon">
+        </button>
+    </div>
+</nav>
 
 <main class="container">
 
@@ -71,8 +83,8 @@
             <h3>${a.title!"Untitled"}</h3>
 
             <p class="small" style="margin-bottom:12px;">
-              <#if a.license?? && a.license.summary??>
-                ${a.license.summary}
+              <#if a.license?? && a.license?has_content>
+                ${a.license}
               <#else>
                 High-quality 3D asset ready for your next project.
               </#if>
@@ -87,8 +99,8 @@
 
             <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
               <span class="tag">
-                <#if a.license?? && a.license.type??>
-                  ${a.license.type}
+                <#if a.license?? && a.license?has_content>
+                  ${a.license}
                 <#else>
                   Standard
                 </#if>

@@ -1,90 +1,81 @@
-<#import "/fragments/layout.ftlh" as layout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${bounty.title} — Bounty Details</title>
+  <link rel="stylesheet" href="/css/homepage.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
 
-<@layout.main>
+  <nav class="navbar">
+    <div class="navbar-left">
+        <h1 class="navbar-title">Creativity Market</h1>
+        <ul class="navbar-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/users/home">Profile</a></li>
+            <li><a href="/assets/explore">Categories</a></li>
+            <li><a href="/assets/cart">Cart</a></li>
+            <li><a href="/signin">Signin</a></li>
+            <li><a href="/bounties">Bounties</a></li>
+            <li><a href="/upload">Upload</a></li>
+        </ul>
+    </div>
+    <div class="navbar-right">
+        <input type="text" class="search-bar" placeholder="Search the store">
+        <button class="search-button">
+            <img src="/images/glass.png" alt="Search" class="search-icon">
+        </button>
+    </div>
+  </nav>
 
-<!-- Main Container -->
-<div class="container">
+  <div class="container" style="max-width:800px; margin:40px auto; padding:0 20px;">
 
-  <!-- Bounty Header -->
-  <div class="section-title">
-    <h2>${bounty.title}</h2>
-    <p>Status: ${bounty.status}</p>
-  </div>
+    <a href="/bounties" style="display:inline-block; margin-bottom:20px;">&larr; Back to Bounties</a>
 
-  <!-- Bounty Card -->
-  <div class="card">
+    <div class="card" style="padding:30px; border-radius:8px; border:1px solid #ddd;">
 
-    <div class="card-body">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <h1 style="margin:0 0 10px;">${bounty.title}</h1>
+        <span class="status-badge status-${bounty.status?lower_case}">${bounty.status}</span>
+      </div>
 
-      <!-- Description -->
+      <div class="price" style="font-size:1.4rem; margin:12px 0;">
+        Reward: $${bounty.reward?string["#.##"]}
+      </div>
+
+      <hr style="margin:20px 0;">
+
       <h3>Description</h3>
-      <p>
-        <#if bounty.description?has_content>
-          ${bounty.description}
-        <#else>
-          No description provided.
-         </#if>
-      </p>
+      <p>${bounty.description}</p>
 
-      <hr>
+      <hr style="margin:20px 0;">
 
-      <!-- Reward -->
-      <div class="price">
-        $${bounty.reward!0?string["#.##"]}
-      </div>
-
-      <br>
-
-      <!-- Status Info -->
-      <div class="meta">
-        <span>Status: ${bounty.status}</span>
-
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:0.9rem; color:#555;">
+        <div><b>Posted by:</b> User #${bounty.createdBy}</div>
+        <div><b>Posted:</b> ${bounty.createdAt?string["yyyy-MM-dd"]}</div>
         <#if bounty.assignedTo??>
-          <span>Assigned</span>
-        <#else>
-          <span>Unassigned</span>
+          <div><b>Assigned to:</b> User #${bounty.assignedTo}</div>
         </#if>
+        <div><b>Status:</b> ${bounty.status}</div>
       </div>
 
-      <br>
-
-      <!-- ACTIONS -->
-      <div class="actions">
-
-        <!-- OPEN -->
-        <#if bounty.status == "OPEN">
-
-          <form action="/bounties/${bounty.id}/claim" method="post">
-            <button class="btn primary">Claim Bounty</button>
+      <#if bounty.status == "OPEN">
+        <div style="margin-top:30px;">
+          <form action="/bounties/${bounty.id}/apply" method="post">
+            <button type="submit" class="btn primary">Apply for this Bounty</button>
           </form>
-
-        </#if>
-
-        <!-- IN PROGRESS -->
-        <#if bounty.status == "IN_PROGRESS">
-
-          <p><strong>This bounty is currently in progress.</strong></p>
-
-          <form action="/bounties/${bounty.id}/complete" method="post">
-            <button class="btn primary">Mark as Complete</button>
-          </form>
-
-        </#if>
-
-        <!-- COMPLETED -->
-        <#if bounty.status == "COMPLETED">
-          <p><strong>This bounty has been completed.</strong></p>
-        </#if>
-
-      </div>
+        </div>
+      </#if>
 
     </div>
+
   </div>
 
-  <br>
+  <footer>
+    © 2026 CreativityMarket. All rights reserved.
+  </footer>
 
-  <a href="/bounties" class="btn">← Back to Bounties</a>
-
-</div>
-
-</@layout.main>
+</body>
+</html>

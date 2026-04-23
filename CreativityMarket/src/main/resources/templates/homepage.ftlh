@@ -12,7 +12,13 @@
         <div class="navbar-left">
             <h1 class="navbar-title">Creativity Market</h1>
             <ul class="navbar-menu">
-                <li><a href="#">Profile</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/users/home">Profile</a></li>
+                <li><a href="/assets/explore">Categories</a></li>
+                <li><a href="/assets/cart">Cart</a></li>
+                <li><a href="/signin">Signin</a></li>
+                <li><a href="/bounties">Bounties</a></li>
+                <li><a href="/upload">Upload</a></li>
             </ul>
         </div>
         <div class="navbar-right">
@@ -37,18 +43,10 @@
                 </#list>
                 <div class="diagonal-stripe"></div>
             <#else>
-                <div class="diagonal-stripe">
-                    <img src="/images/apple.png" alt="Stripe 1" class="stripe-image">
-                </div>
-                <div class="diagonal-stripe">
-                    <img src="/images/banana.png" alt="Stripe 2" class="stripe-image">
-                </div>
-                <div class="diagonal-stripe">
-                    <img src="/images/orange.webp" alt="Stripe 3" class="stripe-image">
-                </div>
-                <div class="diagonal-stripe">
-                    <img src="/images/pear.png" alt="Stripe 4" class="stripe-image">
-                </div>
+                <div class="diagonal-stripe"></div>
+                <div class="diagonal-stripe"></div>
+                <div class="diagonal-stripe"></div>
+                <div class="diagonal-stripe"></div>
                 <div class="diagonal-stripe"></div>
             </#if>
         </div>
