@@ -11,43 +11,33 @@
       <form method="get" action="/assets/explore">
         <div class="filter-group">
           <div class="filter-group-label">File Type</div>
+          <#list ["STL","OBJ","FBX","GLTF","BLEND","MAX","UNITY","MA","DAE","UASSET","C4D","NIF"] as ft>
           <label class="filter-option">
-            <input type="checkbox" name="fileType" value="STL"> <span>STL</span>
+            <input type="checkbox" name="fileType" value="${ft}"<#if selectedFileTypes?seq_contains(ft)> checked</#if>> <span>${ft}</span>
           </label>
-          <label class="filter-option">
-            <input type="checkbox" name="fileType" value="OBJ"> <span>OBJ</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" name="fileType" value="FBX"> <span>FBX</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" name="fileType" value="GLTF"> <span>GLTF</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" name="fileType" value="BLEND"> <span>BLEND</span>
-          </label>
+          </#list>
         </div>
 
         <div class="filter-group">
           <div class="filter-group-label">License</div>
           <label class="filter-option">
-            <input type="checkbox" name="license" value="personal"> <span>Personal</span>
+            <input type="checkbox" name="license" value="personal"<#if selectedLicenses?seq_contains("personal")> checked</#if>> <span>Personal</span>
           </label>
           <label class="filter-option">
-            <input type="checkbox" name="license" value="commercial"> <span>Commercial</span>
+            <input type="checkbox" name="license" value="commercial"<#if selectedLicenses?seq_contains("commercial")> checked</#if>> <span>Commercial</span>
           </label>
           <label class="filter-option">
-            <input type="checkbox" name="license" value="editorial"> <span>Editorial</span>
+            <input type="checkbox" name="license" value="editorial"<#if selectedLicenses?seq_contains("editorial")> checked</#if>> <span>Editorial</span>
           </label>
         </div>
 
         <div class="filter-group">
           <div class="filter-group-label">Price</div>
           <label class="filter-option">
-            <input type="checkbox" name="price" value="free"> <span>Free</span>
+            <input type="checkbox" name="price" value="free"<#if selectedPrices?seq_contains("free")> checked</#if>> <span>Free</span>
           </label>
           <label class="filter-option">
-            <input type="checkbox" name="price" value="paid"> <span>Paid</span>
+            <input type="checkbox" name="price" value="paid"<#if selectedPrices?seq_contains("paid")> checked</#if>> <span>Paid</span>
           </label>
         </div>
 
