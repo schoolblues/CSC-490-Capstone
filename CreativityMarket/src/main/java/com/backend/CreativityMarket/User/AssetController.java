@@ -70,7 +70,7 @@ public class AssetController {
         model.addAttribute("inWishlist", false);
         model.addAttribute("relatedAssets", relatedAssets);
 
-        return "user/asset";
+        return "user/detailedItemView";
     }
 
     @PostMapping("/{id}/cart")
