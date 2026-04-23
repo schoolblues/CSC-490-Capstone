@@ -69,6 +69,13 @@ public class AuthController {
         }
 
         session.setAttribute("user", user);
+
+          // If the user is an admin, set adminId and redirect to admin dashboard
+        if (user.isAdminOrAbove()) {
+            session.setAttribute("adminId", user.getId());
+            return "redirect:/admin/dashboard";
+        }
+        
         return "redirect:/users/home";
     }
 

@@ -1,5 +1,7 @@
 package com.backend.CreativityMarket.User;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +22,9 @@ public class User {
 
     private String createdAt;
 
+    private boolean banned = false;
+    private LocalDateTime suspendedUntil;
+
     public User() {}
 
     public Long getId() { return id; }
@@ -38,4 +43,29 @@ public class User {
 
     public String getCreatedAt() { return createdAt; }
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
+
+    public boolean isBanned() {return banned; }
+    public void setBanned(boolean banned) {this.banned = banned; }
+
+    public LocalDateTime getSuspendedUntil() {return suspendedUntil; }
+    public void setSuspendedUntil(LocalDateTime suspendedUntil) {this.suspendedUntil = suspendedUntil; }
+
+    public boolean isModerator() {
+        return "MODERATOR".equalsIgnoreCase(this.role);
+    }
+    public boolean isAdmin() {
+        return "ADMIN".equalsIgnoreCase(this.role);
+    }
+
+    public boolean isSuperAdmin() {
+        return "SUPERADMIN".equalsIgnoreCase(this.role);
+    }
+
+    public boolean isAdminOrAbove() {
+        return isAdmin() || isSuperAdmin();
+    }
+
+    public boolean isSuspended() {
+        return suspendedUntil != null && suspendedUntil.isAfter(LocalDateTime.now());
+    }
 }

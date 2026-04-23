@@ -30,9 +30,13 @@ public class BountyApiController {
         return bountyService.getBountyById(id);
     }
 
-    // Get bounties assigned to a specific user
-    @GetMapping("/user/{userId}")
-    public List<Bounty> getBountiesForUser(@PathVariable Long userId) {
-        return bountyService.getBountiesForUser(userId);
+     @GetMapping("/assigned/{userId}")
+    public List<Bounty> getAssigned(@PathVariable Long userId) {
+        return bountyService.getBountiesForUserById(userId);
+    }
+
+    @GetMapping("/created/{userId}")
+    public List<Bounty> getCreated(@PathVariable Long userId) {
+        return bountyService.getBountiesCreatedByUserId(userId);
     }
 }

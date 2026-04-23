@@ -1,0 +1,100 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR (fixed left)
+========================= */
+.admin-sidebar {
+  width: 220px;
+  background: #271738;
+  border-right: 1px solid #3d2a50;
+
+  padding: 16px;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  overflow-y: auto;
+}
+
+.admin-sidebar h3 {
+  color: white;
+  margin-bottom: 12px;
+}
+
+.admin-sidebar a {
+  display: block;
+  color: #b0b8c1;
+  margin: 10px 0;
+  transition: 0.15s ease;
+}
+
+.admin-sidebar a:hover {
+  color: white;
+  transform: translateX(2px);
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.admin-content {
+  margin-left: 220px;
+  padding: 24px;
+  width: calc(100% - 220px);
+}
+
+/* =========================
+   KPI CARDS
+========================= */
+.admin-content .cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .admin-content .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   CHART GRID
+========================= */
+.admin-charts-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .admin-charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   CHART CANVAS FIX
+========================= */
+canvas {
+  width: 100% !important;
+  max-height: 320px;
+}
+
+/* =========================
+   ADMIN HEADINGS
+========================= */
+.admin-content h1 {
+  margin-bottom: 16px;
+}
+
+.admin-content h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}

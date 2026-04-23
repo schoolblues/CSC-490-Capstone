@@ -13,13 +13,13 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin/auditlogs")
+@RequestMapping("/admin/logs")
 public class AuditLogController {
 
     private final AuditLogService auditLogService;
-    private final AdminService adminService;
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private final DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     // View all logs
     @GetMapping
