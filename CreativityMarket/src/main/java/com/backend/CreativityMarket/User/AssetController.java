@@ -1,6 +1,6 @@
 package com.backend.CreativityMarket.User;
 
-import com.backend.CreativityMarket.Cart.CartService;
+import com.backend.CreativityMarket.Marketplace.CartService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,14 +49,12 @@ public class AssetController {
             return "redirect:/";
         }
 
-        Long userId = (Long) session.getAttribute("userId");
+        User user = (User) session.getAttribute("user");
 
         boolean inCart = false;
-        if (userId != null) {
-            try {
-                inCart = cartService.getCartItemsByUserId(userId).stream()
-                        .anyMatch(item -> item.getAssetId().equals(id));
-            } catch (Exception ignored) {}
+        if (user != null) {
+            inCart = cartService.getCartItemsByUser(user).stream()
+                    .anyMatch(item -> item.getAsset().getId().equals(id));
         }
 
         List<Asset> relatedAssets = Collections.emptyList();
@@ -77,9 +75,9 @@ public class AssetController {
 
     @PostMapping("/{id}/cart")
     public String addToCart(@PathVariable Long id, HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId != null) {
-            cartService.addItem(userId, id, 1);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            cartService.addItem(user, id, 1);
         }
         return "redirect:/assets/" + id;
     }
@@ -91,14 +89,12 @@ public class AssetController {
 
     @PostMapping("/{id}/cart/remove")
     public String removeFromCart(@PathVariable Long id, HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId != null) {
-            try {
-                cartService.getCartItemsByUserId(userId).stream()
-                        .filter(item -> item.getAssetId().equals(id))
-                        .findFirst()
-                        .ifPresent(item -> cartService.removeItem(item.getId()));
-            } catch (Exception ignored) {}
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            cartService.getCartItemsByUser(user).stream()
+                    .filter(item -> item.getAsset().getId().equals(id))
+                    .findFirst()
+                    .ifPresent(item -> cartService.removeItem(item.getId()));
         }
         return "redirect:/cart";
     }

@@ -45,7 +45,7 @@ public class AdminController {
         
         model.addAttribute("userCount", adminReportService.countUsers());
         model.addAttribute("bountyCount", adminReportService.countBounties());
-        model.addAttribute("categoryCoint", adminReportService.countCategories());
+        model.addAttribute("categoryCount", adminReportService.countCategories());
         model.addAttribute("openCases", adminReportService.countOpenCases());
 
         model.addAttribute("actionsPerDay", adminReportService.getActionsPerDay());
