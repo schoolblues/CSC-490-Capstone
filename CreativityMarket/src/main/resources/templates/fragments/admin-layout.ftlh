@@ -7,7 +7,7 @@
 
     <!-- Global styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="/css/admin.css">
     
 </head>
@@ -33,7 +33,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/js/admin-charts.js" defer></script>
 <script src="/js/admin.js" defer></script>
-<script src="/js/admin-charts.js" defer></script>
 
 </body>
 </html>

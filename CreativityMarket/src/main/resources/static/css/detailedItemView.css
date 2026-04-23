@@ -159,7 +159,7 @@
 }
 
 .rating-count {
-    color: #6a6a7a;
+    color: #8a8a9a;
     font-size: 14px;
 }
 
@@ -360,7 +360,7 @@
 }
 
 .detail-link {
-    color: #5bc0de;
+    color: #ab68f3;
     text-decoration: none;
     font-size: 15px;
 }
@@ -370,7 +370,7 @@
 }
 
 .info-icon {
-    color: #5bc0de;
+    color: #ab68f3;
     font-size: 14px;
     margin-left: 4px;
     cursor: help;

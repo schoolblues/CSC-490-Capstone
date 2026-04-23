@@ -49,7 +49,7 @@
 
 .field label {
     display: block;
-    color: #d0d0e0;
+    color: #b0b8c1;
     font-size: 13px;
     font-weight: 500;
     margin-bottom: 6px;
@@ -116,7 +116,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #d0d0e0;
+    color: #b0b8c1;
     font-size: 14px;
     cursor: pointer;
     user-select: none;
@@ -223,7 +223,7 @@
 
 .btn-secondary {
     background-color: #3d2a50;
-    color: #d0d0e0;
+    color: #b0b8c1;
 }
 
 .btn-secondary:hover {
