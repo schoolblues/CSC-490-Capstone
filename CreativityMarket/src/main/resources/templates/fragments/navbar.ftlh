@@ -7,15 +7,13 @@
                 <li><a href="/users/home">Profile</a></li>
             </#if>
             <li><a href="/assets/explore">Categories</a></li>
-            <li><a href="/assets/cart">Cart</a></li>
+            <li><a href="/cart">Cart</a></li>
             <li><a href="/bounties">Bounties</a></li>
-            <li><a href="/upload">Upload</a></li>
-            <#if user??>
+<#if user??>
                 <li><a href="/bounties/me">My Bounties</a></li>
                 <li><a href="/users/logout">Logout</a></li>
             <#else>
                 <li><a href="/signin">Sign In</a></li>
-                <li><a href="/signup">Sign Up</a></li>
             </#if>
         </ul>
     </div>
