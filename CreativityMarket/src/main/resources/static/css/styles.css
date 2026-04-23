@@ -7,7 +7,7 @@
   --accent:#ab68f3;
 }
 
-*{ box-sizing:border-box; margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; }
+*{ box-sizing:border-box; margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
 body{ background:var(--bg); color:var(--text); line-height:1.6; }
 
 a{ color:inherit; text-decoration:none; }
