@@ -1,7 +1,7 @@
 package com.backend.CreativityMarket.AuditLog;
 
-import com.backend.CreativityMarket.Admin.AdminService;
-import com.backend.CreativityMarket.User.User;
+import com.backend.CreativityMarket.Common.EntityType;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,89 +13,41 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin/auditlogs")
+@RequestMapping("/admin/logs")
 public class AuditLogController {
 
     private final AuditLogService auditLogService;
-    private final AdminService adminService;
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private final DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    // View all logs
-    @GetMapping
-    public String listAllLogs(Model model, @SessionAttribute("adminId") Long adminId) {
-        User currentAdmin = adminService.getCurrentAdmin(adminId); // verify admin
-        List<AuditLog> logs = auditLogService.getAllLogs();
-        model.addAttribute("logs", logs);
-        return "admin/auditlogs";
-    }
+@GetMapping
+public String listLogs(
+        @RequestParam(required = false) Long adminId,
+        @RequestParam(required = false) AuditAction action,
+        @RequestParam(required = false) EntityType entity,
+        @RequestParam(required = false) String from,
+        @RequestParam(required = false) String to,
+        Model model) {
 
-    // Filter logs by admin
-    @GetMapping("/admin/{adminIdFilter}")
-    public String listLogsByAdmin(@PathVariable Long adminIdFilter,
-                                  Model model,
-                                  @SessionAttribute("adminId") Long sessionAdminId) {
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
-        List<AuditLog> logs = auditLogService.getLogsByAdmin(adminIdFilter);
-        model.addAttribute("logs", logs);
-        return "admin/auditlogs";
-    }
+    LocalDateTime fromDate = (from != null && !from.isEmpty())
+            ? LocalDateTime.parse(from, formatter)
+            : null;
 
-    // Filter logs by action
-    @GetMapping("/action/{action}")
-    public String listLogsByAction(@PathVariable String action,
-                                   Model model,
-                                   @SessionAttribute("adminId") Long sessionAdminId) {
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
-        List<AuditLog> logs = auditLogService.getLogsByAction(action);
-        model.addAttribute("logs", logs);
-        return "admin/auditlogs";
-    }
+    LocalDateTime toDate = (to != null && !to.isEmpty())
+            ? LocalDateTime.parse(to, formatter)
+            : null;
 
-    // Filter logs by target entity
-    @GetMapping("/target/{entity}")
-    public String listLogsByEntity(@PathVariable String entity,
-                                   Model model,
-                                   @SessionAttribute("adminId") Long sessionAdminId) {
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
-        List<AuditLog> logs = auditLogService.getLogsByEntity(entity);
-        model.addAttribute("logs", logs);
-        return "admin/auditlogs";
-    }
+    List<AuditLog> logs = auditLogService.getFilteredLogs(
+            adminId,
+            action,
+            entity,
+            fromDate,
+            toDate
+    );
 
-    // Filter logs by date range (query parameters: from, to)
-    @GetMapping("/date")
-    public String listLogsByDate(@RequestParam(required = false) String from,
-                                 @RequestParam(required = false) String to,
-                                 Model model,
-                                 @SessionAttribute("adminId") Long sessionAdminId) {
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
+    model.addAttribute("logs", logs);
 
-        LocalDateTime fromDate = from != null ? LocalDateTime.parse(from, formatter) : null;
-        LocalDateTime toDate = to != null ? LocalDateTime.parse(to, formatter) : null;
-
-        List<AuditLog> logs = auditLogService.getLogsByDateRange(fromDate, toDate);
-        model.addAttribute("logs", logs);
-        return "admin/auditlogs";
-    }
-
-    // Flexible filter endpoint (all parameters optional)
-    @GetMapping("/filter")
-    public String filteredLogs(@RequestParam(required = false) Long adminId,
-                               @RequestParam(required = false) String targetEntity,
-                               @RequestParam(required = false) String action,
-                               @RequestParam(required = false) String from,
-                               @RequestParam(required = false) String to,
-                               Model model,
-                               @SessionAttribute("adminId") Long sessionAdminId) {
-
-        User currentAdmin = adminService.getCurrentAdmin(sessionAdminId); // verify admin
-
-        LocalDateTime fromDate = from != null ? LocalDateTime.parse(from, formatter) : null;
-        LocalDateTime toDate = to != null ? LocalDateTime.parse(to, formatter) : null;
-
-        List<AuditLog> logs = auditLogService.getFilteredLogs(adminId, targetEntity, action, fromDate, toDate);
-        model.addAttribute("logs", logs);
-        return "admin/auditlogs";
-    }
+    return "admin/logs";
+}
 }

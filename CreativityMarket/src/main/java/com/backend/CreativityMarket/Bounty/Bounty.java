@@ -1,12 +1,14 @@
 package com.backend.CreativityMarket.Bounty;
 
 import java.time.LocalDateTime;
+import com.backend.CreativityMarket.User.User;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Data
@@ -22,40 +24,26 @@ public class Bounty {
     private String title;
 
     @NotBlank
-    @Column(nullable = false)
+    @Column(length = 2000, nullable = false)
     private String description;
 
     @NotNull
+    @Positive
     @Column(nullable = false)
     private Double reward;
 
-    @NotBlank
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String status;
+    private BountyStatus status = BountyStatus.OPEN;
 
-    @NotNull
-    @Column(name = "created_by",nullable = false)
-    private Long createdBy;
+    @ManyToOne
+    @JoinColumn(name = "created_by",nullable = false)
+    private User createdBy;
 
-    @Column(name = "assigned_to")
-    private Long assignedTo;
+    @ManyToOne
+    @JoinColumn(name = "assigned_to")
+    private User assignedTo;
 
-    @NotNull
     @Column(nullable = false)
-    private LocalDateTime createdAt;
-
-    public Bounty(@NotBlank String title,
-                    @NotBlank String description,
-                    @NotNull Double reward,
-                    @NotBlank String status,
-                    @NotNull Long createdBy,
-                    Long assignedTo) {
-        this.title = title;
-        this.description = description;
-        this.reward = reward;
-        this.status = status;
-        this.createdBy = createdBy;
-        this.assignedTo = assignedTo;
-        this.createdAt = LocalDateTime.now();
-    }
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

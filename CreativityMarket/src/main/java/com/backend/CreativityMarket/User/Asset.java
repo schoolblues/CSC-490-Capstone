@@ -1,5 +1,7 @@
 package com.backend.CreativityMarket.User;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -41,6 +43,11 @@ public class Asset {
 
     private double rating;
     private boolean allowsAiUsage;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @JsonIgnoreProperties("assets")
+    private com.backend.CreativityMarket.Marketplace.Category categoryEntity;
 
     public Asset() {}
 

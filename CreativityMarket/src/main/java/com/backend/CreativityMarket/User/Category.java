@@ -1,7 +1,7 @@
 package com.backend.CreativityMarket.User;
 
 import java.util.List;
-
+//TODO: figure out naming convention as we have two categories, this could possibly be changed to CategoryDTO.
 public class Category {
     private Long id;
     private String name;
