@@ -1,33 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="stylesheet" href="/css/homepage.css">
-    <link rel="stylesheet" href="/css/sketchfab.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="navbar-left">
-            <h1 class="navbar-title">Creativity Market</h1>
-            <ul class="navbar-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/users/home">Profile</a></li>
-                <li><a href="/assets/explore">Categories</a></li>
-                <li><a href="/assets/cart">Cart</a></li>
-                <li><a href="/signin">Signin</a></li>
-                <li><a href="/bounties">Bounties</a></li>
-                <li><a href="/upload">Upload</a></li>
-            </ul>
-        </div>
-        <div class="navbar-right">
-            <input type="text" class="search-bar" placeholder="Search the store">
-            <button class="search-button">
-                <img src="/images/glass.png" alt="Search" class="search-icon">
-            </button>
-        </div>
-    </nav>
+<#import "/fragments/layout.ftlh" as layout>
+
+<@layout.main
+    extraCss='<link rel="stylesheet" href="/css/sketchfab.css">'
+    extraScripts='<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script><script src="/js/sketchfabscripts.js"></script>'>
 
     <h2 class="featured-label">Featured Items</h2>
     <div class="bannerContainer">
@@ -163,21 +138,4 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#" class="footer-link">Contact Us</a>
-                <a href="#" class="footer-link">Help</a>
-                <a href="#" class="footer-link">Student Discounts</a>
-                <a href="#" class="footer-link">Forums</a>
-                <a href="#" class="footer-link">Terms and Conditions</a>
-                <a href="#" class="footer-link">Privacy</a>
-            </div>
-            <p class="footer-copyright">&copy; 2026 Creativity Market. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
-    <script src="/js/sketchfabscripts.js"></script>
-</body>
-</html>
+</@layout.main>
