@@ -18,17 +18,16 @@ public class CartController {
     
     private User getUser(HttpSession session) {
         Object obj = session.getAttribute("user");
-    
-        if(obj instanceof User user) {
+        if (obj instanceof User user && user.getId() != null) {
             return user;
         }
-
-        throw new RuntimeException("User not logged in");
+        return null;
     }
 
     @GetMapping
     public String showCart(Model model, HttpSession session) {
         User user = getUser(session);
+        if (user == null) return "redirect:/signin";
 
         Cart cart = cartService.getOrCreateCart(user);
         List<CartItem> items = cartService.getCartItemsByUser(user);
@@ -48,6 +47,7 @@ public class CartController {
                             @RequestParam(defaultValue = "1") int quantity) {
 
         User user = getUser(session);
+        if (user == null) return "redirect:/signin";
 
         cartService.addItem(user, assetId, quantity);
 

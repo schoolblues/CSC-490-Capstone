@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.backend.CreativityMarket.User.Asset;
 import com.backend.CreativityMarket.User.AssetRepository;
 import com.backend.CreativityMarket.User.User;
+import com.backend.CreativityMarket.User.UserRepository;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,12 +21,15 @@ public class CartService {
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
     private final AssetRepository assetRepository;
+    private final UserRepository userRepository;
 
     public Cart getOrCreateCart(User user) {
-        return cartRepository.findByUserId(user.getId())
+        User managedUser = userRepository.findById(user.getId())
+                .orElseThrow(() -> new RuntimeException("User not found: " + user.getId()));
+        return cartRepository.findByUserId(managedUser.getId())
                             .orElseGet(() -> {
                                 Cart cart = new Cart();
-                                cart.setUser(user);
+                                cart.setUser(managedUser);
                                 cart.setItems(new HashSet<>());
                                 return cartRepository.save(cart);
                             });
