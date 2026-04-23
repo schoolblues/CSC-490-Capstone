@@ -1,6 +1,7 @@
 package com.backend.CreativityMarket.Bounty;
 
 import com.backend.CreativityMarket.User.UserRepository;
+import com.backend.CreativityMarket.User.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import java.util.List;
 public class BountyController {
 
     private final BountyService bountyService;
+    private final UserRepository userRepository;
 
     // Display all open bounties on the bounty board
     @GetMapping

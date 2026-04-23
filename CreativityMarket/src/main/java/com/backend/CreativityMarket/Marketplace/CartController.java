@@ -1,7 +1,5 @@
 package com.backend.CreativityMarket.Marketplace;
 
-import com.backend.CreativityMarket.User.Asset;
-import com.backend.CreativityMarket.User.AssetRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.backend.CreativityMarket.User.User;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,8 +15,10 @@ import java.util.stream.Collectors;
 public class CartController {
 
     private final CartService cartService;
-    private final AssetRepository assetRepository;
-
+    
+    private User getUser(HttpSession session) {
+        Object obj = session.getAttribute("user");
+    
         if(obj instanceof User user) {
             return user;
         }
@@ -31,16 +30,14 @@ public class CartController {
     public String showCart(Model model, HttpSession session) {
         User user = getUser(session);
 
-        cartService.createCartIfNotExists(userId);
-        List<CartItem> items = cartService.getCartItemsByUserId(userId);
+        Cart cart = cartService.getOrCreateCart(user);
+        List<CartItem> items = cartService.getCartItemsByUser(user);
 
-        List<Asset> cart = items.stream()
-                .map(item -> assetRepository.findById(item.getAssetId()).orElse(null))
-                .filter(asset -> asset != null)
-                .collect(Collectors.toList());
+        double subtotal = cartService.calculateCartTotal(user);
 
         model.addAttribute("cart", cart);
-        model.addAttribute("cartCount", cart.size());
+        model.addAttribute("items", items);
+        model.addAttribute("subtotal", subtotal);
 
         return "marketplace/cart";
     }

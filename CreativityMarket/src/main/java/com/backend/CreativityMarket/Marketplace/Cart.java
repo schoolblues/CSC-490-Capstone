@@ -1,5 +1,10 @@
 package com.backend.CreativityMarket.Marketplace;
 
+import com.backend.CreativityMarket.User.User;
+
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
