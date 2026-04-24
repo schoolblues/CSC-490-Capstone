@@ -10,22 +10,22 @@
 <div class="panel">
     <h3>Filter Logs</h3>
 
-    <form method="get" action="/admin/logs">
+    <form method="get" action="/admin/logs/filter">
 
         <label>Admin ID:</label>
-        <input type="number" name="adminId" />
+        <input type="number" name="adminId" class="form-control" style="width:auto;" />
 
         <label>Action:</label>
-        <input type="text" name="action" placeholder="e.g. DELETE_USER"/>
+        <input type="text" name="action" placeholder="e.g. DELETE_USER" class="form-control" />
 
         <label>Entity:</label>
-        <input type="text" name="entity" placeholder="e.g. USER"/>
+        <input type="text" name="targetEntity" placeholder="e.g. USER" class="form-control" />
 
         <label>From:</label>
-        <input type="datetime-local" name="from" />
+        <input type="datetime-local" name="from" class="form-control" style="width:auto;" />
 
         <label>To:</label>
-        <input type="datetime-local" name="to" />
+        <input type="datetime-local" name="to" class="form-control" style="width:auto;" />
 
         <button type="submit">Filter</button>
         
