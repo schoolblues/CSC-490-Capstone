@@ -36,8 +36,8 @@
                         <td>${asset.title}</td>
 
                         <td>
-                            <#if asset.category??>
-                                ${asset.category.name}
+                            <#if asset.categoryEntity??>
+                                ${asset.categoryEntity.name}
                             <#else>
                                 Unassigned
                             </#if>

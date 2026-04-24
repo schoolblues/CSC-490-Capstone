@@ -1,5 +1,6 @@
 package com.backend.CreativityMarket.User;
 
+import com.backend.CreativityMarket.Marketplace.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +13,11 @@ import java.util.List;
 public class HomeController {
 
     private final AssetRepository assetRepository;
+    private final CategoryService categoryService;
 
-    public HomeController(AssetRepository assetRepository) {
+    public HomeController(AssetRepository assetRepository, CategoryService categoryService) {
         this.assetRepository = assetRepository;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/")
@@ -23,7 +26,15 @@ public class HomeController {
         List<Asset> assets = dbAssets.isEmpty() ? sampleAssets() : dbAssets;
         model.addAttribute("featuredAssets", assets);
         model.addAttribute("newAssets", assets);
-        model.addAttribute("categories", sampleCategories());
+
+        List<com.backend.CreativityMarket.Marketplace.Category> dbCategories = categoryService.getAllCategories();
+        List<Category> categories = dbCategories.isEmpty()
+                ? sampleCategories()
+                : dbCategories.stream()
+                    .map(c -> new Category(c.getId(), c.getName().toUpperCase(), c.getDescription(), "/images/apple.png", List.of()))
+                    .toList();
+        model.addAttribute("categories", categories);
+
         model.addAttribute("fileTypes", sampleFileTypes());
         return "homepage";
     }
