@@ -99,7 +99,8 @@
                         </div>
                         <#if cat.previewImageUrls??>
                             <#list cat.previewImageUrls as pi>
-                                <#assign piUid = (cat.previewImageUids?? && (cat.previewImageUids?size > pi?index))?then(cat.previewImageUids[pi?index], '')>
+                                <#assign piUid = (cat.previewImageUids[pi?index])!''>
+
                                 <img src="${(pi?has_content)?then(pi, '/images/apple.png')}" alt="Preview ${pi?index + 1}" class="category-img" data-uid="${piUid}">
                             </#list>
                         </#if>
