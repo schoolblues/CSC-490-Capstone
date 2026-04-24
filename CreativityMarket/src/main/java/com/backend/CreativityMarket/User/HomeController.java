@@ -31,7 +31,15 @@ public class HomeController {
         List<Category> categories = dbCategories.isEmpty()
                 ? sampleCategories()
                 : dbCategories.stream()
-                    .map(c -> new Category(c.getId(), c.getName().toUpperCase(), c.getDescription(), "/images/apple.png", List.of()))
+                    .map(c -> {
+                        List<Asset> catAssets = assetsForCategory(c);
+                        String mainUrl  = catAssets.isEmpty() ? null : catAssets.get(0).getThumbnailUrl();
+                        String mainUid  = catAssets.isEmpty() ? null : catAssets.get(0).getSketchfabUid();
+                        List<String> previewUrls = catAssets.stream().skip(1).map(Asset::getThumbnailUrl).toList();
+                        List<String> previewUids = catAssets.stream().skip(1).map(Asset::getSketchfabUid).toList();
+                        return new Category(c.getId(), c.getName().toUpperCase(), c.getDescription(),
+                                mainUrl, mainUid, previewUrls, previewUids);
+                    })
                     .toList();
         model.addAttribute("categories", categories);
 
@@ -131,24 +139,35 @@ public class HomeController {
     private List<Category> sampleCategories() {
         return List.of(
                 new Category(1L, "CHARACTERS", "Digital Art Assets",
-                        "/images/apple.png",
-                        List.of("/images/banana.png", "/images/orange.webp", "/images/pear.png")),
+                        "/images/apple.png", null,
+                        List.of("/images/banana.png", "/images/orange.webp", "/images/pear.png"), List.of()),
                 new Category(2L, "ENVIRONMENTS", "3D Scenes & Worlds",
-                        "/images/banana.png",
-                        List.of("/images/apple.png", "/images/orange.webp", "/images/pear.png")),
+                        "/images/banana.png", null,
+                        List.of("/images/apple.png", "/images/orange.webp", "/images/pear.png"), List.of()),
                 new Category(3L, "VEHICLES", "Cars, Ships & More",
-                        "/images/orange.webp",
-                        List.of("/images/apple.png", "/images/banana.png", "/images/pear.png")),
+                        "/images/orange.webp", null,
+                        List.of("/images/apple.png", "/images/banana.png", "/images/pear.png"), List.of()),
                 new Category(4L, "WEAPONS", "Swords, Guns & Gear",
-                        "/images/pear.png",
-                        List.of("/images/apple.png", "/images/banana.png", "/images/orange.webp")),
+                        "/images/pear.png", null,
+                        List.of("/images/apple.png", "/images/banana.png", "/images/orange.webp"), List.of()),
                 new Category(5L, "FURNITURE", "Interior Design Assets",
-                        "/images/apple.png",
-                        List.of("/images/banana.png", "/images/orange.webp", "/images/pear.png")),
+                        "/images/apple.png", null,
+                        List.of("/images/banana.png", "/images/orange.webp", "/images/pear.png"), List.of()),
                 new Category(6L, "NATURE", "Trees, Rocks & Terrain",
-                        "/images/banana.png",
-                        List.of("/images/apple.png", "/images/orange.webp", "/images/pear.png"))
+                        "/images/banana.png", null,
+                        List.of("/images/apple.png", "/images/orange.webp", "/images/pear.png"), List.of())
         );
+    }
+
+    private List<Asset> assetsForCategory(com.backend.CreativityMarket.Marketplace.Category cat) {
+        List<Asset> byRelationship = assetRepository.findByCategoryEntity(cat);
+        List<Asset> byTag = assetRepository.findByTagKeyword(cat.getName());
+
+        return java.util.stream.Stream.concat(byRelationship.stream(), byTag.stream())
+                .collect(java.util.stream.Collectors.collectingAndThen(
+                        java.util.stream.Collectors.toMap(Asset::getId, a -> a, (a, b) -> a, java.util.LinkedHashMap::new),
+                        m -> m.values().stream().limit(5).toList()
+                ));
     }
 
     private List<String[]> sampleFileTypes() {

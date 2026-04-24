@@ -30,7 +30,7 @@
     <!-- CATEGORY -->
     <div class="col-md-4">
         <label>Category</label>
-        <select class="form-control" name="category.id">
+        <select class="form-control" name="categoryId">
 
             <#list categories as category>
                 <option value="${category.id}">
@@ -48,6 +48,20 @@
                step="0.1"
                class="form-control"
                name="rating">
+    </div>
+
+    <!-- SKETCHFAB -->
+    <div class="col-md-6">
+        <label>Sketchfab UID</label>
+        <input class="form-control"
+               name="sketchfabUid">
+    </div>
+
+    <!-- THUMBNAIL -->
+    <div class="col-md-6">
+        <label>Thumbnail URL</label>
+        <input class="form-control"
+               name="thumbnailUrl">
     </div>
 
     <!-- TEXTURE INFO (example editable fields) -->

@@ -78,13 +78,18 @@ async function openEditAsset(id) {
         set("textureResolution", asset.textureResolution);
         set("materials", asset.materials);
 
-        form.querySelector('[name="rigged"]').checked = !!asset.rigged;
-        form.querySelector('[name="animated"]').checked = !!asset.animated;
-        form.querySelector('[name="allowsAiUsage"]').checked = !!asset.allowsAiUsage;
+        const rigged = form.querySelector('[name="rigged"]');
+        if (rigged) rigged.checked = !!asset.rigged;
 
-        const cat = form.querySelector('select[name="category.id"]');
-        if (cat && asset.category) {
-            cat.value = asset.category.id;
+        const animated = form.querySelector('[name="animated"]');
+        if (animated) animated.checked = !!asset.animated;
+
+        const aiUsage = form.querySelector('[name="allowsAiUsage"]');
+        if (aiUsage) aiUsage.checked = !!asset.allowsAiUsage;
+
+        const cat = form.querySelector('select[name="categoryId"]');
+        if (cat && asset.categoryId) {
+            cat.value = asset.categoryId;
         }
 
         const modalEl = document.getElementById('assetModal');

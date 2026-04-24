@@ -7,17 +7,22 @@ public class Category {
     private String name;
     private String subtitle;
     private String mainImageUrl;
+    private String mainImageUid;
     private List<String> previewImageUrls;
+    private List<String> previewImageUids;
 
     public Category() {}
 
     public Category(Long id, String name, String subtitle,
-                    String mainImageUrl, List<String> previewImageUrls) {
+                    String mainImageUrl, String mainImageUid,
+                    List<String> previewImageUrls, List<String> previewImageUids) {
         this.id = id;
         this.name = name;
         this.subtitle = subtitle;
         this.mainImageUrl = mainImageUrl;
+        this.mainImageUid = mainImageUid;
         this.previewImageUrls = previewImageUrls;
+        this.previewImageUids = previewImageUids;
     }
 
     public Long getId() { return id; }
@@ -32,6 +37,12 @@ public class Category {
     public String getMainImageUrl() { return mainImageUrl; }
     public void setMainImageUrl(String mainImageUrl) { this.mainImageUrl = mainImageUrl; }
 
+    public String getMainImageUid() { return mainImageUid; }
+    public void setMainImageUid(String mainImageUid) { this.mainImageUid = mainImageUid; }
+
     public List<String> getPreviewImageUrls() { return previewImageUrls; }
     public void setPreviewImageUrls(List<String> previewImageUrls) { this.previewImageUrls = previewImageUrls; }
+
+    public List<String> getPreviewImageUids() { return previewImageUids; }
+    public void setPreviewImageUids(List<String> previewImageUids) { this.previewImageUids = previewImageUids; }
 }

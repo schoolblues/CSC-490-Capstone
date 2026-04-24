@@ -1,6 +1,7 @@
 package com.backend.CreativityMarket.User;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.*;
 
@@ -46,7 +47,7 @@ public class Asset {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @JsonIgnoreProperties("assets")
+    @JsonIgnore
     private com.backend.CreativityMarket.Marketplace.Category categoryEntity;
 
     public Asset() {}
@@ -122,6 +123,14 @@ public class Asset {
 
     public boolean isAllowsAiUsage() { return allowsAiUsage; }
     public void setAllowsAiUsage(boolean allowsAiUsage) { this.allowsAiUsage = allowsAiUsage; }
+
+    public com.backend.CreativityMarket.Marketplace.Category getCategoryEntity() { return categoryEntity; }
+    public void setCategoryEntity(com.backend.CreativityMarket.Marketplace.Category categoryEntity) { this.categoryEntity = categoryEntity; }
+
+    @JsonProperty("categoryId")
+    public Long getCategoryId() {
+        return categoryEntity != null ? categoryEntity.getId() : null;
+    }
 
     public String getFormattedPrice() {
         return String.format("$%.2f", price);
