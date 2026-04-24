@@ -30,6 +30,10 @@
     text-decoration: none;
 }
 
+.navbar-title--admin {
+    color: #e74c3c;
+}
+
 .navbar-menu {
     display: flex;
     list-style: none;
@@ -318,6 +322,13 @@ body {
 
 .item-row:last-child {
     border-bottom: none;
+}
+
+.tab-empty {
+    padding: 30px 20px;
+    color: #8a8a9a;
+    font-size: 14px;
+    text-align: center;
 }
 
 .item-thumbnail {
