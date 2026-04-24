@@ -9,6 +9,9 @@
       <h3>Filters</h3>
 
       <form method="get" action="/assets/explore">
+        <#if keyword?? && keyword?has_content>
+          <input type="hidden" name="keyword" value="${keyword}">
+        </#if>
         <div class="filter-group">
           <div class="filter-group-label">File Type</div>
           <#list ["STL","OBJ","FBX","GLTF","BLEND","MAX","UNITY","MA","DAE","UASSET","C4D","NIF"] as ft>
@@ -63,8 +66,9 @@
       <section class="grid">
         <#if assets?? && (assets?size > 0)>
           <#list assets as a>
-            <div class="card" onclick="window.location='/assets/${a.id}'" style="cursor:pointer;">
-              <div class="thumb">
+            <#assign wishlisted = (wishlistedIds?? && wishlistedIds?seq_contains(a.id))>
+            <div class="card" style="position:relative;">
+              <div class="thumb" onclick="window.location='/assets/${a.id}'" style="cursor:pointer;">
                 <#if a.sketchfabUid?? && a.sketchfabUid?has_content>
                   <iframe
                     src="https://sketchfab.com/models/${a.sketchfabUid}/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=1"
@@ -81,7 +85,17 @@
                 </#if>
               </div>
 
-              <div class="card-body">
+              <form method="post"
+                    action="<#if wishlisted>/assets/${a.id}/wishlist/remove<#else>/assets/${a.id}/wishlist</#if>"
+                    style="position:absolute; top:10px; right:10px; margin:0;">
+                <button type="submit" class="icon-btn" title="<#if wishlisted>Remove from Wishlist<#else>Add to Wishlist</#if>"
+                        style="background:rgba(31,18,41,0.85); backdrop-filter:blur(4px);">
+                  <i class="<#if wishlisted>fa-solid<#else>fa-regular</#if> fa-heart"
+                     <#if wishlisted>style="color:var(--accent);"</#if>></i>
+                </button>
+              </form>
+
+              <div class="card-body" onclick="window.location='/assets/${a.id}'" style="cursor:pointer;">
                 <h3>${a.title!"Untitled"}</h3>
 
                 <p class="small" style="margin-bottom:12px;">
@@ -99,7 +113,7 @@
                   </span>
                 </div>
 
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;" onclick="event.stopPropagation()">
                   <span class="tag">
                     <#if a.license?? && a.license?has_content>
                       ${a.license}

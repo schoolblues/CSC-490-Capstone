@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,8 +28,12 @@ public class ModelUploadController {
     }
 
     @GetMapping
-    public String showUploadForm(Model model) {
+    public String showUploadForm(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) return "redirect:/signin";
+
         model.addAttribute("uploadForm", new ModelUploadForm());
+        model.addAttribute("user", user);
         return "artist/modelupload";
     }
 
@@ -36,6 +41,9 @@ public class ModelUploadController {
     public String handleUpload(@ModelAttribute("uploadForm") ModelUploadForm form,
                                RedirectAttributes redirectAttributes,
                                HttpSession session) {
+
+        User uploader = (User) session.getAttribute("user");
+        if (uploader == null) return "redirect:/signin";
 
         if (form.getModelFile() == null || form.getModelFile().isEmpty()) {
             redirectAttributes.addFlashAttribute("errorMessage", "Please select a model file to upload.");
@@ -49,8 +57,7 @@ public class ModelUploadController {
                 form.getTags()
         );
 
-        User uploader = (User) session.getAttribute("user");
-        String creatorName = (uploader != null && uploader.getName() != null && !uploader.getName().isBlank())
+        String creatorName = (uploader.getName() != null && !uploader.getName().isBlank())
                 ? uploader.getName() : "Marketplace Creator";
 
         Asset asset = new Asset();
@@ -63,6 +70,8 @@ public class ModelUploadController {
         asset.setLicense(form.getLicense());
         asset.setSketchfabUid(uid.orElse(null));
         asset.setCreatorName(creatorName);
+        asset.setCreator(uploader);
+        asset.setCreatorAvatarUrl(uploader.getProfileImageUrl());
         asset.setPolyCount(form.getPolyCount());
         asset.setVertices(form.getVertices());
         asset.setPolygons(form.getPolygons());
@@ -85,5 +94,16 @@ public class ModelUploadController {
         redirectAttributes.addFlashAttribute("successMessage", msg);
 
         return "redirect:/upload";
+    }
+
+    @GetMapping("/my")
+    public String myUploads(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) return "redirect:/signin";
+
+        List<Asset> mine = assetRepository.findByCreator(user);
+        model.addAttribute("user", user);
+        model.addAttribute("uploads", mine);
+        return "user/my-uploads";
     }
 }

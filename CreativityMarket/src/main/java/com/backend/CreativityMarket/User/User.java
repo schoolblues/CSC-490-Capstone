@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users") 
+@Table(name = "users")
 public class User {
 
     @Id
@@ -24,6 +24,13 @@ public class User {
 
     private boolean banned = false;
     private LocalDateTime suspendedUntil;
+
+    private String profileImageUrl;
+
+    @Column(columnDefinition = "TEXT")
+    private String bio;
+
+    private String location;
 
     public User() {}
 
@@ -49,6 +56,15 @@ public class User {
 
     public LocalDateTime getSuspendedUntil() {return suspendedUntil; }
     public void setSuspendedUntil(LocalDateTime suspendedUntil) {this.suspendedUntil = suspendedUntil; }
+
+    public String getProfileImageUrl() { return profileImageUrl; }
+    public void setProfileImageUrl(String profileImageUrl) { this.profileImageUrl = profileImageUrl; }
+
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
+
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
 
     public boolean isModerator() {
         return "MODERATOR".equalsIgnoreCase(this.role);

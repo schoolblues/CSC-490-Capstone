@@ -64,6 +64,17 @@ public class BountyController {
         return "redirect:/bounties";
     }
 
+    @PostMapping("/{id}/apply")
+    public String applyToBounty(@PathVariable Long id, HttpSession session) {
+
+        User user = (User) session.getAttribute("user");
+        if (user == null) return "redirect:/signin";
+
+        bountyService.claimBounty(id, user);
+
+        return "redirect:/bounties/" + id;
+    }
+
     @PostMapping("{id}/complete")
     public String completeBounty(@PathVariable Long id, HttpSession session) {
 
