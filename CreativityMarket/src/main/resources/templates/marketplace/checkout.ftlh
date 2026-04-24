@@ -2,72 +2,88 @@
 
 <@layout.main>
 
-<div class="container">
+<main class="container">
 
-    <div class="section-title">
-        <h2>Checkout</h2>
-        <p>Review your order before confirming</p>
-    </div>
+    <section class="profile-hero">
+        <div class="avatar">
+            <i class="fa-solid fa-credit-card"></i>
+        </div>
+        <div class="profile-info">
+            <h1>Checkout</h1>
+            <p class="muted">Review your order before confirming.</p>
+        </div>
+        <div class="profile-actions">
+            <a class="btn btn-ghost" href="/cart">
+                <i class="fa-solid fa-arrow-left"></i> Back to Cart
+            </a>
+        </div>
+    </section>
 
     <div class="two-col">
 
-        <!-- ITEMS -->
-        <div class="panel">
+        <section class="card table-card">
+            <div class="card-header">
+                <h2>Items</h2>
+            </div>
 
             <#if items?has_content>
-
-                <#list items as item>
-                    <div class="card">
-                        <div class="card-body">
-
-                            <h3>${item.asset.title}</h3>
-
-                            <div class="meta">
-                                <span>Qty: ${item.quantity}</span>
-                                <span>$${item.asset.price?string["#.00"]}</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </#list>
-
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Qty</th>
+                                <th style="text-align:right;">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <#list items as item>
+                                <tr>
+                                    <td class="title">${item.asset.title!"Untitled"}</td>
+                                    <td>${item.quantity}</td>
+                                    <td class="actions">$${item.asset.price?string["0.00"]}</td>
+                                </tr>
+                            </#list>
+                        </tbody>
+                    </table>
+                </div>
             <#else>
-                <p>No items in checkout.</p>
+                <div class="empty">
+                    <div class="empty-state">
+                        <i class="fa-solid fa-box-open"></i>
+                        <h3>No items in checkout</h3>
+                        <a class="btn btn-primary" href="/assets/explore">Explore Assets</a>
+                    </div>
+                </div>
             </#if>
+        </section>
 
-        </div>
-
-        <!-- SUMMARY -->
-        <div class="panel">
-
-            <h3>Summary</h3>
-
-            <div class="meta">
-                <span>Subtotal</span>
-                <span>$${subtotal?string["#.00"]}</span>
+        <aside class="card">
+            <div class="card-header">
+                <h2>Summary</h2>
             </div>
+            <div class="card-body">
+                <div class="row">
+                    <span class="label">Subtotal</span>
+                    <span class="value">$${subtotal?string["0.00"]}</span>
+                </div>
+                <div class="row" style="border-bottom:none;">
+                    <span class="label" style="color:var(--text);">Total</span>
+                    <span class="value" style="color:var(--accent); font-size:1.1rem;">$${subtotal?string["0.00"]}</span>
+                </div>
 
-            <hr>
-
-            <div class="meta" style="font-weight:bold;">
-                <span>Total</span>
-                <span>$${subtotal?string["#.00"]}</span>
+                <#if items?has_content>
+                    <form method="post" action="/checkout/create" style="margin-top:16px;">
+                        <button class="btn btn-primary" type="submit" style="width:100%; justify-content:center;">
+                            <i class="fa-solid fa-circle-check"></i> Confirm Order
+                        </button>
+                    </form>
+                </#if>
             </div>
-
-            <form method="post" action="/checkout/create" style="margin-top:15px;">
-                <button class="btn primary" style="width:100%;">
-                    Confirm Order
-                </button>
-            </form>
-
-            <a href="/cart" class="btn" style="margin-top:10px; display:block;">
-                ← Back to Cart
-            </a>
-
-        </div>
+        </aside>
 
     </div>
 
-</div>
+</main>
 
 </@layout.main>

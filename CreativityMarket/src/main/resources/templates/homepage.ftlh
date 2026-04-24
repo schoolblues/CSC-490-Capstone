@@ -131,12 +131,15 @@
         <div class="format-grid">
             <#if fileTypes?? && (fileTypes?size > 0)>
                 <#list fileTypes as ft>
-                    <div class="format-row"><span class="format-name">${ft[0]}</span><span class="format-ext">${ft[1]}</span></div>
+                    <a class="format-row" href="/assets/explore?fileType=${(ft[2])!ft[0]}" style="text-decoration:none; color:inherit;">
+                        <span class="format-name">${ft[0]}</span>
+                        <span class="format-ext">${ft[1]}</span>
+                    </a>
                 </#list>
             <#else>
-                <div class="format-row"><span class="format-name">Blender</span><span class="format-ext">.blend</span></div>
-                <div class="format-row"><span class="format-name">OBJ</span><span class="format-ext">.obj, .mtl</span></div>
-                <div class="format-row"><span class="format-name">FBX</span><span class="format-ext">.fbx</span></div>
+                <a class="format-row" href="/assets/explore?fileType=BLEND" style="text-decoration:none; color:inherit;"><span class="format-name">Blender</span><span class="format-ext">.blend</span></a>
+                <a class="format-row" href="/assets/explore?fileType=OBJ" style="text-decoration:none; color:inherit;"><span class="format-name">OBJ</span><span class="format-ext">.obj, .mtl</span></a>
+                <a class="format-row" href="/assets/explore?fileType=FBX" style="text-decoration:none; color:inherit;"><span class="format-name">FBX</span><span class="format-ext">.fbx</span></a>
             </#if>
         </div>
     </div>

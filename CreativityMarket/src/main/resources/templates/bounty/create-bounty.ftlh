@@ -2,48 +2,56 @@
 
 <@layout.main>
 
-<div class="container">
+<main class="container">
 
-  <div class="section-title">
-    <h2>Create a New Bounty</h2>
-    <p>Post a freelance task for others to complete</p>
-  </div>
+    <section class="profile-hero">
+        <div class="avatar">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="profile-info">
+            <h1>Create a New Bounty</h1>
+            <p class="muted">Post a freelance task for others to complete.</p>
+        </div>
+        <div class="profile-actions">
+            <a class="btn btn-ghost" href="/bounties"><i class="fa-solid fa-arrow-left"></i> Back</a>
+        </div>
+    </section>
 
-  <!-- Create Form -->
-  <div class="card">
-    <div class="card-body">
+    <section class="card table-card">
+        <div class="card-header">
+            <h2>Bounty Details</h2>
+        </div>
+        <div class="card-body">
+            <form action="/bounties/new" method="post">
 
-      <form action="/bounties/new" method="post">
+                <div class="row" style="flex-direction:column; align-items:stretch; gap:8px; border-bottom:none;">
+                    <span class="label">Title</span>
+                    <input type="text" name="title" required placeholder="e.g. Need a low-poly spaceship"
+                           style="width:100%; padding:10px 12px; border-radius:4px; border:1px solid var(--input-border); background:var(--input-bg); color:var(--text);">
+                </div>
 
-        <!-- Title -->
-        <label>Title</label><br>
-        <input type="text" name="title" required
-               style="width:100%; padding:8px; margin-bottom:15px;"><br>
+                <div class="row" style="flex-direction:column; align-items:stretch; gap:8px; border-bottom:none;">
+                    <span class="label">Description</span>
+                    <textarea name="description" rows="6" required placeholder="Describe what you need, deadlines, style references..."
+                              style="width:100%; padding:10px 12px; border-radius:4px; border:1px solid var(--input-border); background:var(--input-bg); color:var(--text); font-family:inherit; resize:vertical;"></textarea>
+                </div>
 
-        <!-- Description -->
-        <label>Description</label><br>
-        <textarea name="description" rows="5" required
-                  style="width:100%; padding:8px; margin-bottom:15px;"></textarea><br>
+                <div class="row" style="flex-direction:column; align-items:stretch; gap:8px; border-bottom:none;">
+                    <span class="label">Reward ($)</span>
+                    <input type="number" name="reward" step="0.01" min="0" required placeholder="0.00"
+                           style="width:100%; padding:10px 12px; border-radius:4px; border:1px solid var(--input-border); background:var(--input-bg); color:var(--text);">
+                </div>
 
-        <!-- Reward -->
-        <label>Reward ($)</label><br>
-        <input type="number" name="reward" step="0.01" min="0" required
-               style="width:100%; padding:8px; margin-bottom:15px;"><br>
+                <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-paper-plane"></i> Create Bounty
+                    </button>
+                    <a class="btn btn-ghost" href="/bounties">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </section>
 
-        <!-- Submit -->
-        <button type="submit" class="btn primary">
-          Create Bounty
-        </button>
-
-      </form>
-
-    </div>
-  </div>
-
-  <br>
-
-  <a href="/bounties" class="btn">← Back to Bounties</a>
-
-</div>
+</main>
 
 </@layout.main>

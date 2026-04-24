@@ -32,6 +32,83 @@
                     <img src="/images/right.webp" alt="Next" class="thumb-nav-icon">
                 </button>
             </div>
+
+            <section class="card table-card" id="reviews" style="margin-top:24px;">
+                <div class="card-header">
+                    <h2>Reviews</h2>
+                    <span class="tag">
+                        <#if reviews??>${reviews?size}<#else>0</#if> review<#if !reviews?? || reviews?size != 1>s</#if>
+                    </span>
+                </div>
+
+                <div class="card-body">
+
+                    <#if reviewError?? && reviewError == "purchase">
+                        <div class="pill" style="margin-bottom:14px; background:rgba(231,76,60,0.12); border-color:#e74c3c; color:#ff8888;">
+                            <i class="fa-solid fa-triangle-exclamation"></i> You must purchase this asset before leaving a review.
+                        </div>
+                    </#if>
+                    <#if reviewError?? && reviewError == "duplicate">
+                        <div class="pill" style="margin-bottom:14px; background:rgba(231,76,60,0.12); border-color:#e74c3c; color:#ff8888;">
+                            <i class="fa-solid fa-triangle-exclamation"></i> You have already reviewed this asset.
+                        </div>
+                    </#if>
+
+                    <#if hasPurchased?? && hasPurchased && !hasReviewed>
+                        <form method="post" action="/reviews/asset/${asset.id}" style="margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--border);">
+                            <div style="margin-bottom:10px;">
+                                <label class="label" style="display:block; margin-bottom:6px;">Your Rating</label>
+                                <select name="rating" required
+                                        style="padding:8px 12px; background:var(--input-bg); border:1px solid var(--input-border); border-radius:4px; color:var(--text);">
+                                    <option value="5">★★★★★ — Excellent</option>
+                                    <option value="4">★★★★☆ — Great</option>
+                                    <option value="3">★★★☆☆ — Good</option>
+                                    <option value="2">★★☆☆☆ — Fair</option>
+                                    <option value="1">★☆☆☆☆ — Poor</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom:12px;">
+                                <label class="label" style="display:block; margin-bottom:6px;">Your Review</label>
+                                <textarea name="body" rows="3" required placeholder="Share your experience with this asset..."
+                                          style="width:100%; padding:10px 12px; border-radius:4px; border:1px solid var(--input-border); background:var(--input-bg); color:var(--text); font-family:inherit; resize:vertical;"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa-solid fa-paper-plane"></i> Submit Review
+                            </button>
+                        </form>
+                    <#elseif hasReviewed?? && hasReviewed>
+                        <p class="small" style="margin-bottom:16px;"><i class="fa-solid fa-check"></i> Thanks for your review!</p>
+                    </#if>
+
+                    <#if reviews?? && (reviews?size > 0)>
+                        <#list reviews as r>
+                            <div style="padding:14px 0; border-bottom:1px solid var(--border);">
+                                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px;">
+                                    <div>
+                                        <strong style="color:var(--text);">${r.user.name!"Anonymous"}</strong>
+                                        <span class="small" style="margin-left:8px;">${r.formattedDate}</span>
+                                        <div style="color:var(--accent); margin-top:4px;">
+                                            <#list 1..5 as i>
+                                                <#if i <= r.rating>★<#else>☆</#if>
+                                            </#list>
+                                        </div>
+                                    </div>
+                                    <form method="post" action="/reviews/${r.id}/flag" style="margin:0;">
+                                        <button type="submit" class="icon-btn" title="Flag this review for admin review">
+                                            <i class="fa-solid fa-flag"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <p style="margin-top:8px; color:#fff;">${r.body!""}</p>
+                            </div>
+                        </#list>
+                    <#else>
+                        <p class="muted">No reviews yet. Be the first to leave one!</p>
+                    </#if>
+
+                </div>
+            </section>
+
         </div>
 
         <div class="product-info-panel">

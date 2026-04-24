@@ -2,48 +2,74 @@
 
 <@layout.main>
 
-<!-- Hero Section -->
-<div class="hero">
-  <h1>Available Freelance Bounties</h1>
-  <p>Browse open freelance opportunities and apply to projects that match your skills.</p>
+<main class="container">
 
-  <div class="searchbar">
-    <form action="/bounties/browse" method="get">
-      <input type="text" name="q" placeholder="Search by title, skill, or category...">
-      <button type="submit" class="btn primary">Search</button>
-    </form>
-  </div>
-</div>
-
-<!-- Main Content -->
-<div class="container">
-
-  <div class="section-title">
-    <h2>Open Bounties</h2>
-    <p>Showing ${bounties?size} active listings</p>
-  </div>
-
-  <div class="grid">
-    <#list bounties as bounty>
-      <div class="card">
-        <div class="thumb">${bounty.title?substring(0, 10)}</div>
-        <div class="card-body">
-          <h3>${bounty.title}</h3>
-          <div class="meta">
-            <span>${bounty.description?substring(0, 50)}...</span>
-            <span>Status: ${bounty.status}</span>
-          </div>
-          <div class="price">$${bounty.reward?string["#.##"]}</div>
-          <br>
-          <a href="/bounties/${bounty.id}" class="btn primary">View / Apply</a>
+    <section class="profile-hero">
+        <div class="avatar">
+            <i class="fa-solid fa-scroll"></i>
         </div>
-      </div>
-    </#list>
-    <#if bounties?size == 0>
-      <p>No open bounties at the moment.</p>
-    </#if>
-  </div>
+        <div class="profile-info">
+            <h1>Available Freelance Bounties</h1>
+            <p class="muted">Browse open freelance opportunities and apply to projects that match your skills.</p>
+        </div>
+        <div class="profile-actions">
+            <#if user??>
+                <a class="btn btn-primary" href="/bounties/new">
+                    <i class="fa-solid fa-plus"></i> Post a Bounty
+                </a>
+            </#if>
+            <a class="btn btn-ghost" href="/bounties/browse">
+                <i class="fa-solid fa-magnifying-glass"></i> Advanced Search
+            </a>
+        </div>
+    </section>
 
-</div>
+    <section class="card table-card">
+        <div class="card-header">
+            <h2>Open Bounties</h2>
+            <span class="tag"><#if bounties??>${bounties?size}<#else>0</#if> listings</span>
+        </div>
+
+        <#if bounties?? && (bounties?size > 0)>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Reward</th>
+                            <th>Status</th>
+                            <th>Posted</th>
+                            <th style="text-align:right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <#list bounties as bounty>
+                            <tr>
+                                <td class="title">${bounty.title}</td>
+                                <td>$${bounty.reward?string["0.00"]}</td>
+                                <td><span class="status live">${bounty.status}</span></td>
+                                <td><#if bounty.createdAt??>${bounty.createdAt?string["yyyy-MM-dd"]}</#if></td>
+                                <td class="actions">
+                                    <a class="btn btn-primary" href="/bounties/${bounty.id}" style="padding:6px 14px; font-size:13px;">
+                                        View / Apply
+                                    </a>
+                                </td>
+                            </tr>
+                        </#list>
+                    </tbody>
+                </table>
+            </div>
+        <#else>
+            <div class="empty">
+                <div class="empty-state">
+                    <i class="fa-solid fa-scroll"></i>
+                    <h3>No open bounties</h3>
+                    <p>No open bounties at the moment. Check back soon.</p>
+                </div>
+            </div>
+        </#if>
+    </section>
+
+</main>
 
 </@layout.main>

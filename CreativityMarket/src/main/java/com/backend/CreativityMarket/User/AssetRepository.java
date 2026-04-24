@@ -12,6 +12,7 @@ import java.util.List;
 public interface AssetRepository extends JpaRepository<Asset, Long> {
     List<Asset> findByCategory(String category);
     List<Asset> findByCreatorName(String creatorName);
+    List<Asset> findByCreator(User creator);
     List<Asset> findByCategoryEntity(Category categoryEntity);
 
     @Query("SELECT a FROM Asset a WHERE LOWER(a.tags) LIKE LOWER(CONCAT('%', :keyword, '%'))")

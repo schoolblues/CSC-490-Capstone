@@ -6,23 +6,29 @@
 
   <section class="profile-hero">
     <div class="avatar">
-      <i class="fa-solid fa-user"></i>
+      <#if user.profileImageUrl?? && user.profileImageUrl?has_content>
+        <img src="${user.profileImageUrl}" alt="Profile" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+      <#else>
+        <i class="fa-solid fa-user"></i>
+      </#if>
     </div>
 
     <div class="profile-info">
       <h1>${user.name!"User"}</h1>
       <p class="muted">${user.email!"No email on file"}</p>
 
+      <#if user.location?? && user.location?has_content>
+        <p class="muted"><i class="fa-solid fa-location-dot"></i> ${user.location}</p>
+      </#if>
+
+      <#if user.bio?? && user.bio?has_content>
+        <p style="margin-top:8px; color:#fff;">${user.bio}</p>
+      </#if>
+
       <div class="pill-row">
         <span class="pill"><i class="fa-solid fa-shield"></i> Verified account</span>
         <span class="pill"><i class="fa-solid fa-bag-shopping"></i> Buyer account</span>
       </div>
-    </div>
-
-    <div class="profile-actions">
-      <a class="btn btn-ghost" href="/users/profile/edit">
-        <i class="fa-solid fa-gear"></i> Edit Profile
-      </a>
     </div>
   </section>
 
@@ -41,6 +47,10 @@
         <div class="row">
           <span class="label">Email</span>
           <span class="value">${user.email!"—"}</span>
+        </div>
+        <div class="row">
+          <span class="label">Location</span>
+          <span class="value">${user.location!"—"}</span>
         </div>
         <div class="row">
           <span class="label">Member Since</span>
@@ -64,8 +74,8 @@
           <div class="stat-label">Wishlist</div>
         </div>
         <div class="stat">
-          <div class="stat-num">${downloadsCount!0}</div>
-          <div class="stat-label">Downloads</div>
+          <div class="stat-num">${uploadsCount!0}</div>
+          <div class="stat-label">Uploads</div>
         </div>
       </div>
     </div>
@@ -208,7 +218,7 @@
                   </a>
                   <form action="/assets/${a.id}/wishlist/remove" method="post" style="display:inline;">
                     <button class="icon-btn" type="submit" title="Remove from Wishlist">
-                      <i class="fa-regular fa-heart"></i>
+                      <i class="fa-solid fa-heart" style="color:var(--accent);"></i>
                     </button>
                   </form>
                 <#else>

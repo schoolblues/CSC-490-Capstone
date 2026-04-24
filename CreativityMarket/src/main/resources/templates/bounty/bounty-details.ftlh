@@ -1,81 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${bounty.title} — Bounty Details</title>
-  <link rel="stylesheet" href="/css/homepage.css">
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
+<#import "/fragments/layout.ftlh" as layout>
 
-  <nav class="navbar">
-    <div class="navbar-left">
-        <h1 class="navbar-title">Creativity Market</h1>
-        <ul class="navbar-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/users/home">Profile</a></li>
-            <li><a href="/assets/explore">Categories</a></li>
-            <li><a href="/assets/cart">Cart</a></li>
-            <li><a href="/signin">Signin</a></li>
-            <li><a href="/bounties">Bounties</a></li>
-            <li><a href="/upload">Upload</a></li>
-        </ul>
-    </div>
-    <div class="navbar-right">
-        <input type="text" class="search-bar" placeholder="Search the store">
-        <button class="search-button">
-            <img src="/images/glass.png" alt="Search" class="search-icon">
-        </button>
-    </div>
-  </nav>
+<@layout.main>
 
-  <div class="container" style="max-width:800px; margin:40px auto; padding:0 20px;">
+<main class="container">
 
-    <a href="/bounties" style="display:inline-block; margin-bottom:20px;">&larr; Back to Bounties</a>
-
-    <div class="card" style="padding:30px; border-radius:8px; border:1px solid #ddd;">
-
-      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-        <h1 style="margin:0 0 10px;">${bounty.title}</h1>
-        <span class="status-badge status-${bounty.status?lower_case}">${bounty.status}</span>
-      </div>
-
-      <div class="price" style="font-size:1.4rem; margin:12px 0;">
-        Reward: $${bounty.reward?string["#.##"]}
-      </div>
-
-      <hr style="margin:20px 0;">
-
-      <h3>Description</h3>
-      <p>${bounty.description}</p>
-
-      <hr style="margin:20px 0;">
-
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:0.9rem; color:#555;">
-        <div><b>Posted by:</b> User #${bounty.createdBy}</div>
-        <div><b>Posted:</b> ${bounty.createdAt?string["yyyy-MM-dd"]}</div>
-        <#if bounty.assignedTo??>
-          <div><b>Assigned to:</b> User #${bounty.assignedTo}</div>
-        </#if>
-        <div><b>Status:</b> ${bounty.status}</div>
-      </div>
-
-      <#if bounty.status == "OPEN">
-        <div style="margin-top:30px;">
-          <form action="/bounties/${bounty.id}/apply" method="post">
-            <button type="submit" class="btn primary">Apply for this Bounty</button>
-          </form>
+    <section class="profile-hero">
+        <div class="avatar">
+            <i class="fa-solid fa-scroll"></i>
         </div>
-      </#if>
+        <div class="profile-info">
+            <h1>${bounty.title}</h1>
+            <p class="muted">
+                <#if bounty.createdBy??>Posted by ${bounty.createdBy.name!"Unknown"} · </#if>
+                <#if bounty.createdAt??>${bounty.createdAt?string["yyyy-MM-dd"]}</#if>
+            </p>
+            <div class="pill-row">
+                <span class="pill"><i class="fa-solid fa-circle-dollar-to-slot"></i> $${bounty.reward?string["0.00"]}</span>
+                <span class="pill"><i class="fa-solid fa-circle"></i> ${bounty.status}</span>
+            </div>
+        </div>
+        <div class="profile-actions">
+            <a class="btn btn-ghost" href="/bounties"><i class="fa-solid fa-arrow-left"></i> Back</a>
+        </div>
+    </section>
 
-    </div>
+    <section class="card table-card">
+        <div class="card-header">
+            <h2>Description</h2>
+        </div>
+        <div class="card-body">
+            <p style="color:#fff; line-height:1.6; white-space:pre-wrap;">${bounty.description}</p>
+        </div>
+    </section>
 
-  </div>
+    <section class="card table-card">
+        <div class="card-header">
+            <h2>Details</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <span class="label">Posted by</span>
+                <span class="value"><#if bounty.createdBy??>${bounty.createdBy.name!"Unknown"}<#else>—</#if></span>
+            </div>
+            <div class="row">
+                <span class="label">Posted</span>
+                <span class="value"><#if bounty.createdAt??>${bounty.createdAt?string["yyyy-MM-dd"]}</#if></span>
+            </div>
+            <#if bounty.assignedTo??>
+                <div class="row">
+                    <span class="label">Assigned to</span>
+                    <span class="value">${bounty.assignedTo.name!"—"}</span>
+                </div>
+            </#if>
+            <div class="row" style="border-bottom:none;">
+                <span class="label">Status</span>
+                <span class="value">
+                    <span class="status live">${bounty.status}</span>
+                </span>
+            </div>
 
-  <footer>
-    © 2026 CreativityMarket. All rights reserved.
-  </footer>
+            <#if bounty.status == "OPEN">
+                <form action="/bounties/${bounty.id}/apply" method="post" style="margin-top:16px;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-hand-point-up"></i> Apply for this Bounty
+                    </button>
+                </form>
+            </#if>
+        </div>
+    </section>
 
-</body>
-</html>
+</main>
+
+</@layout.main>

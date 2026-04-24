@@ -181,18 +181,18 @@ public class HomeController {
 
     private List<String[]> sampleFileTypes() {
         return List.of(
-                new String[]{"Blender",        ".blend"},
-                new String[]{"OBJ",            ".obj, .mtl"},
-                new String[]{"STL",            ".stl"},
-                new String[]{"FBX",            ".fbx"},
-                new String[]{"Unity 3D",       ".unitypackage, .prefab"},
-                new String[]{"Unreal Engine",  ".uasset"},
-                new String[]{"3DS Max",        ".max"},
-                new String[]{"Maya",           ".ma, .mb"},
-                new String[]{"Cinema 4D",      ".c4d"},
-                new String[]{"glTF",           ".gltf, .glb"},
-                new String[]{"Collada",        ".dae"},
-                new String[]{"Beth",           ".nif"}
+                new String[]{"Blender",        ".blend",                  "BLEND"},
+                new String[]{"OBJ",            ".obj, .mtl",              "OBJ"},
+                new String[]{"STL",            ".stl",                    "STL"},
+                new String[]{"FBX",            ".fbx",                    "FBX"},
+                new String[]{"Unity 3D",       ".unitypackage, .prefab",  "UNITY"},
+                new String[]{"Unreal Engine",  ".uasset",                 "UASSET"},
+                new String[]{"3DS Max",        ".max",                    "MAX"},
+                new String[]{"Maya",           ".ma, .mb",                "MA"},
+                new String[]{"Cinema 4D",      ".c4d",                    "C4D"},
+                new String[]{"glTF",           ".gltf, .glb",             "GLTF"},
+                new String[]{"Collada",        ".dae",                    "DAE"},
+                new String[]{"Beth",           ".nif",                    "NIF"}
         );
     }
 }

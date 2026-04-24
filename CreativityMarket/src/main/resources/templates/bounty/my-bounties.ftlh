@@ -2,98 +2,122 @@
 
 <@layout.main>
 
-<div class="container">
+<main class="container">
 
-  <div class="section-title">
-    <h2>My Bounties</h2>
-    <p>Track bounties you created and are working on</p>
-  </div>
-
-  <!-- CREATED BOUNTIES -->
-  <h3>Created Bounties</h3>
-
-  <div class="grid">
-
-    <#if createdBounties?? && (createdBounties?size > 0)>
-
-      <#list createdBounties as bounty>
-        <div class="card">
-
-          <div class="card-body">
-
-            <h3>${bounty.title}</h3>
-
-            <div class="meta">
-              <span>Status: ${bounty.status}</span>
-
-              <#if bounty.assignedTo??>
-                <span>Assigned</span>
-              <#else>
-                <span>Unassigned</span>
-              </#if>
-            </div>
-
-            <div class="price">
-              $${bounty.reward!0?string["#.##"]}
-            </div>
-
-            <br>
-
-            <a href="/bounties/${bounty.id}" class="btn primary">
-              View
-            </a>
-
-          </div>
+    <section class="profile-hero">
+        <div class="avatar">
+            <i class="fa-solid fa-scroll"></i>
         </div>
-      </#list>
-
-    <#else>
-      <p>You haven't created any bounties yet.</p>
-    </#if>
-
-  </div>
-
-  <br><br>
-
-  <!-- ASSIGNED BOUNTIES -->
-  <h3>Assigned Bounties</h3>
-
-  <div class="grid">
-
-    <#if assignedBounties?? && (assignedBounties?size > 0)>
-
-      <#list assignedBounties as bounty>
-        <div class="card">
-
-          <div class="card-body">
-
-            <h3>${bounty.title}</h3>
-
-            <div class="meta">
-              <span>Status: ${bounty.status}</span>
-              <span>Working On</span>
-            </div>
-
-            <div class="price">
-              $${bounty.reward!0?string["#.##"]}
-            </div>
-
-            <br>
-
-            <a href="/bounties/${bounty.id}" class="btn primary">
-              Continue Work
-            </a>
-
-          </div>
+        <div class="profile-info">
+            <h1>My Bounties</h1>
+            <p class="muted">Track bounties you created and are working on.</p>
         </div>
-      </#list>
+        <div class="profile-actions">
+            <a class="btn btn-primary" href="/bounties/new">
+                <i class="fa-solid fa-plus"></i> New Bounty
+            </a>
+            <a class="btn btn-ghost" href="/bounties">Bounty Board</a>
+        </div>
+    </section>
 
-    <#else>
-      <p>You are not assigned to any bounties yet.</p>
-    </#if>
+    <section class="card table-card">
+        <div class="card-header">
+            <h2>Created Bounties</h2>
+            <span class="tag"><#if createdBounties??>${createdBounties?size}<#else>0</#if></span>
+        </div>
 
-  </div>
+        <#if createdBounties?? && (createdBounties?size > 0)>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Reward</th>
+                            <th>Status</th>
+                            <th>Assigned</th>
+                            <th style="text-align:right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <#list createdBounties as bounty>
+                            <tr>
+                                <td class="title">${bounty.title}</td>
+                                <td>$${bounty.reward?string["0.00"]}</td>
+                                <td><span class="status live">${bounty.status}</span></td>
+                                <td>
+                                    <#if bounty.assignedTo??>
+                                        ${bounty.assignedTo.name!"Assigned"}
+                                    <#else>
+                                        <span class="muted">Unassigned</span>
+                                    </#if>
+                                </td>
+                                <td class="actions">
+                                    <a class="icon-btn" href="/bounties/${bounty.id}" title="View">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </#list>
+                    </tbody>
+                </table>
+            </div>
+        <#else>
+            <div class="empty">
+                <div class="empty-state">
+                    <i class="fa-solid fa-scroll"></i>
+                    <h3>No bounties yet</h3>
+                    <p>You haven't created any bounties.</p>
+                    <a class="btn btn-primary" href="/bounties/new">Create One</a>
+                </div>
+            </div>
+        </#if>
+    </section>
 
-</div>
+    <section class="card table-card">
+        <div class="card-header">
+            <h2>Assigned Bounties</h2>
+            <span class="tag"><#if assignedBounties??>${assignedBounties?size}<#else>0</#if></span>
+        </div>
+
+        <#if assignedBounties?? && (assignedBounties?size > 0)>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Reward</th>
+                            <th>Status</th>
+                            <th style="text-align:right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <#list assignedBounties as bounty>
+                            <tr>
+                                <td class="title">${bounty.title}</td>
+                                <td>$${bounty.reward?string["0.00"]}</td>
+                                <td><span class="status live">${bounty.status}</span></td>
+                                <td class="actions">
+                                    <a class="btn btn-primary" href="/bounties/${bounty.id}" style="padding:6px 14px; font-size:13px;">
+                                        Continue
+                                    </a>
+                                </td>
+                            </tr>
+                        </#list>
+                    </tbody>
+                </table>
+            </div>
+        <#else>
+            <div class="empty">
+                <div class="empty-state">
+                    <i class="fa-regular fa-clipboard"></i>
+                    <h3>No assigned bounties</h3>
+                    <p>You aren't working on any bounties yet.</p>
+                    <a class="btn btn-primary" href="/bounties">Find a Bounty</a>
+                </div>
+            </div>
+        </#if>
+    </section>
+
+</main>
 
 </@layout.main>
