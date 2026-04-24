@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="navbar-left">
-        <a href="/" class="navbar-title<#if user?? && (user.admin || user.superAdmin)> navbar-title--admin</#if>">Creativity Market</a>
+        <a href="/" class="navbar-title<#if user?? && (user.admin || user.superAdmin)> navbar-title--admin</#if>"><#if user?? && (user.admin || user.superAdmin)>CM-Admin<#else>Creativity Market</#if></a>
         <ul class="navbar-menu">
             <#if user?? && (user.admin || user.superAdmin)>
                 <li><a href="/admin/dashboard">Dashboard</a></li>
