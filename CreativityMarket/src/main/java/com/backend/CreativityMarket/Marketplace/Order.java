@@ -38,4 +38,8 @@ public class Order {
     private OrderStatus status = OrderStatus.PENDING;
 
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    public String getFormattedDate() {
+        return createdAt != null ? createdAt.toLocalDate().toString() : "—";
+    }
 }
