@@ -23,6 +23,9 @@ public class AssetController {
 
     @GetMapping("/explore")
     public String explore(@RequestParam(value = "keyword", required = false) String keyword,
+                          @RequestParam(value = "fileType", required = false) List<String> fileTypes,
+                          @RequestParam(value = "license", required = false) List<String> licenses,
+                          @RequestParam(value = "price", required = false) List<String> prices,
                           Model model,
                           HttpSession session) {
 
@@ -35,8 +38,33 @@ public class AssetController {
                     .toList();
         }
 
+        if (fileTypes != null && !fileTypes.isEmpty()) {
+            List<String> normalised = fileTypes.stream().map(String::toUpperCase).toList();
+            assets = assets.stream()
+                    .filter(a -> a.getFileType() != null && normalised.contains(a.getFileType().toUpperCase()))
+                    .toList();
+        }
+
+        if (licenses != null && !licenses.isEmpty()) {
+            List<String> normalised = licenses.stream().map(String::toLowerCase).toList();
+            assets = assets.stream()
+                    .filter(a -> a.getLicense() != null && normalised.contains(a.getLicense().toLowerCase()))
+                    .toList();
+        }
+
+        if (prices != null && !prices.isEmpty()) {
+            boolean wantFree = prices.contains("free");
+            boolean wantPaid = prices.contains("paid");
+            assets = assets.stream()
+                    .filter(a -> (wantFree && a.getPrice() == 0) || (wantPaid && a.getPrice() > 0))
+                    .toList();
+        }
+
         model.addAttribute("assets", assets);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("selectedFileTypes", fileTypes != null ? fileTypes : List.of());
+        model.addAttribute("selectedLicenses", licenses != null ? licenses : List.of());
+        model.addAttribute("selectedPrices", prices != null ? prices : List.of());
 
         return "user/explore";
     }

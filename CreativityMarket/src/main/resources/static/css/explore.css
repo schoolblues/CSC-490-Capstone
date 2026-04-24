@@ -1,7 +1,7 @@
 .explore-layout {
     display: flex;
     gap: 20px;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .filter-sidebar {
@@ -11,8 +11,7 @@
     border-radius: 4px;
     box-shadow: var(--shadow);
     padding: 18px 16px;
-    position: sticky;
-    top: 20px;
+    align-self: stretch;
 }
 
 .filter-sidebar h3 {

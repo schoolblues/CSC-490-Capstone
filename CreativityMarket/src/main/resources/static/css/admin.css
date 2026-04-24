@@ -4,47 +4,54 @@
 }
 
 /* =========================
-   SIDEBAR (fixed left)
+   SIDEBAR (fixed bottom)
 ========================= */
 .admin-sidebar {
-  width: 220px;
-  background: #271738;
-  border-right: 1px solid #3d2a50;
-
-  padding: 16px;
-
   position: fixed;
-  left: 0;
-  top: 0;
   bottom: 0;
-
-  overflow-y: auto;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: #271738;
+  border-top: 1px solid #3d2a50;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  z-index: 1000;
 }
 
 .admin-sidebar h3 {
   color: white;
-  margin-bottom: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin: 0;
+  padding-right: 16px;
+  border-right: 1px solid #3d2a50;
 }
 
 .admin-sidebar a {
-  display: block;
   color: #b0b8c1;
-  margin: 10px 0;
+  padding: 6px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
   transition: 0.15s ease;
 }
 
 .admin-sidebar a:hover {
   color: white;
-  transform: translateX(2px);
+  background: #3d2a50;
 }
 
 /* =========================
    MAIN CONTENT
 ========================= */
 .admin-content {
-  margin-left: 220px;
+  margin-left: 0;
   padding: 24px;
-  width: calc(100% - 220px);
+  width: 100%;
+  padding-bottom: 76px;
 }
 
 /* =========================
