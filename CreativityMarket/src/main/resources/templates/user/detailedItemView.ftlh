@@ -5,6 +5,7 @@
     extraScripts='<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script><script src="/js/sketchfabscripts.js"></script>'>
 
     <div class="item-view-container">
+        <div class="left-column">
         <div class="gallery-section">
             <div class="main-image-container">
                 <iframe
@@ -32,8 +33,9 @@
                     <img src="/images/right.webp" alt="Next" class="thumb-nav-icon">
                 </button>
             </div>
+        </div>
 
-            <section class="card table-card" id="reviews" style="margin-top:24px;">
+        <section class="card table-card" id="reviews">
                 <div class="card-header">
                     <h2>Reviews</h2>
                     <span class="tag">
@@ -107,8 +109,7 @@
                     </#if>
 
                 </div>
-            </section>
-
+        </section>
         </div>
 
         <div class="product-info-panel">
@@ -131,18 +132,29 @@
 
             <div class="license-section">
                 <label class="license-label">License</label>
-                <div class="license-dropdown">
-                    <span class="license-text">Select a License</span>
-                    <img src="/images/arrow.svg" alt="dropdown" class="dropdown-arrow">
-                </div>
+                <select class="license-dropdown" style="width:100%; color:#fff; font-size:14px; outline:none;">
+                    <option>${(asset.license)!'Standard'}</option>
+                </select>
             </div>
 
             <button class="btn-buy">Buy now</button>
             <div class="cart-wishlist-row">
-                <button class="btn-cart">Add to cart</button>
-                <button class="btn-wishlist">
-                    <img src="/images/heart.png" alt="wishlist" class="wishlist-icon">
-                </button>
+                <form method="post" action="/assets/${asset.id}/cart" style="display:contents;">
+                    <button type="submit" class="btn-cart">Add to cart</button>
+                </form>
+                <#if inWishlist?? && inWishlist>
+                    <form method="post" action="/assets/${asset.id}/wishlist/remove" style="display:contents;">
+                        <button type="submit" class="btn btn-primary btn-wishlist" title="Remove from Wishlist">
+                            <img src="/images/heart.png" alt="wishlist" class="wishlist-icon">
+                        </button>
+                    </form>
+                <#else>
+                    <form method="post" action="/assets/${asset.id}/wishlist" style="display:contents;">
+                        <button type="submit" class="btn btn-primary btn-wishlist" title="Add to Wishlist">
+                            <img src="/images/heart.png" alt="wishlist" class="wishlist-icon">
+                        </button>
+                    </form>
+                </#if>
             </div>
 
             <div class="formats-section">
@@ -150,12 +162,6 @@
                 <div class="format-icons">
                     <span class="format-badge">${(asset.fileType)!'—'}</span>
                 </div>
-            </div>
-
-            <div class="creator-actions">
-                <button class="creator-action-btn">Commission</button>
-                <button class="creator-action-btn">Message</button>
-                <button class="creator-action-btn">Follow</button>
             </div>
 
             <div class="details-section">
@@ -173,7 +179,6 @@
                     <span class="detail-value"><#if asset?? && asset.allowsAiUsage>Yes<#else>No</#if> <span class="info-icon"></span></span>
                 </div>
                 <div class="share-report-row">
-                    <button class="share-btn">Share</button>
                     <#if asset.creator??>
                         <button class="report-btn" onclick="document.getElementById('report-modal').style.display='flex'">Report</button>
                     </#if>

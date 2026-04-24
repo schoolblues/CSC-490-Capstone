@@ -1,21 +1,18 @@
 <nav class="navbar">
     <div class="navbar-left">
         <a href="/" class="navbar-title<#if user?? && (user.admin || user.superAdmin)> navbar-title--admin</#if>"><#if user?? && (user.admin || user.superAdmin)>CM-Admin<#else>Creativity Market</#if></a>
+        <#if user?? && (user.admin || user.superAdmin)>
         <ul class="navbar-menu">
-            <#if user?? && (user.admin || user.superAdmin)>
-                <li><a href="/admin/dashboard">Dashboard</a></li>
-                <li><a href="/admin/moderation">Moderation</a></li>
-                <li><a href="/admin/reviews">Reviews</a></li>
-                <li><a href="/admin/users">Users</a></li>
-                <li><a href="/admin/assets">Assets</a></li>
-                <li><a href="/admin/bounties">Bounties</a></li>
-                <li><a href="/admin/categories">Categories</a></li>
-                <li><a href="/admin/logs">Logs</a></li>
-            <#else>
-                <li><a href="/assets/explore">Categories</a></li>
-                <li><a href="/bounties">Bounties</a></li>
-            </#if>
+            <li><a href="/admin/dashboard">Dashboard</a></li>
+            <li><a href="/admin/moderation">Moderation</a></li>
+            <li><a href="/admin/reviews">Reviews</a></li>
+            <li><a href="/admin/users">Users</a></li>
+            <li><a href="/admin/assets">Assets</a></li>
+            <li><a href="/admin/bounties">Bounties</a></li>
+            <li><a href="/admin/categories">Categories</a></li>
+            <li><a href="/admin/logs">Logs</a></li>
         </ul>
+        </#if>
     </div>
     <div class="navbar-right">
         <form method="get" action="/assets/explore" style="display:flex; flex:1; gap:8px; min-width:0;">
@@ -24,6 +21,20 @@
                 <img src="/images/glass.png" alt="Search" class="search-icon">
             </button>
         </form>
+
+        <#if !(user?? && (user.admin || user.superAdmin))>
+            <div class="nav-divider"></div>
+            <a href="/assets/explore" class="nav-text-link">Categories</a>
+            <a href="/bounties" class="nav-text-link">Bounties</a>
+        </#if>
+
+        <a href="/cart" class="nav-cart-btn" aria-label="Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <a href="/upload" class="nav-cart-btn" aria-label="Upload a Model">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+        </a>
 
         <#if user??>
             <div class="nav-dropdown-wrap">
@@ -41,10 +52,10 @@
                     </div>
                     <div class="nav-dropdown-divider"></div>
                     <a href="/users/home"><i class="fa-solid fa-user"></i> My Profile</a>
-                    <a href="/upload/my"><i class="fa-solid fa-cubes"></i> My Uploads</a>
                     <a href="/upload"><i class="fa-solid fa-cloud-arrow-up"></i> Upload a Model</a>
-                    <a href="/cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+                    <a href="/upload/my"><i class="fa-solid fa-cubes"></i> My Models</a>
                     <a href="/bounties/me"><i class="fa-solid fa-scroll"></i> My Bounties</a>
+                    <a href="/cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
                     <a href="/users/account"><i class="fa-solid fa-gear"></i> Account Settings</a>
                     <div class="nav-dropdown-divider"></div>
                     <a href="/users/logout" class="nav-dropdown-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>

@@ -1,7 +1,6 @@
 package com.backend.CreativityMarket.Marketplace;
 
 import com.backend.CreativityMarket.User.User;
-import com.backend.CreativityMarket.User.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,16 +16,20 @@ public class CheckoutController {
 
     private final CartService cartService;
     private final OrderService orderService;
-    private final UserService userService;
+
+    private User getUser(HttpSession session) {
+        Object obj = session.getAttribute("user");
+        if (obj instanceof User u && u.getId() != null) return u;
+        return null;
+    }
 
     // 🔹 Step 1: Show checkout page
     @GetMapping
     public String checkoutPage(HttpSession session, Model model) {
 
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId == null) {return "redirect:/signin";}
+        User user = getUser(session);
+        if (user == null) return "redirect:/signin";
 
-        User user = userService.getUserById(userId);
         List<CartItem> items = cartService.getCartItemsByUser(user);
 
         double subtotal = cartService.calculateCartTotal(user);
@@ -42,12 +45,8 @@ public class CheckoutController {
     @PostMapping("/create")
     public String createOrder(HttpSession session) {
 
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId == null) {
-            return "redirect:/signin";
-        }
-
-        User user = userService.getUserById(userId);
+        User user = getUser(session);
+        if (user == null) return "redirect:/signin";
 
         Order order = orderService.createOrderFromCart(user);
 

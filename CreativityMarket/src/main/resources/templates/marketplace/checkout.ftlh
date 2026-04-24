@@ -13,7 +13,7 @@
             <p class="muted">Review your order before confirming.</p>
         </div>
         <div class="profile-actions">
-            <a class="btn btn-ghost" href="/cart">
+            <a class="btn btn-primary" href="/cart">
                 <i class="fa-solid fa-arrow-left"></i> Back to Cart
             </a>
         </div>
@@ -21,7 +21,7 @@
 
     <div class="two-col">
 
-        <section class="card table-card">
+        <section class="card table-card" style="margin-top:0;">
             <div class="card-header">
                 <h2>Items</h2>
             </div>
@@ -58,18 +58,18 @@
             </#if>
         </section>
 
-        <aside class="card">
+        <aside class="card" style="display:flex; flex-direction:column;">
             <div class="card-header">
                 <h2>Summary</h2>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="flex:1; display:flex; flex-direction:column;">
                 <div class="row">
                     <span class="label">Subtotal</span>
                     <span class="value">$${subtotal?string["0.00"]}</span>
                 </div>
-                <div class="row" style="border-bottom:none;">
+                <div class="row" style="border-bottom:none; margin-top:auto;">
                     <span class="label" style="color:var(--text);">Total</span>
-                    <span class="value" style="color:var(--accent); font-size:1.1rem;">$${subtotal?string["0.00"]}</span>
+                    <span class="value" style="font-size:1.1rem;">$${subtotal?string["0.00"]}</span>
                 </div>
 
                 <#if items?has_content>
