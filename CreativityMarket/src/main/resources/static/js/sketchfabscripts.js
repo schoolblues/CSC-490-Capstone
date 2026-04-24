@@ -100,6 +100,24 @@
         fetchAndSwapThumbnail(img.dataset.uid, img, null);
     });
 
+    var tabButtons = document.querySelectorAll('.tabs .tab[data-tab]');
+    if (tabButtons.length > 0) {
+        tabButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                tabButtons.forEach(function (t) { t.classList.remove('active'); });
+                btn.classList.add('active');
+                var target = 'tab-' + btn.dataset.tab;
+                document.querySelectorAll('.item-list[id^="tab-"]').forEach(function (list) {
+                    list.style.display = list.id === target ? 'flex' : 'none';
+                });
+                var pIframe = document.querySelector('#preview-panel iframe');
+                var pThumb  = document.getElementById('preview-thumbnail');
+                if (pIframe) { pIframe.style.display = 'none'; pIframe.src = ''; }
+                if (pThumb)  { pThumb.style.display = 'none'; }
+            });
+        });
+    }
+
     var previewPanel = document.getElementById('preview-panel');
     if (previewPanel) {
         var previewIframe = previewPanel.querySelector('iframe');

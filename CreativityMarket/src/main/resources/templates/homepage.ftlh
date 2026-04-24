@@ -30,46 +30,45 @@
         </button>
     </div>
 
+    <#macro itemList items>
+        <#if items?? && (items?size > 0)>
+            <#list items as item>
+                <#assign thumb = (item.thumbnailUrl?has_content)?then(item.thumbnailUrl, '/images/apple.png')>
+                <a href="/asset/${(item.id)!''}" class="item-row" data-uid="${(item.sketchfabUid)!''}" data-thumbnail="${thumb}" style="text-decoration:none;color:inherit;">
+                    <img src="${thumb}" alt="Item" class="item-thumbnail">
+                    <div class="item-info">
+                        <h3 class="item-title">${(item.title)!'Untitled'}</h3>
+                        <div class="item-tags">
+                            <#if item.tags?? && item.tags?has_content>
+                                <#list item.tags?split(",") as t>
+                                    <span class="tag">${t?trim}</span>
+                                </#list>
+                            </#if>
+                        </div>
+                    </div>
+                    <div class="item-price">${(item.price == 0)?then('Free', (item.formattedPrice)!'$0.00')}</div>
+                </a>
+            </#list>
+        <#else>
+            <div class="tab-empty">No items to display</div>
+        </#if>
+    </#macro>
+
     <div class="item-section-container">
         <div class="item-section">
             <div class="tabs">
-                <button class="tab active">New Models</button>
-                <button class="tab">Trending Models</button>
-                <button class="tab">Trending Free Models</button>
+                <button class="tab active" data-tab="new">New Models</button>
+                <button class="tab" data-tab="trending">Trending Models</button>
+                <button class="tab" data-tab="trending-free">Trending Free Models</button>
             </div>
-            <div class="item-list">
-                <#if newAssets?? && (newAssets?size > 0)>
-                    <#list newAssets as item>
-                        <#assign thumb = (item.thumbnailUrl?has_content)?then(item.thumbnailUrl, '/images/apple.png')>
-                        <a href="/asset/${(item.id)!''}" class="item-row" data-uid="${(item.sketchfabUid)!''}" data-thumbnail="${thumb}" style="text-decoration:none;color:inherit;">
-                            <img src="${thumb}" alt="Item" class="item-thumbnail">
-                            <div class="item-info">
-                                <h3 class="item-title">${(item.title)!'Untitled'}</h3>
-                                <div class="item-tags">
-                                    <#if item.tags?? && item.tags?has_content>
-                                        <#list item.tags?split(",") as t>
-                                            <span class="tag">${t?trim}</span>
-                                        </#list>
-                                    </#if>
-                                </div>
-                            </div>
-                            <div class="item-price">${(item.formattedPrice)!'$0.00'}</div>
-                        </a>
-                    </#list>
-                <#else>
-                    <div class="item-row" data-uid="dGUVoNVSMYpGGkpuCo5jFMnGqTI">
-                        <img src="/images/apple.png" alt="Item" class="item-thumbnail">
-                        <div class="item-info">
-                            <h3 class="item-title">Sample Item One</h3>
-                            <div class="item-tags">
-                                <span class="tag">Art</span>
-                                <span class="tag">Digital</span>
-                                <span class="tag">Creative</span>
-                            </div>
-                        </div>
-                        <div class="item-price">$9.99</div>
-                    </div>
-                </#if>
+            <div class="item-list" id="tab-new">
+                <@itemList items=newAssets![] />
+            </div>
+            <div class="item-list" id="tab-trending" style="display:none;">
+                <@itemList items=trendingAssets![] />
+            </div>
+            <div class="item-list" id="tab-trending-free" style="display:none;">
+                <@itemList items=trendingFreeAssets![] />
             </div>
         </div>
         <div class="preview-panel" id="preview-panel">

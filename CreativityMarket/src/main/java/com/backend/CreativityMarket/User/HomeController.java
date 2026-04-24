@@ -27,6 +27,15 @@ public class HomeController {
         model.addAttribute("featuredAssets", assets);
         model.addAttribute("newAssets", assets);
 
+        List<Asset> trendingAssets = dbAssets.isEmpty()
+                ? sampleAssets().stream().filter(a -> a.getPrice() > 0).toList()
+                : dbAssets.stream().filter(a -> a.getPrice() > 0).toList();
+        List<Asset> trendingFreeAssets = dbAssets.isEmpty()
+                ? List.of()
+                : dbAssets.stream().filter(a -> a.getPrice() == 0).toList();
+        model.addAttribute("trendingAssets", trendingAssets);
+        model.addAttribute("trendingFreeAssets", trendingFreeAssets);
+
         List<com.backend.CreativityMarket.Marketplace.Category> dbCategories = categoryService.getAllCategories();
         List<Category> categories = dbCategories.isEmpty()
                 ? sampleCategories()
