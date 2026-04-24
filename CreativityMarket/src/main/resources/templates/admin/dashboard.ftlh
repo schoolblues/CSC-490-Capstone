@@ -6,21 +6,42 @@
 
     <h1 class="mb-4">Dashboard</h1>
 
+    <!-- STAT CARDS -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;" class="mb-4">
+        <div class="panel" style="text-align:center;">
+            <div style="font-size:36px; font-weight:700; color:#ab68f3;">${userCount}</div>
+            <div style="color:#b0b8c1; font-size:13px; margin-top:6px;">Total Users</div>
+        </div>
+        <div class="panel" style="text-align:center;">
+            <div style="font-size:36px; font-weight:700; color:#ab68f3;">${bountyCount}</div>
+            <div style="color:#b0b8c1; font-size:13px; margin-top:6px;">Total Bounties</div>
+        </div>
+        <div class="panel" style="text-align:center;">
+            <div style="font-size:36px; font-weight:700; color:#ab68f3;">${categoryCount}</div>
+            <div style="color:#b0b8c1; font-size:13px; margin-top:6px;">Categories</div>
+        </div>
+        <div class="panel" style="text-align:center;">
+            <div style="font-size:36px; font-weight:700; color:#e74c3c;">${openCases}</div>
+            <div style="color:#b0b8c1; font-size:13px; margin-top:6px;">Open Cases</div>
+        </div>
+    </div>
+
+    <!-- CHARTS -->
     <div class="admin-charts-row">
 
         <div class="panel">
-            <h2 class="mb-3">Sales This Week</h2>
-            <canvas id="chart-sales"></canvas>
+            <h2 class="mb-3">Admin Activity</h2>
+            <canvas id="chart-activity"></canvas>
         </div>
 
         <div class="panel">
-            <h2 class="mb-3">New Users</h2>
-            <canvas id="chart-users"></canvas>
+            <h2 class="mb-3">Cases by Status</h2>
+            <canvas id="chart-cases"></canvas>
         </div>
 
         <div class="panel">
-            <h2 class="mb-3">Storage Usage</h2>
-            <canvas id="chart-storage"></canvas>
+            <h2 class="mb-3">Top Actions</h2>
+            <canvas id="chart-actions"></canvas>
         </div>
 
     </div>
@@ -38,31 +59,38 @@ const chartDefaults = {
     }
 };
 
-new Chart(document.getElementById('chart-sales'), {
+new Chart(document.getElementById('chart-activity'), {
     type: 'bar',
     data: {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        datasets: [{ data: [12, 19, 7, 15, 10, 22, 18], backgroundColor: '#ab68f3' }]
+        labels: [<#list actionsPerDay as row>"${row[0]}"<#if row?has_next>, </#if></#list>],
+        datasets: [{ data: [<#list actionsPerDay as row>${row[1]}<#if row?has_next>, </#if></#list>], backgroundColor: '#ab68f3' }]
     },
     options: chartDefaults
 });
 
-new Chart(document.getElementById('chart-users'), {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-        datasets: [{ data: [30, 45, 28, 60, 52, 70], borderColor: '#ab68f3', tension: 0.4, fill: false }]
-    },
-    options: chartDefaults
-});
-
-new Chart(document.getElementById('chart-storage'), {
+new Chart(document.getElementById('chart-cases'), {
     type: 'doughnut',
     data: {
-        labels: ['Used', 'Free'],
-        datasets: [{ data: [70, 30], backgroundColor: ['#ab68f3', '#3d2a50'] }]
+        labels: [<#list caseStatusData as row>"${row[0]}"<#if row?has_next>, </#if></#list>],
+        datasets: [{
+            data: [<#list caseStatusData as row>${row[1]}<#if row?has_next>, </#if></#list>],
+            backgroundColor: ['#ab68f3', '#27ae60', '#e8954a', '#c0392b']
+        }]
     },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#b0b8c1' } } } }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#b0b8c1' } } }
+    }
+});
+
+new Chart(document.getElementById('chart-actions'), {
+    type: 'bar',
+    data: {
+        labels: [<#list topActions as row>"${row[0]}"<#if row?has_next>, </#if></#list>],
+        datasets: [{ data: [<#list topActions as row>${row[1]}<#if row?has_next>, </#if></#list>], backgroundColor: '#ab68f3' }]
+    },
+    options: chartDefaults
 });
 </script>
 
