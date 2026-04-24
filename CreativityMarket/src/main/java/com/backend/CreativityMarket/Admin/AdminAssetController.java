@@ -65,9 +65,15 @@ public class AdminAssetController {
     }
 
     @PostMapping("/new")
-    public String createAsset(@ModelAttribute Asset asset, HttpSession session) {
+    public String createAsset(@ModelAttribute Asset asset,
+                              @RequestParam(value = "categoryId", required = false) Long categoryId,
+                              HttpSession session) {
 
         User requester = getAdmin(session);
+
+        if (categoryId != null) {
+            asset.setCategoryEntity(categoryService.getCategoryById(categoryId));
+        }
 
         adminService.createAsset(asset, requester);
 
@@ -95,11 +101,15 @@ public class AdminAssetController {
     @PostMapping("/edit/{id}")
     public String updateAsset(@PathVariable Long id,
                               @ModelAttribute Asset asset,
+                              @RequestParam(value = "categoryId", required = false) Long categoryId,
                               HttpSession session) {
 
         User requester = getAdmin(session);
 
         asset.setId(id);
+        if (categoryId != null) {
+            asset.setCategoryEntity(categoryService.getCategoryById(categoryId));
+        }
         adminService.updateAsset(asset, requester);
 
         return "redirect:/admin/assets";

@@ -13,7 +13,7 @@
             <#if featuredAssets?? && (featuredAssets?size > 0)>
                 <#list featuredAssets as fa>
                     <div class="diagonal-stripe">
-                        <img src="${(fa.thumbnailUrl)!'/images/apple.png'}" alt="Featured ${fa?index + 1}" class="stripe-image">
+                        <img src="${(fa.thumbnailUrl?has_content)?then(fa.thumbnailUrl, '/images/apple.png')}" alt="Featured ${fa?index + 1}" class="stripe-image" data-uid="${(fa.sketchfabUid)!''}">
                     </div>
                 </#list>
                 <div class="diagonal-stripe"></div>
@@ -40,8 +40,9 @@
             <div class="item-list">
                 <#if newAssets?? && (newAssets?size > 0)>
                     <#list newAssets as item>
-                        <a href="/asset/${(item.id)!''}" class="item-row" data-uid="${(item.sketchfabUid)!''}" style="text-decoration:none;color:inherit;">
-                            <img src="${(item.thumbnailUrl)!'/images/apple.png'}" alt="Item" class="item-thumbnail">
+                        <#assign thumb = (item.thumbnailUrl?has_content)?then(item.thumbnailUrl, '/images/apple.png')>
+                        <a href="/asset/${(item.id)!''}" class="item-row" data-uid="${(item.sketchfabUid)!''}" data-thumbnail="${thumb}" style="text-decoration:none;color:inherit;">
+                            <img src="${thumb}" alt="Item" class="item-thumbnail">
                             <div class="item-info">
                                 <h3 class="item-title">${(item.title)!'Untitled'}</h3>
                                 <div class="item-tags">
@@ -78,8 +79,10 @@
                 allowfullscreen
                 mozallowfullscreen="true"
                 webkitallowfullscreen="true"
-                title="3D Preview">
+                title="3D Preview"
+                style="display:none;">
             </iframe>
+            <img id="preview-thumbnail" src="" alt="Preview" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:8px;">
         </div>
     </div>
 
@@ -93,11 +96,12 @@
                     </div>
                     <div class="category-images">
                         <div class="category-main">
-                            <img src="${(cat.mainImageUrl)!'/images/apple.png'}" alt="Main" class="category-img">
+                            <img src="${(cat.mainImageUrl?has_content)?then(cat.mainImageUrl, '/images/apple.png')}" alt="Main" class="category-img" data-uid="${(cat.mainImageUid)!''}">
                         </div>
                         <#if cat.previewImageUrls??>
                             <#list cat.previewImageUrls as pi>
-                                <img src="${pi}" alt="Preview ${pi?index + 1}" class="category-img">
+                                <#assign piUid = (cat.previewImageUids?? && (cat.previewImageUids?size > pi?index))?then(cat.previewImageUids[pi?index], '')>
+                                <img src="${(pi?has_content)?then(pi, '/images/apple.png')}" alt="Preview ${pi?index + 1}" class="category-img" data-uid="${piUid}">
                             </#list>
                         </#if>
                     </div>

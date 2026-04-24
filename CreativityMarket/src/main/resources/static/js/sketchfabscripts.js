@@ -70,18 +70,63 @@
         }
     }
 
+    function fetchAndSwapThumbnail(uid, imgEl, onSwap) {
+        if (!uid || uid.trim() === '' || !imgEl) return;
+        fetch('https://api.sketchfab.com/v3/models/' + uid)
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                var images = data.thumbnails && data.thumbnails.images;
+                if (!images || images.length === 0) return;
+                var best = images.reduce(function (a, b) { return b.width > a.width ? b : a; });
+                if (best && best.url) {
+                    imgEl.src = best.url;
+                    if (onSwap) onSwap(best.url);
+                }
+            })
+            .catch(function () {});
+    }
+
+    document.querySelectorAll('.item-row[data-uid]').forEach(function (row) {
+        fetchAndSwapThumbnail(row.dataset.uid, row.querySelector('.item-thumbnail'), function (url) {
+            row.dataset.thumbnail = url;
+        });
+    });
+
+    document.querySelectorAll('.stripe-image[data-uid]').forEach(function (img) {
+        fetchAndSwapThumbnail(img.dataset.uid, img, null);
+    });
+
+    document.querySelectorAll('.category-img[data-uid]').forEach(function (img) {
+        fetchAndSwapThumbnail(img.dataset.uid, img, null);
+    });
+
     var previewPanel = document.getElementById('preview-panel');
     if (previewPanel) {
         var previewIframe = previewPanel.querySelector('iframe');
+        var previewThumb = document.getElementById('preview-thumbnail');
         var activeUid = null;
 
-        document.querySelectorAll('.item-row[data-uid]').forEach(function (row) {
+        document.querySelectorAll('.item-row').forEach(function (row) {
             row.addEventListener('mouseenter', function () {
                 var uid = row.dataset.uid;
-                if (uid === activeUid) return;
-                activeUid = uid;
-                previewIframe.src = '';
-                initViewer(previewIframe, uid);
+                var thumbnail = row.dataset.thumbnail;
+
+                if (uid && uid.trim() !== '') {
+                    if (uid === activeUid) return;
+                    activeUid = uid;
+                    if (previewThumb) previewThumb.style.display = 'none';
+                    previewIframe.style.display = 'block';
+                    previewIframe.src = '';
+                    initViewer(previewIframe, uid);
+                } else {
+                    activeUid = null;
+                    previewIframe.style.display = 'none';
+                    previewIframe.src = '';
+                    if (previewThumb && thumbnail) {
+                        previewThumb.src = thumbnail;
+                        previewThumb.style.display = 'block';
+                    }
+                }
             });
         });
     }
