@@ -92,6 +92,11 @@ async function openEditAsset(id) {
             cat.value = asset.categoryId;
         }
 
+        const creator = form.querySelector('select[name="creatorId"]');
+        if (creator && asset.creatorUserId) {
+            creator.value = asset.creatorUserId;
+        }
+
         const modalEl = document.getElementById('assetModal');
         if (modalEl && window.bootstrap) {
             new bootstrap.Modal(modalEl).show();
