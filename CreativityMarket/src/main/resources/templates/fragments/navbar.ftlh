@@ -10,7 +10,7 @@
                 <li><a href="/admin/bounties">Bounties</a></li>
                 <li><a href="/admin/categories">Categories</a></li>
                 <li><a href="/admin/logs">Logs</a></li>
-                <li><a href="/users/logout">Logout</a></li>
+<li><a href="/users/logout">Logout</a></li>
             <#else>
                 <#if user??>
                     <li><a href="/users/home">Profile</a></li>
