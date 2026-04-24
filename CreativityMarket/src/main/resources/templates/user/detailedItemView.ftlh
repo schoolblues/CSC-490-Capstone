@@ -132,18 +132,29 @@
 
             <div class="license-section">
                 <label class="license-label">License</label>
-                <div class="license-dropdown">
-                    <span class="license-text">Select a License</span>
-                    <img src="/images/arrow.svg" alt="dropdown" class="dropdown-arrow">
-                </div>
+                <select class="license-dropdown" style="width:100%; color:#fff; font-size:14px; outline:none;">
+                    <option>${(asset.license)!'Standard'}</option>
+                </select>
             </div>
 
             <button class="btn-buy">Buy now</button>
             <div class="cart-wishlist-row">
-                <button class="btn-cart">Add to cart</button>
-                <button class="btn-wishlist">
-                    <img src="/images/heart.png" alt="wishlist" class="wishlist-icon">
-                </button>
+                <form method="post" action="/assets/${asset.id}/cart" style="display:contents;">
+                    <button type="submit" class="btn-cart">Add to cart</button>
+                </form>
+                <#if inWishlist?? && inWishlist>
+                    <form method="post" action="/assets/${asset.id}/wishlist/remove" style="display:contents;">
+                        <button type="submit" class="btn btn-primary btn-wishlist" title="Remove from Wishlist">
+                            <img src="/images/heart.png" alt="wishlist" class="wishlist-icon">
+                        </button>
+                    </form>
+                <#else>
+                    <form method="post" action="/assets/${asset.id}/wishlist" style="display:contents;">
+                        <button type="submit" class="btn btn-primary btn-wishlist" title="Add to Wishlist">
+                            <img src="/images/heart.png" alt="wishlist" class="wishlist-icon">
+                        </button>
+                    </form>
+                </#if>
             </div>
 
             <div class="formats-section">

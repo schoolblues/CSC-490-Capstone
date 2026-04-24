@@ -257,7 +257,7 @@
 
 .btn-wishlist {
     width: 48px;
-    background-color: #3d2a50;
+    background-color: var(--accent);
     color: #fff;
     border: none;
     border-radius: 4px;

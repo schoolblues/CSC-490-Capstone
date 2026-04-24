@@ -109,7 +109,7 @@
                 <div class="meta" style="margin-bottom:12px;">
                   <span>${a.fileType!"—"}</span>
                   <span class="price">
-                    $<#if a.price??>${a.price?string["0.00"]}<#else>0.00</#if>
+                    <#if !a.price?? || a.price == 0>Free<#else>$${a.price?string["0.00"]}</#if>
                   </span>
                 </div>
 

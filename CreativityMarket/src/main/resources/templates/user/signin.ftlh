@@ -2,7 +2,7 @@
 
 <@layout.main>
 
-<div style="flex:1; display:flex; align-items:center; justify-content:center; padding:24px;">
+<div style="min-height:80vh; display:flex; align-items:center; justify-content:center; padding:24px;">
   <div class="panel" style="width:100%; max-width:720px; padding:80px 60px;">
     <h1 style="text-align:center; font-size:1.8rem; margin-bottom:8px; color:var(--text);">Creativity Market</h1>
     <p style="text-align:center; color:var(--muted); margin-bottom:28px;">Sign in to your account</p>

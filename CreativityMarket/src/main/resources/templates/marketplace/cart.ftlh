@@ -13,7 +13,7 @@
             <p class="muted">Review your selected assets before checkout.</p>
         </div>
         <div class="profile-actions">
-            <a class="btn btn-ghost" href="/assets/explore">
+            <a class="btn btn-primary" href="/assets/explore">
                 <i class="fa-solid fa-compass"></i> Keep Shopping
             </a>
         </div>
@@ -21,7 +21,7 @@
 
     <div class="two-col">
 
-        <section class="card table-card">
+        <section class="card table-card" style="margin-top:0;">
             <div class="card-header">
                 <h2>Items</h2>
                 <span class="tag"><#if items?has_content>${items?size}<#else>0</#if> item<#if !items?has_content || items?size != 1>s</#if></span>
@@ -53,14 +53,14 @@
                                         <form method="post" action="/cart/update/${item.id}" style="display:flex; gap:6px; align-items:center;">
                                             <input type="number" name="quantity" min="1" value="${item.quantity}"
                                                    style="width:70px; padding:6px 8px; border-radius:4px; border:1px solid var(--border); background:var(--card-dark); color:var(--text);">
-                                            <button class="icon-btn" type="submit" title="Update">
+                                            <button class="btn btn-primary" type="submit" title="Update">
                                                 <i class="fa-solid fa-rotate"></i>
                                             </button>
                                         </form>
                                     </td>
                                     <td class="actions">
                                         <form method="post" action="/cart/remove/${item.id}" style="display:inline;">
-                                            <button class="icon-btn" type="submit" title="Remove">
+                                            <button class="btn btn-primary" type="submit" title="Remove">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
@@ -82,12 +82,12 @@
             </#if>
         </section>
 
-        <aside class="card">
+        <aside class="card" style="display:flex; flex-direction:column;">
             <div class="card-header">
                 <h2>Order Summary</h2>
                 <span class="tag">Checkout</span>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="flex:1; display:flex; flex-direction:column;">
                 <div class="row">
                     <span class="label">Subtotal</span>
                     <span class="value">$${subtotal?string["0.00"]}</span>
@@ -96,9 +96,9 @@
                     <span class="label">Tax</span>
                     <span class="value">$0.00</span>
                 </div>
-                <div class="row" style="border-bottom:none;">
+                <div class="row" style="border-bottom:none; margin-top:auto;">
                     <span class="label" style="color:var(--text);">Total</span>
-                    <span class="value" style="color:var(--accent); font-size:1.1rem;">$${subtotal?string["0.00"]}</span>
+                    <span class="value" style="font-size:1.1rem;">$${subtotal?string["0.00"]}</span>
                 </div>
 
                 <#if items?has_content>

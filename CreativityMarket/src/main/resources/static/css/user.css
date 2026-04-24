@@ -308,7 +308,7 @@
 }
 
 .meta .price {
-    color: var(--accent);
+    color: var(--text);
     font-weight: 900;
 }
 
