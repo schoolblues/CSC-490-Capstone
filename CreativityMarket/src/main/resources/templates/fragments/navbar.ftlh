@@ -30,8 +30,43 @@
         <button class="search-button">
             <img src="/images/glass.png" alt="Search" class="search-icon">
         </button>
-        <#if !user??>
-            <a href="/signin" class="navbar-signin">Sign In</a>
+
+        <#if user??>
+            <div class="nav-dropdown-wrap">
+                <button class="nav-dropdown-btn" id="navDropdownBtn" aria-label="Account menu">
+                    <i class="fa-solid fa-user"></i>
+                </button>
+                <div class="nav-dropdown-menu" id="navDropdownMenu">
+                    <div class="nav-dropdown-header">
+                        <span class="nav-dropdown-name">${user.name!"User"}</span>
+                        <span class="nav-dropdown-email">${user.email!""}</span>
+                    </div>
+                    <div class="nav-dropdown-divider"></div>
+                    <a href="/users/home"><i class="fa-solid fa-user"></i> My Profile</a>
+                    <a href="/cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+                    <a href="/bounties/me"><i class="fa-solid fa-scroll"></i> My Bounties</a>
+                    <div class="nav-dropdown-divider"></div>
+                    <a href="/users/logout" class="nav-dropdown-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                </div>
+            </div>
+        <#else>
+            <a href="/signin" class="nav-login-btn">Login</a>
         </#if>
     </div>
 </nav>
+
+<script>
+(function () {
+    var btn = document.getElementById('navDropdownBtn');
+    var menu = document.getElementById('navDropdownMenu');
+    btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menu.classList.toggle('open');
+        btn.classList.toggle('active');
+    });
+    document.addEventListener('click', function () {
+        menu.classList.remove('open');
+        btn.classList.remove('active');
+    });
+}());
+</script>

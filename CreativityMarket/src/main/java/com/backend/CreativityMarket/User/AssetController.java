@@ -107,12 +107,14 @@ public class AssetController {
     }
 
     @PostMapping("/{id}/cart")
-    public String addToCart(@PathVariable Long id, HttpSession session) {
+    public String addToCart(@PathVariable Long id, HttpSession session,
+                            @RequestHeader(value = "Referer", required = false) String referer) {
         User user = (User) session.getAttribute("user");
-        if (user != null) {
-            cartService.addItem(user, id, 1);
+        if (user == null) {
+            return "redirect:/signin";
         }
-        return "redirect:/assets/" + id;
+        cartService.addItem(user, id, 1);
+        return referer != null ? "redirect:" + referer : "redirect:/assets/" + id;
     }
 
     @SuppressWarnings("unchecked")

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -17,18 +18,16 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Parent order
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     @JsonIgnoreProperties("items")
+    @EqualsAndHashCode.Exclude
     private Order order;
 
-    // Purchased asset
     @ManyToOne
     @JoinColumn(name = "asset_id", nullable = false)
     private Asset asset;
 
-    // Snapshot price at time of purchase
     @Column(nullable = false)
     private Double priceAtPurchase;
 

@@ -63,20 +63,30 @@
       <section class="grid">
         <#if assets?? && (assets?size > 0)>
           <#list assets as a>
-            <a class="card" href="/assets/${a.id}" style="text-decoration:none;">
+            <div class="card" onclick="window.location='/assets/${a.id}'" style="cursor:pointer;">
               <div class="thumb">
-                <div>
-                  <i class="fa-solid fa-cube" style="font-size:1.6rem; margin-bottom:8px; display:block;"></i>
-                  Preview
-                </div>
+                <#if a.sketchfabUid?? && a.sketchfabUid?has_content>
+                  <iframe
+                    src="https://sketchfab.com/models/${a.sketchfabUid}/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=1"
+                    loading="lazy"
+                    allow="autoplay; fullscreen; xr-spatial-tracking"
+                    allowfullscreen
+                    title="${a.title!'3D Model Preview'}">
+                  </iframe>
+                <#else>
+                  <div>
+                    <i class="fa-solid fa-cube" style="font-size:1.6rem; margin-bottom:8px; display:block;"></i>
+                    Preview
+                  </div>
+                </#if>
               </div>
 
               <div class="card-body">
                 <h3>${a.title!"Untitled"}</h3>
 
                 <p class="small" style="margin-bottom:12px;">
-                  <#if a.license?? && a.license?has_content>
-                    ${a.license}
+                  <#if a.description?? && a.description?has_content>
+                    ${a.description}
                   <#else>
                     High-quality 3D asset ready for your next project.
                   </#if>
@@ -89,7 +99,7 @@
                   </span>
                 </div>
 
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
                   <span class="tag">
                     <#if a.license?? && a.license?has_content>
                       ${a.license}
@@ -97,10 +107,14 @@
                       Standard
                     </#if>
                   </span>
-                  <span class="btn btn-ghost" style="pointer-events:none;">View Asset</span>
+                  <form action="/assets/${a.id}/cart" method="post" onclick="event.stopPropagation()">
+                    <button type="submit" class="btn btn-primary" style="padding:6px 14px; font-size:13px; font-weight:500;">
+                      <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
+                  </form>
                 </div>
               </div>
-            </a>
+            </div>
           </#list>
         <#else>
           <div class="card" style="grid-column:1 / -1;">

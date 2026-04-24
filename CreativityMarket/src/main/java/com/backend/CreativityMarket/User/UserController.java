@@ -36,7 +36,7 @@ public class UserController {
 
         List<OrderItem> purchases = new ArrayList<>();
         if (user.getId() != null) {
-            purchases = orderRepository.findByUserIdOrderByCreatedAtDesc(user.getId())
+            purchases = orderRepository.findByUserIdWithItemsOrderByCreatedAtDesc(user.getId())
                     .stream()
                     .flatMap(order -> order.getItems().stream())
                     .collect(Collectors.toList());

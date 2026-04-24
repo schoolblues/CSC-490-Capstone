@@ -1,3 +1,7 @@
+html {
+    overflow-y: scroll;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -70,17 +74,6 @@
     font-size: 14px;
 }
 
-.navbar-signin {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14px;
-    white-space: nowrap;
-    transition: color 0.2s;
-}
-
-.navbar-signin:hover {
-    color: #ffffff65;
-}
 
 .search-bar::placeholder {
     color: #ffffff;
@@ -109,6 +102,115 @@
     height: 16px;
     object-fit: contain;
     filter: brightness(0) invert(1);
+}
+
+/* ── Nav login button (logged-out state) ── */
+.nav-login-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ab68f3bb;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 10.5px 16px;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.nav-login-btn:hover {
+    background-color: #a48dcf;
+}
+
+/* ── Nav dropdown ── */
+.nav-dropdown-wrap {
+    position: relative;
+}
+
+.nav-dropdown-btn {
+    background-color: #392d46;
+    border: 1px solid #3a4a5c;
+    color: #fff;
+    padding: 10.5px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-dropdown-btn:hover,
+.nav-dropdown-btn.active {
+    background-color: #ab68f3bb;
+}
+
+.nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    background-color: #271738;
+    border: 1px solid #3a4a5c;
+    border-radius: 6px;
+    min-width: 210px;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+}
+
+.nav-dropdown-menu.open {
+    display: block;
+}
+
+.nav-dropdown-header {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.nav-dropdown-name {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-dropdown-email {
+    color: #ffffff70;
+    font-size: 12px;
+}
+
+.nav-dropdown-divider {
+    height: 1px;
+    background-color: #3a4a5c;
+    margin: 4px 0;
+}
+
+.nav-dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    color: #ffffffcc;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.nav-dropdown-menu a:hover {
+    background-color: #392d46;
+    color: #fff;
+}
+
+.nav-dropdown-danger {
+    color: #e07070 !important;
+}
+
+.nav-dropdown-danger:hover {
+    background-color: #3a1a1a !important;
 }
 
 body {

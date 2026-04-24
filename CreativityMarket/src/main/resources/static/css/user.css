@@ -5,7 +5,7 @@
     --border: #3d2a50;
     --text: #ffffff;
     --muted: #8a8a9a;
-    --accent: #ab68f3;
+    --accent: #ab68f3bb;
     --accent-hover: #9554de;
     --input-bg: #392d46;
     --input-border: #4e3d62;
@@ -289,6 +289,14 @@
     background: var(--card-dark);
     color: var(--muted);
     font-weight: 800;
+    overflow: hidden;
+}
+
+.thumb iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
 }
 
 .meta {
