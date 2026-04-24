@@ -7,7 +7,7 @@
   <section class="profile-hero">
     <div class="avatar">
       <#if user.profileImageUrl?? && user.profileImageUrl?has_content>
-        <img src="${user.profileImageUrl}" alt="Profile" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+        <img src="${user.profileImageUrl}" alt="Profile" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">
       <#else>
         <i class="fa-solid fa-user"></i>
       </#if>
@@ -86,7 +86,7 @@
     <div class="card-header">
       <h2>My Purchases</h2>
       <div class="header-actions">
-        <a class="btn btn-ghost" href="/assets/explore">
+        <a class="btn btn-primary" href="/assets/explore">
           <i class="fa-solid fa-compass"></i> Explore More
         </a>
       </div>
@@ -177,7 +177,7 @@
     <div class="card-header">
       <h2>Wishlist</h2>
       <div class="header-actions">
-        <a class="btn btn-ghost" href="/assets/explore">
+        <a class="btn btn-primary" href="/assets/explore">
           <i class="fa-regular fa-heart"></i> Browse Assets
         </a>
       </div>

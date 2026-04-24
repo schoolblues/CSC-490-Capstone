@@ -328,7 +328,7 @@
     flex-shrink: 0;
     background: var(--card-dark);
     border: 2px solid var(--border);
-    border-radius: 50%;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -343,6 +343,7 @@
 .profile-info h1 {
     font-size: 1.4rem;
     margin-bottom: 2px;
+    color: var(--text);
 }
 
 .profile-actions {

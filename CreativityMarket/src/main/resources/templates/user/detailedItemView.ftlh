@@ -5,6 +5,7 @@
     extraScripts='<script src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script><script src="/js/sketchfabscripts.js"></script>'>
 
     <div class="item-view-container">
+        <div class="left-column">
         <div class="gallery-section">
             <div class="main-image-container">
                 <iframe
@@ -32,8 +33,9 @@
                     <img src="/images/right.webp" alt="Next" class="thumb-nav-icon">
                 </button>
             </div>
+        </div>
 
-            <section class="card table-card" id="reviews" style="margin-top:24px;">
+        <section class="card table-card" id="reviews">
                 <div class="card-header">
                     <h2>Reviews</h2>
                     <span class="tag">
@@ -107,8 +109,7 @@
                     </#if>
 
                 </div>
-            </section>
-
+        </section>
         </div>
 
         <div class="product-info-panel">
@@ -152,12 +153,6 @@
                 </div>
             </div>
 
-            <div class="creator-actions">
-                <button class="creator-action-btn">Commission</button>
-                <button class="creator-action-btn">Message</button>
-                <button class="creator-action-btn">Follow</button>
-            </div>
-
             <div class="details-section">
                 <h3 class="details-title">Model Information</h3>
                 <div class="details-grid">
@@ -173,7 +168,6 @@
                     <span class="detail-value"><#if asset?? && asset.allowsAiUsage>Yes<#else>No</#if> <span class="info-icon"></span></span>
                 </div>
                 <div class="share-report-row">
-                    <button class="share-btn">Share</button>
                     <#if asset.creator??>
                         <button class="report-btn" onclick="document.getElementById('report-modal').style.display='flex'">Report</button>
                     </#if>
