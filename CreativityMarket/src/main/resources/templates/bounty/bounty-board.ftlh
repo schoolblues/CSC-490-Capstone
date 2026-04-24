@@ -48,7 +48,7 @@
                                 <td class="title">${bounty.title}</td>
                                 <td>$${bounty.reward?string["0.00"]}</td>
                                 <td><span class="status live">${bounty.status}</span></td>
-                                <td><#if bounty.createdAt??>${bounty.createdAt?string["yyyy-MM-dd"]}</#if></td>
+                                <td><#if bounty.createdAt??>${bounty.createdAt?substring(0, 10)}</#if></td>
                                 <td class="actions">
                                     <a class="btn btn-primary" href="/bounties/${bounty.id}" style="padding:6px 14px; font-size:13px;">
                                         View / Apply

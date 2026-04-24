@@ -67,7 +67,7 @@
                                 <td class="title">${bounty.title}</td>
                                 <td>$${bounty.reward?string["0.00"]}</td>
                                 <td><#if bounty.createdBy??>${bounty.createdBy.name!"Unknown"}<#else>—</#if></td>
-                                <td><#if bounty.createdAt??>${bounty.createdAt?string["yyyy-MM-dd"]}</#if></td>
+                                <td><#if bounty.createdAt??>${bounty.createdAt?substring(o, 10)}</#if></td>
                                 <td class="actions">
                                     <a class="icon-btn" href="/bounties/${bounty.id}" title="View">
                                         <i class="fa-regular fa-eye"></i>

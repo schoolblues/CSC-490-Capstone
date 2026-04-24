@@ -12,7 +12,7 @@
             <h1>${bounty.title}</h1>
             <p class="muted">
                 <#if bounty.createdBy??>Posted by ${bounty.createdBy.name!"Unknown"} · </#if>
-                <#if bounty.createdAt??>${bounty.createdAt?string["yyyy-MM-dd"]}</#if>
+                <#if bounty.createdAt??>${bounty.createdAt?substring(0, 10)}</#if>
             </p>
             <div class="pill-row">
                 <span class="pill"><i class="fa-solid fa-circle-dollar-to-slot"></i> $${bounty.reward?string["0.00"]}</span>
@@ -44,7 +44,7 @@
             </div>
             <div class="row">
                 <span class="label">Posted</span>
-                <span class="value"><#if bounty.createdAt??>${bounty.createdAt?string["yyyy-MM-dd"]}</#if></span>
+                <span class="value"><#if bounty.createdAt??>${bounty.createdAt?substring(0, 10)}</#if></span>
             </div>
             <#if bounty.assignedTo??>
                 <div class="row">
