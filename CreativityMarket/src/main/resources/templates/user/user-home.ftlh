@@ -115,10 +115,8 @@
               </td>
 
               <td>
-                <#if p.purchaseDate??>
-                  ${p.purchaseDate}
-                <#elseif p.createdAt??>
-                  ${p.createdAt}
+                <#if p.order?? && p.order.formattedDate??>
+                  ${p.order.formattedDate}
                 <#else>
                   —
                 </#if>
@@ -126,8 +124,8 @@
 
               <td>
                 <span class="status live">
-                  <#if p.asset?? && p.asset.license?? && p.asset.license.type??>
-                    ${p.asset.license.type}
+                  <#if p.asset?? && p.asset.license??>
+                    ${p.asset.license}
                   <#else>
                     Standard
                   </#if>
@@ -196,8 +194,8 @@
               <td>$<#if a.price??>${a.price?string["0.00"]}<#else>0.00</#if></td>
               <td>
                 <span class="status live">
-                  <#if a.license?? && a.license.type??>
-                    ${a.license.type}
+                  <#if a.license??>
+                    ${a.license}
                   <#else>
                     Standard
                   </#if>

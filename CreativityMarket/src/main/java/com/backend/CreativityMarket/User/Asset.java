@@ -50,6 +50,11 @@ public class Asset {
     @JsonIgnore
     private com.backend.CreativityMarket.Marketplace.Category categoryEntity;
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "creator_id")
+    @JsonIgnore
+    private User creator;
+
     public Asset() {}
 
     public Long getId() { return id; }
@@ -126,6 +131,12 @@ public class Asset {
 
     public com.backend.CreativityMarket.Marketplace.Category getCategoryEntity() { return categoryEntity; }
     public void setCategoryEntity(com.backend.CreativityMarket.Marketplace.Category categoryEntity) { this.categoryEntity = categoryEntity; }
+
+    public User getCreator() { return creator; }
+    public void setCreator(User creator) { this.creator = creator; }
+
+    @JsonProperty("creatorUserId")
+    public Long getCreatorUserId() { return creator != null ? creator.getId() : null; }
 
     @JsonProperty("categoryId")
     public Long getCategoryId() {

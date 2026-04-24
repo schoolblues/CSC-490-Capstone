@@ -19,34 +19,34 @@ public class AuditLogController {
     private final AuditLogService auditLogService;
 
     private final DateTimeFormatter formatter =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 
     @GetMapping
     public String listAllLogs(Model model) {
         List<AuditLog> logs = auditLogService.getAllLogs();
         model.addAttribute("logs", logs);
-        return "admin/auditlogs";
+        return "admin/logs";
     }
 
     @GetMapping("/admin/{adminIdFilter}")
     public String listLogsByAdmin(@PathVariable Long adminIdFilter, Model model) {
         List<AuditLog> logs = auditLogService.getLogsByAdmin(adminIdFilter);
         model.addAttribute("logs", logs);
-        return "admin/auditlogs";
+        return "admin/logs";
     }
 
     @GetMapping("/action/{action}")
     public String listLogsByAction(@PathVariable String action, Model model) {
         List<AuditLog> logs = auditLogService.getLogsByAction(AuditAction.valueOf(action.toUpperCase()));
         model.addAttribute("logs", logs);
-        return "admin/auditlogs";
+        return "admin/logs";
     }
 
     @GetMapping("/target/{entity}")
     public String listLogsByEntity(@PathVariable String entity, Model model) {
         List<AuditLog> logs = auditLogService.getLogsByEntity(EntityType.valueOf(entity.toUpperCase()));
         model.addAttribute("logs", logs);
-        return "admin/auditlogs";
+        return "admin/logs";
     }
 
     @GetMapping("/date")
@@ -57,7 +57,7 @@ public class AuditLogController {
         LocalDateTime toDate = to != null ? LocalDateTime.parse(to, formatter) : null;
         List<AuditLog> logs = auditLogService.getLogsByDateRange(fromDate, toDate);
         model.addAttribute("logs", logs);
-        return "admin/auditlogs";
+        return "admin/logs";
     }
 
     @GetMapping("/filter")
@@ -75,6 +75,6 @@ public class AuditLogController {
 
         List<AuditLog> logs = auditLogService.getFilteredLogs(adminId, auditAction, entityType, fromDate, toDate);
         model.addAttribute("logs", logs);
-        return "admin/auditlogs";
+        return "admin/logs";
     }
 }

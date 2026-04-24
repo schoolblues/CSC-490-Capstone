@@ -2,6 +2,7 @@ package com.backend.CreativityMarket.Marketplace;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,6 +24,7 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "cart_id", nullable = false)
     @JsonIgnoreProperties("items")
+    @EqualsAndHashCode.Exclude
     private Cart cart;
 
     @ManyToOne

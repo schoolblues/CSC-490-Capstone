@@ -4,6 +4,7 @@ import com.backend.CreativityMarket.Marketplace.CategoryService;
 import com.backend.CreativityMarket.User.Asset;
 import com.backend.CreativityMarket.User.AssetRepository;
 import com.backend.CreativityMarket.User.User;
+import com.backend.CreativityMarket.User.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class AdminAssetController {
     private final AdminService adminService;
     private final AssetRepository assetRepository;
     private final CategoryService categoryService;
+    private final UserRepository userRepository;
 
     // =========================
     // HELPER
@@ -45,6 +47,7 @@ public class AdminAssetController {
         model.addAttribute("assets", assetRepository.findAll());
         model.addAttribute("asset", new Asset());
         model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("users", userRepository.findAll());
 
         return "admin/assets";
     }
@@ -60,6 +63,7 @@ public class AdminAssetController {
         model.addAttribute("user", requester);
         model.addAttribute("asset", new Asset());
         model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("users", userRepository.findAll());
 
         return "admin/asset-form";
     }
@@ -74,6 +78,7 @@ public class AdminAssetController {
         if (categoryId != null) {
             asset.setCategoryEntity(categoryService.getCategoryById(categoryId));
         }
+        asset.setCreator(requester);
 
         adminService.createAsset(asset, requester);
 
@@ -94,6 +99,7 @@ public class AdminAssetController {
         model.addAttribute("user", requester);
         model.addAttribute("asset", asset);
         model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("users", userRepository.findAll());
 
         return "admin/asset-form";
     }
@@ -102,6 +108,7 @@ public class AdminAssetController {
     public String updateAsset(@PathVariable Long id,
                               @ModelAttribute Asset asset,
                               @RequestParam(value = "categoryId", required = false) Long categoryId,
+                              @RequestParam(value = "creatorId", required = false) Long creatorId,
                               HttpSession session) {
 
         User requester = getAdmin(session);
@@ -109,6 +116,9 @@ public class AdminAssetController {
         asset.setId(id);
         if (categoryId != null) {
             asset.setCategoryEntity(categoryService.getCategoryById(categoryId));
+        }
+        if (creatorId != null) {
+            asset.setCreator(userRepository.findById(creatorId).orElse(null));
         }
         adminService.updateAsset(asset, requester);
 

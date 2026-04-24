@@ -196,17 +196,4 @@ public class AdminController {
 
         return "redirect:/admin/bounties";
     }
-
-    // =========================
-    // SETTINGS
-    // =========================
-    @GetMapping("/settings")
-    public String settings(HttpSession session, Model model) {
-
-        User requester = getAdmin(session);
-
-        model.addAttribute("user", requester);
-
-        return "admin/settings";
-    }
 }

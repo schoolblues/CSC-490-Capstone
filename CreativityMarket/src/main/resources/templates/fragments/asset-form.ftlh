@@ -27,6 +27,19 @@
                name="price">
     </div>
 
+    <!-- CREATOR -->
+    <div class="col-md-6">
+        <label>Creator (User)</label>
+        <select class="form-control" name="creatorId">
+            <option value="">— None —</option>
+            <#if users??>
+                <#list users as u>
+                    <option value="${u.id}">${u.name} (${u.email})</option>
+                </#list>
+            </#if>
+        </select>
+    </div>
+
     <!-- CATEGORY -->
     <div class="col-md-4">
         <label>Category</label>

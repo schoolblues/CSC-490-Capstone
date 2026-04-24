@@ -97,10 +97,56 @@
                 </div>
                 <div class="share-report-row">
                     <button class="share-btn">Share</button>
-                    <button class="report-btn">Report</button>
+                    <#if asset.creator??>
+                        <button class="report-btn" onclick="document.getElementById('report-modal').style.display='flex'">Report</button>
+                    </#if>
                 </div>
             </div>
         </div>
     </div>
+
+<#if asset.creator??>
+<div id="report-modal" style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.65); align-items:center; justify-content:center;">
+    <div style="background:#271738; border-radius:4px; padding:24px; width:100%; max-width:460px; box-shadow:0 8px 24px rgba(0,0,0,0.6);">
+        <h3 style="color:#fff; margin-bottom:16px;">Report this asset</h3>
+        <textarea id="report-reason" placeholder="Describe the issue..." style="width:100%; padding:10px 12px; background:#392d46; border:1px solid #3d2a50; border-radius:3px; color:#fff; font-size:14px; font-family:inherit; resize:vertical; min-height:100px; box-sizing:border-box;"></textarea>
+        <div id="report-msg" style="font-size:13px; margin-top:8px; min-height:18px;"></div>
+        <div style="display:flex; gap:10px; margin-top:16px; justify-content:flex-end;">
+            <button onclick="document.getElementById('report-modal').style.display='none'" style="padding:8px 16px; background:#392d46; border:1px solid #3d2a50; border-radius:3px; color:#fff; cursor:pointer;">Cancel</button>
+            <button onclick="submitReport()" style="padding:8px 16px; background:#ab68f3; border:none; border-radius:3px; color:#fff; cursor:pointer;">Submit Report</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function submitReport() {
+    const reason = document.getElementById('report-reason').value.trim();
+    const msg = document.getElementById('report-msg');
+    if (!reason) { msg.style.color = '#e74c3c'; msg.textContent = 'Please enter a reason.'; return; }
+
+    fetch('/api/moderation/flag', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+            reportedUserId: '${asset.creator.id}',
+            type: 'ASSET',
+            entityId: '${asset.id}',
+            reason: reason
+        })
+    })
+    .then(res => {
+        if (res.ok) {
+            msg.style.color = '#27ae60';
+            msg.textContent = 'Report submitted. Thank you.';
+            setTimeout(() => { document.getElementById('report-modal').style.display = 'none'; }, 1500);
+        } else {
+            msg.style.color = '#e74c3c';
+            msg.textContent = 'Failed to submit. Are you signed in?';
+        }
+    })
+    .catch(() => { msg.style.color = '#e74c3c'; msg.textContent = 'Something went wrong.'; });
+}
+</script>
+</#if>
 
 </@layout.main>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -69,6 +70,7 @@ public class AssetController {
         return "user/explore";
     }
 
+    @SuppressWarnings("unchecked")
     @GetMapping("/{id}")
     public String asset(@PathVariable Long id, Model model, HttpSession session) {
         Asset found = assetRepository.findById(id).orElse(null);
@@ -93,25 +95,56 @@ public class AssetController {
                     .toList();
         }
 
+        List<Asset> wishlist = (List<Asset>) session.getAttribute("wishlist");
+        boolean inWishlist = wishlist != null && wishlist.stream().anyMatch(a -> a.getId().equals(id));
+
         model.addAttribute("asset", found);
         model.addAttribute("inCart", inCart);
-        model.addAttribute("inWishlist", false);
+        model.addAttribute("inWishlist", inWishlist);
         model.addAttribute("relatedAssets", relatedAssets);
 
         return "user/detailedItemView";
     }
 
     @PostMapping("/{id}/cart")
-    public String addToCart(@PathVariable Long id, HttpSession session) {
+    public String addToCart(@PathVariable Long id, HttpSession session,
+                            @RequestHeader(value = "Referer", required = false) String referer) {
         User user = (User) session.getAttribute("user");
-        if (user != null) {
-            cartService.addItem(user, id, 1);
+        if (user == null) {
+            return "redirect:/signin";
+        }
+        cartService.addItem(user, id, 1);
+        return referer != null ? "redirect:" + referer : "redirect:/assets/" + id;
+    }
+
+    @SuppressWarnings("unchecked")
+    @PostMapping("/{id}/wishlist")
+    public String addToWishlist(@PathVariable Long id, HttpSession session) {
+        Asset asset = assetRepository.findById(id).orElse(null);
+        if (asset != null) {
+            List<Asset> wishlist = (List<Asset>) session.getAttribute("wishlist");
+            if (wishlist == null) wishlist = new ArrayList<>();
+            if (wishlist.stream().noneMatch(a -> a.getId().equals(id))) {
+                wishlist.add(asset);
+            }
+            session.setAttribute("wishlist", wishlist);
         }
         return "redirect:/assets/" + id;
     }
 
-    @PostMapping("/{id}/wishlist")
-    public String addToWishlist(@PathVariable Long id) {
+    @SuppressWarnings("unchecked")
+    @PostMapping("/{id}/wishlist/remove")
+    public String removeFromWishlist(@PathVariable Long id, HttpSession session) {
+        List<Asset> wishlist = (List<Asset>) session.getAttribute("wishlist");
+        if (wishlist != null) {
+            wishlist.removeIf(a -> a.getId().equals(id));
+            session.setAttribute("wishlist", wishlist);
+        }
+        return "redirect:/users/home";
+    }
+
+    @GetMapping("/{id}/download")
+    public String downloadAsset(@PathVariable Long id) {
         return "redirect:/assets/" + id;
     }
 

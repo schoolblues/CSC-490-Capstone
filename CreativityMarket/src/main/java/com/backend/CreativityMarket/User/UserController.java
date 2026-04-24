@@ -1,5 +1,7 @@
 package com.backend.CreativityMarket.User;
 
+import com.backend.CreativityMarket.Marketplace.OrderItem;
+import com.backend.CreativityMarket.Marketplace.OrderRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
+
+    private final OrderRepository orderRepository;
+
+    public UserController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @SuppressWarnings("unchecked")
     @GetMapping("/home")
@@ -22,18 +31,15 @@ public class UserController {
         User user = (User) session.getAttribute("user");
 
         if (user == null) {
-            user = new User();
-            user.setName("User");
-            user.setEmail("No email on file");
-            user.setCreatedAt("2026-02-22");
-            user.setRole("USER");
-            session.setAttribute("user", user);
+            return "redirect:/signin";
         }
 
-        List<Asset> purchases = (List<Asset>) session.getAttribute("purchases");
-        if (purchases == null) {
-            purchases = new ArrayList<>();
-            session.setAttribute("purchases", purchases);
+        List<OrderItem> purchases = new ArrayList<>();
+        if (user.getId() != null) {
+            purchases = orderRepository.findByUserIdWithItemsOrderByCreatedAtDesc(user.getId())
+                    .stream()
+                    .flatMap(order -> order.getItems().stream())
+                    .collect(Collectors.toList());
         }
 
         List<Asset> wishlist = (List<Asset>) session.getAttribute("wishlist");
@@ -42,15 +48,12 @@ public class UserController {
             session.setAttribute("wishlist", wishlist);
         }
 
-        List<Asset> cart = (List<Asset>) session.getAttribute("cart");
-        if (cart == null) {
-            cart = new ArrayList<>();
-            session.setAttribute("cart", cart);
-        }
         model.addAttribute("user", user);
         model.addAttribute("purchases", purchases);
         model.addAttribute("wishlist", wishlist);
-        model.addAttribute("cart", cart);
+        model.addAttribute("purchasesCount", purchases.size());
+        model.addAttribute("wishlistCount", wishlist.size());
+        model.addAttribute("downloadsCount", purchases.size());
 
         return "user/user-home";
     }
