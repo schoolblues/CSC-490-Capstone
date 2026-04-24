@@ -102,14 +102,3 @@ async function openEditAsset(id) {
         alert("Failed to load asset");
     }
 }
-
-function resetAssetForm() {
-    const form = document.getElementById('assetForm');
-    if (!form) return;
-
-    form.action = '/admin/assets/new';
-    form.reset();
-
-    const idField = form.querySelector('input[name="id"]');
-    if (idField) idField.value = "";
-}

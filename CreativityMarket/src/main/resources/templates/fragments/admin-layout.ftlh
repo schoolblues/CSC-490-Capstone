@@ -19,9 +19,6 @@
 
 <div class="admin-layout">
 
-    <!-- SIDEBAR -->
-    <#include "/fragments/admin-sidebar.ftlh">
-
     <!-- MAIN CONTENT -->
     <main class="admin-content">
         <#nested>

@@ -30,6 +30,10 @@
     text-decoration: none;
 }
 
+.navbar-title--admin {
+    color: #e74c3c;
+}
+
 .navbar-menu {
     display: flex;
     list-style: none;

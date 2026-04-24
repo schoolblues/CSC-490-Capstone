@@ -7,14 +7,6 @@
 
     <h1 class="mb-4">Assets</h1>
 
-    <!-- CREATE BUTTON -->
-    <button class="btn btn-primary mb-3"
-            data-bs-toggle="modal"
-            data-bs-target="#assetModal"
-            onclick="resetAssetForm()">
-        Create Asset
-    </button>
-
     <!-- ASSET TABLE -->
     <div class="card">
         <div class="card-body">

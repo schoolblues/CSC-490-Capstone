@@ -4,54 +4,12 @@
 }
 
 /* =========================
-   SIDEBAR (fixed bottom)
-========================= */
-.admin-sidebar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 52px;
-  background: #271738;
-  border-top: 1px solid #3d2a50;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 20px;
-  z-index: 1000;
-}
-
-.admin-sidebar h3 {
-  color: white;
-  font-size: 0.85rem;
-  font-weight: 700;
-  white-space: nowrap;
-  margin: 0;
-  padding-right: 16px;
-  border-right: 1px solid #3d2a50;
-}
-
-.admin-sidebar a {
-  color: #b0b8c1;
-  padding: 6px 12px;
-  border-radius: 4px;
-  white-space: nowrap;
-  transition: 0.15s ease;
-}
-
-.admin-sidebar a:hover {
-  color: white;
-  background: #3d2a50;
-}
-
-/* =========================
    MAIN CONTENT
 ========================= */
 .admin-content {
   margin-left: 0;
   padding: 24px;
   width: 100%;
-  padding-bottom: 76px;
 }
 
 /* =========================
