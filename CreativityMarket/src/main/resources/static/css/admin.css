@@ -197,7 +197,7 @@ table:not(.table) tbody tr:hover {
 .btn-close:hover { color: #fff; }
 
 /* plain buttons (users/bounties pages use unstyled buttons) */
-button:not(.btn):not(.tab):not(.nav-button):not(.search-button) {
+button:not(.btn):not(.tab):not(.nav-button):not(.search-button):not(.nav-dropdown-btn) {
   display: inline-flex;
   align-items: center;
   padding: 5px 12px;
