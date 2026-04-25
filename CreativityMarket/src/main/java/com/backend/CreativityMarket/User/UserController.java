@@ -120,13 +120,7 @@ public class UserController {
                 String ext = (original != null && original.contains(".")) ? original.substring(original.lastIndexOf('.')) : ".png";
                 String filename = "user-" + user.getId() + "-" + System.currentTimeMillis() + ext;
 
-                Path uploadDir = Paths.get(System.getProperty("user.dir"),
-                        "CreativityMarket", "src", "main", "resources", "static", "images", "uploads");
-                if (!Files.exists(uploadDir)) {
-                    Path altDir = Paths.get(System.getProperty("user.dir"),
-                            "src", "main", "resources", "static", "images", "uploads");
-                    uploadDir = altDir;
-                }
+                Path uploadDir = Paths.get(System.getProperty("user.dir"), "uploads");
                 Files.createDirectories(uploadDir);
 
                 File dest = uploadDir.resolve(filename).toFile();
