@@ -36,6 +36,33 @@ public class SketchfabService {
         return m.find() ? Optional.of(m.group()) : Optional.empty();
     }
 
+    public Optional<String> fetchThumbnailUrl(String uid) {
+        if (uid == null || uid.isBlank() || !isUploadEnabled()) return Optional.empty();
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Token " + apiToken);
+            HttpEntity<Void> request = new HttpEntity<>(headers);
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                    UPLOAD_URL + "/" + uid, HttpMethod.GET, request, new ParameterizedTypeReference<>() {});
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                Object thumbnails = response.getBody().get("thumbnails");
+                if (thumbnails instanceof Map<?, ?> thumbMap) {
+                    Object images = thumbMap.get("images");
+                    if (images instanceof java.util.List<?> list && !list.isEmpty()) {
+                        Object first = list.get(0);
+                        if (first instanceof Map<?, ?> img) {
+                            Object url = img.get("url");
+                            if (url != null) return Optional.of(url.toString());
+                        }
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            System.err.println("Sketchfab thumbnail fetch failed: " + ex.getMessage());
+        }
+        return Optional.empty();
+    }
+
     public Optional<String> uploadModel(MultipartFile file, String name, String description, String tags) {
         if (file == null || file.isEmpty() || !isUploadEnabled()) return Optional.empty();
 

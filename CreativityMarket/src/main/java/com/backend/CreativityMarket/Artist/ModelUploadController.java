@@ -1,5 +1,6 @@
 package com.backend.CreativityMarket.Artist;
 
+import com.backend.CreativityMarket.Marketplace.CategoryRepository;
 import com.backend.CreativityMarket.User.Asset;
 import com.backend.CreativityMarket.User.AssetRepository;
 import com.backend.CreativityMarket.User.User;
@@ -21,10 +22,12 @@ public class ModelUploadController {
 
     private final SketchfabService sketchfabService;
     private final AssetRepository assetRepository;
+    private final CategoryRepository categoryRepository;
 
-    public ModelUploadController(SketchfabService sketchfabService, AssetRepository assetRepository) {
+    public ModelUploadController(SketchfabService sketchfabService, AssetRepository assetRepository, CategoryRepository categoryRepository) {
         this.sketchfabService = sketchfabService;
         this.assetRepository = assetRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping
@@ -69,6 +72,7 @@ public class ModelUploadController {
         asset.setTags(form.getTags());
         asset.setLicense(form.getLicense());
         asset.setSketchfabUid(uid.orElse(null));
+        uid.ifPresent(u -> sketchfabService.fetchThumbnailUrl(u).ifPresent(asset::setThumbnailUrl));
         asset.setCreatorName(creatorName);
         asset.setCreator(uploader);
         asset.setCreatorAvatarUrl(uploader.getProfileImageUrl());
@@ -82,6 +86,8 @@ public class ModelUploadController {
         asset.setTexturesIncluded(form.getTexturesIncluded());
         asset.setTextureResolution(form.getTextureResolution());
         asset.setMaterials(form.getMaterials());
+        categoryRepository.findByNameIgnoreCase(form.getCategory())
+                .ifPresent(asset::setCategoryEntity);
 
         assetRepository.save(asset);
 
