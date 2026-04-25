@@ -7,7 +7,7 @@
   <section class="profile-hero">
     <div class="avatar">
       <#if user.profileImageUrl?? && user.profileImageUrl?has_content>
-        <img src="${user.profileImageUrl}" alt="Profile" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+        <img src="${user.profileImageUrl}" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
       <#else>
         <i class="fa-solid fa-gear"></i>
       </#if>
@@ -17,7 +17,7 @@
       <p class="muted">Update your profile and security settings.</p>
     </div>
     <div class="profile-actions">
-      <a class="btn btn-ghost" href="/users/home">
+      <a class="btn btn-primary" href="/users/home">
         <i class="fa-solid fa-arrow-left"></i> Back to Profile
       </a>
     </div>
@@ -46,7 +46,7 @@
         <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
           <div class="avatar" style="width:96px; height:96px;">
             <#if user.profileImageUrl?? && user.profileImageUrl?has_content>
-              <img src="${user.profileImageUrl}" alt="Current" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+              <img src="${user.profileImageUrl}" alt="Current" style="width:100%; height:100%; object-fit:cover;">
             <#else>
               <i class="fa-solid fa-user" style="font-size:2.2rem;"></i>
             </#if>
@@ -55,7 +55,6 @@
             <label class="label" style="display:block; margin-bottom:8px;">Upload a new picture</label>
             <input type="file" name="profileImage" accept="image/*"
                    style="width:100%; padding:10px 12px; background:var(--input-bg); border:1px solid var(--input-border); border-radius:4px; color:var(--text);">
-            <p class="small" style="margin-top:6px;">PNG, JPG, or WEBP — shown on your profile and in the navbar.</p>
           </div>
         </div>
       </div>
