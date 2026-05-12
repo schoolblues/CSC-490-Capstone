@@ -7,9 +7,9 @@ Team: Meylin Calix, Isaac Hollaway, Elisha Ricketts
 > CreativityMarket
 
 ## Team Members
-> Meylin Calix \
+> Meylin Calix 
 
-> Isaac Hollaway \
+> Isaac Hollaway 
 
 > Elisha Ricketts
 
